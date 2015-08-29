@@ -156,6 +156,7 @@
 		43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D93B281B9084B40090F47D /* LeftMenuViewController.swift */; };
 		43D93B2B1B908B9F0090F47D /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D93B2A1B908B9F0090F47D /* User.storyboard */; };
 		43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D93B2C1B90A29C0090F47D /* LoginViewController.swift */; };
+		A15C390E1B91519F00FBD5F9 /* CombList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15C390D1B91519F00FBD5F9 /* CombList.storyboard */; };
 		D05A368AA6B9ABFF04A30C66 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976EC4564FEA6A306018327 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -327,6 +328,7 @@
 		43D93B281B9084B40090F47D /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		43D93B2A1B908B9F0090F47D /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		43D93B2C1B90A29C0090F47D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A15C390D1B91519F00FBD5F9 /* CombList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CombList.storyboard; sourceTree = "<group>"; };
 		E6CD2BD01D02E81BE5C0365E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -384,6 +386,7 @@
 				43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */,
 				43D939381B8F62C30090F47D /* Supporting Files */,
 				43D93B2A1B908B9F0090F47D /* User.storyboard */,
+				A15C390D1B91519F00FBD5F9 /* CombList.storyboard */,
 			);
 			path = dayu;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				43D93A7D1B9058BD0090F47D /* star_3.png in Resources */,
 				43D93B1B1B9058C90090F47D /* star5_5.png in Resources */,
 				43D93A571B9058BD0090F47D /* country_germany.png in Resources */,
+				A15C390E1B91519F00FBD5F9 /* CombList.storyboard in Resources */,
 				43D939451B8F62C30090F47D /* Images.xcassets in Resources */,
 				43D93AFE1B9058C90090F47D /* ic_love_selected.png in Resources */,
 				43D93AFC1B9058C90090F47D /* ic_love_blue_selected.png in Resources */,
