@@ -28,43 +28,30 @@ class User: NSObject {
     
     var pwd = ""
     
-    class func parseUser(dict:NSDictionary) -> User {
-        var user = User();
-        user.id = dict["id"] as Int
-        user.tel = dict["tel"] as String
-        user.regTime = (dict["register_time"] as NSString).longLongValue
-        
-        user.score = dict["avgScore"] as? Float
-        user.fans = dict["fansCount"] as? Int
-        user.havePhoto = dict["havePhoto"] as Int
-        
-        //Get maybe null value field
-        user.intro = dict["intro"] as? String
-        user.maxLost = dict["max_lost"] as? Float
-        user.profit = dict["profit"] as? Float
-        user.winRate = dict["win_rate"] as? Float
-        user.transNum = dict["trans_num"] as? Int
-        user.username = dict["username"] as? String
-        user.copyNum = dict["copy_num"] as Int
-
-        return user
-    }
+//    func parse(dict:NSDictionary) {
+//        id = dict["id"] as Int
+//        tel = dict["tel"] as String
+//        regTime = (dict["register_time"] as NSString).longLongValue
+//        
+//        score = dict["avgScore"] as? Float
+//        fans = dict["fansCount"] as? Int
+//        havePhoto = dict["havePhoto"] as Int
+//        
+//        //Get maybe null value field
+//        intro = dict["intro"] as? String
+//        maxLost = dict["max_lost"] as? Float
+//        profit = dict["profit"] as? Float
+//        winRate = dict["win_rate"] as? Float
+//        transNum = dict["trans_num"] as? Int
+//        username = dict["username"] as? String
+//        copyNum = dict["copy_num"] as Int
+//    }
     
-    class func getUser(dict:NSDictionary) -> User {
-        var user = User()
-        user.id = dict["id"] as Int
-        user.tel = dict["tel"] as String
-        user.username = dict["username"] as? String
-        user.intro = dict["intro"] as? String
-        var havePhoto = dict["havePhoto"] as? Int
-        if havePhoto != nil {
-            user.havePhoto = havePhoto!
-        }
-        var copyNum = dict["copyNum"] as? Int
-        if copyNum != nil {
-            user.copyNum = dict["copyNum"] as Int
-        }
-        return user
+    func parse(dict:NSDictionary) {
+        id = dict["id"] as Int
+        tel = dict["tel"] as String
+        username = dict["username"] as? String
+        intro = dict["intro"] as? String
     }
     
     func getUsername() -> String {
