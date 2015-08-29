@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		435E626B1B91597D006CA7C6 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 435E626A1B91597D006CA7C6 /* Group.storyboard */; };
+		435E626D1B916079006CA7C6 /* arrow_nav_small_indicate.png in Resources */ = {isa = PBXBuildFile; fileRef = 435E626C1B916079006CA7C6 /* arrow_nav_small_indicate.png */; };
+		435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */; };
+		435E62731B9164E5006CA7C6 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E62721B9164E5006CA7C6 /* BaseUIViewController.swift */; };
 		43D9393B1B8F62C30090F47D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393A1B8F62C30090F47D /* AppDelegate.swift */; };
 		43D9393E1B8F62C30090F47D /* dayu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */; };
 		43D939401B8F62C30090F47D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393F1B8F62C30090F47D /* ViewController.swift */; };
@@ -173,6 +177,10 @@
 /* Begin PBXFileReference section */
 		335AD170ACB9D2466303995A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3976EC4564FEA6A306018327 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		435E626A1B91597D006CA7C6 /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
+		435E626C1B916079006CA7C6 /* arrow_nav_small_indicate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_nav_small_indicate.png; sourceTree = "<group>"; };
+		435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		435E62721B9164E5006CA7C6 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
 		43D939351B8F62C30090F47D /* dayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D939391B8F62C30090F47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43D9393A1B8F62C30090F47D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -351,6 +359,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		435E626E1B9161CE006CA7C6 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */,
+			);
+			name = Group;
+			sourceTree = "<group>";
+		};
+		435E62711B916219006CA7C6 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				43D93B2C1B90A29C0090F47D /* LoginViewController.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		43D9392C1B8F62C30090F47D = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +398,8 @@
 		43D939371B8F62C30090F47D /* dayu */ = {
 			isa = PBXGroup;
 			children = (
+				435E62711B916219006CA7C6 /* User */,
+				435E626E1B9161CE006CA7C6 /* Group */,
 				43D939701B90531B0090F47D /* dayu-Bridging-Header.h */,
 				43D9395F1B9052D50090F47D /* Network */,
 				43D9395E1B9052BB0090F47D /* Controller */,
@@ -386,6 +412,7 @@
 				43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */,
 				43D939381B8F62C30090F47D /* Supporting Files */,
 				43D93B2A1B908B9F0090F47D /* User.storyboard */,
+				435E626A1B91597D006CA7C6 /* Group.storyboard */,
 				A15C390D1B91519F00FBD5F9 /* CombList.storyboard */,
 			);
 			path = dayu;
@@ -448,7 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				43D93B281B9084B40090F47D /* LeftMenuViewController.swift */,
-				43D93B2C1B90A29C0090F47D /* LoginViewController.swift */,
+				435E62721B9164E5006CA7C6 /* BaseUIViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -465,6 +492,7 @@
 		43D9397C1B9058310090F47D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				435E626C1B916079006CA7C6 /* arrow_nav_small_indicate.png */,
 				43D93A871B9058C90090F47D /* arrow_back_nav_white.png */,
 				43D93A881B9058C90090F47D /* arrow_hide_down.png */,
 				43D93A891B9058C90090F47D /* arrow_indicate_right.png */,
@@ -703,6 +731,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D93A851B9058BD0090F47D /* tabhost_remind_selected.png in Resources */,
+				435E626D1B916079006CA7C6 /* arrow_nav_small_indicate.png in Resources */,
 				43D93A701B9058BD0090F47D /* signal_4.png in Resources */,
 				43D93A601B9058BD0090F47D /* country_zealand.png in Resources */,
 				43D93A761B9058BD0090F47D /* signal_up_3.png in Resources */,
@@ -790,6 +819,7 @@
 				43D93AE91B9058C90090F47D /* comb_reposition.png in Resources */,
 				43D93AE21B9058C90090F47D /* comb_closed.png in Resources */,
 				43D93AD51B9058C90090F47D /* arrow_hide_down.png in Resources */,
+				435E626B1B91597D006CA7C6 /* Group.storyboard in Resources */,
 				43D93B021B9058C90090F47D /* ic_three_arrow.png in Resources */,
 				43D93A561B9058BD0090F47D /* country_franch.png in Resources */,
 				43D93A6B1B9058BD0090F47D /* news_icon.png in Resources */,
@@ -886,7 +916,9 @@
 				43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */,
 				43D9397B1B90531C0090F47D /* StringUtil.swift in Sources */,
 				43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */,
+				435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */,
 				43D9396F1B9053090090F47D /* Group.swift in Sources */,
+				435E62731B9164E5006CA7C6 /* BaseUIViewController.swift in Sources */,
 				43D939791B90531C0090F47D /* FileUtil.swift in Sources */,
 				43D9397A1B90531C0090F47D /* ImageLoader.swift in Sources */,
 				43D9396A1B9053090090F47D /* Reply.swift in Sources */,

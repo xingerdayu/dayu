@@ -8,8 +8,8 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-
+class LoginViewController: BaseUIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,9 +35,10 @@ class LoginViewController: UIViewController {
             if stat == "ERR_TEL_OR_PWD" {
                 ViewUtil.showAlertView("登录失败", message:"用户名或密码错误!", view: self)
             } else if stat == "OK" {
-                //self.app.token = response["token"] as String
-                var user = User.getUser(response["user"] as NSDictionary)
-                println((response["user"] as NSDictionary)["id"])
+                var user = User()
+                user.parse(response["user"] as NSDictionary)
+                self.app.user = user
+                self.app.token = response["token"] as NSDictionary
             }
             }, failure:{(error:NSError!) in
                 println(error.localizedDescription)
