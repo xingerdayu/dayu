@@ -1,0 +1,10 @@
+platform :ios, '7.0'
+pod 'AFNetworking', '~> 2.3.1'
+pod 'SDWebImage', '~> 3.7.1'
+pod 'FMDB', '~> 2.5'
+pod 'ELCImagePickerController', '~> 0.2.0'
+pod 'MagicPie', '~> 1.1.1'
+pod 'FSLineChart', '~> 0.1.6'
+pod 'UMengAnalytics-NO-IDFA'
+pod 'ViewDeck', '~> 2.3.1' #侧滑菜单
+#pod 'MBProgressHUD', '~> 0.9.1'

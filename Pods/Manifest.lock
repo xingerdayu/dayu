@@ -1,0 +1,57 @@
+PODS:
+  - AFNetworking (2.3.1):
+    - AFNetworking/NSURLConnection (= 2.3.1)
+    - AFNetworking/NSURLSession (= 2.3.1)
+    - AFNetworking/Reachability (= 2.3.1)
+    - AFNetworking/Security (= 2.3.1)
+    - AFNetworking/Serialization (= 2.3.1)
+    - AFNetworking/UIKit (= 2.3.1)
+  - AFNetworking/NSURLConnection (2.3.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.3.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.3.1)
+  - AFNetworking/Security (2.3.1)
+  - AFNetworking/Serialization (2.3.1)
+  - AFNetworking/UIKit (2.3.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - ELCImagePickerController (0.2.0)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
+  - FSLineChart (0.1.7)
+  - MagicPie (1.1.1)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - UMengAnalytics-NO-IDFA (3.5.11)
+  - ViewDeck (2.3.1)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.3.1)
+  - ELCImagePickerController (~> 0.2.0)
+  - FMDB (~> 2.5)
+  - FSLineChart (~> 0.1.6)
+  - MagicPie (~> 1.1.1)
+  - SDWebImage (~> 3.7.1)
+  - UMengAnalytics-NO-IDFA
+  - ViewDeck (~> 2.3.1)
+
+SPEC CHECKSUMS:
+  AFNetworking: 05b9f6e3aa5ac45bc383b4bb108ef338080a26c7
+  ELCImagePickerController: b1b7084434a7d49f2cfc916bde1f3ba353d38de9
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  FSLineChart: 1b8d3727e8feb323144126d381184bf1b15e6efc
+  MagicPie: 0cfe79ae6e312d64f6799e3c2ba146b26ba5c79c
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  UMengAnalytics-NO-IDFA: e41024644de702e450093ef043af20b5fbe06cbc
+  ViewDeck: 3e9bfcc36d889155d77ae47811a4d48714ee8d0c
+
+COCOAPODS: 0.36.0
