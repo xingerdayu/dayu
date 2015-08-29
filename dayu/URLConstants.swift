@@ -88,6 +88,9 @@ struct URLConstants {
     static let suggestUrl = "\(URL_PREFIX)/suggest/add"
     
     static func getImageUrl(group:Group) -> String {
+        if group.imagePath != nil {
+            return "\(prefix)\(group.imagePath!)"
+        }
         return "\(prefix)/upload/G/G\(group.id).jpg"
     }
     

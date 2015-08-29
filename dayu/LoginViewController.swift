@@ -39,6 +39,10 @@ class LoginViewController: BaseUIViewController {
                 user.parse(response["user"] as NSDictionary)
                 self.app.user = user
                 self.app.token = response["token"] as NSDictionary
+                
+                var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+                var groupVc = usb.instantiateViewControllerWithIdentifier("GroupControllerId") as GroupListViewController
+                self.navigationController?.pushViewController(groupVc, animated: true)
             }
             }, failure:{(error:NSError!) in
                 println(error.localizedDescription)
