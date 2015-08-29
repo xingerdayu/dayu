@@ -161,6 +161,7 @@
 		43D93B2B1B908B9F0090F47D /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D93B2A1B908B9F0090F47D /* User.storyboard */; };
 		43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D93B2C1B90A29C0090F47D /* LoginViewController.swift */; };
 		A15C390E1B91519F00FBD5F9 /* CombList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15C390D1B91519F00FBD5F9 /* CombList.storyboard */; };
+		A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */; };
 		D05A368AA6B9ABFF04A30C66 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976EC4564FEA6A306018327 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -337,6 +338,7 @@
 		43D93B2A1B908B9F0090F47D /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		43D93B2C1B90A29C0090F47D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A15C390D1B91519F00FBD5F9 /* CombList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CombList.storyboard; sourceTree = "<group>"; };
+		A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombListViewController.swift; sourceTree = "<group>"; };
 		E6CD2BD01D02E81BE5C0365E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,6 +416,7 @@
 				43D93B2A1B908B9F0090F47D /* User.storyboard */,
 				435E626A1B91597D006CA7C6 /* Group.storyboard */,
 				A15C390D1B91519F00FBD5F9 /* CombList.storyboard */,
+				A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */,
 			);
 			path = dayu;
 			sourceTree = "<group>";
@@ -922,6 +925,7 @@
 				43D939791B90531C0090F47D /* FileUtil.swift in Sources */,
 				43D9397A1B90531C0090F47D /* ImageLoader.swift in Sources */,
 				43D9396A1B9053090090F47D /* Reply.swift in Sources */,
+				A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */,
 				43D939401B8F62C30090F47D /* ViewController.swift in Sources */,
 				43D939631B9052FD0090F47D /* URLConstants.swift in Sources */,
 				43D9396D1B9053090090F47D /* News.swift in Sources */,
