@@ -25,6 +25,25 @@ class Topic: NSObject {
     var shareCode:String = ""
     var timeString:NSString = ""
     
+    var imageGroupHeight:CGFloat = 0
+    
+    var contentLabelOffsetX:CGFloat = 20
+    
+    var contentLabelOffsetY:CGFloat = 60
+    
+    var contentLabelWidth:CGFloat = 280
+    
+    var defaultImageGroupHeight:CGFloat = 80
+    
+    var subViewOffsetY:CGFloat = 60
+    
+    var contentLabelHeight:CGFloat = 0
+    
+    var marginTop:CGFloat = 5
+    
+    var contentHeight:CGFloat = 0
+
+    
     class func parseTopic(dict:NSDictionary) -> Topic {
         var topic = Topic()
         topic.content = dict["content"] as NSString
@@ -46,5 +65,19 @@ class Topic: NSObject {
         
         return topic
     }
+    
+    /**
+    计算TopicView的高度
+    **/
+    func getContentHeight() -> CGFloat {
+        var size = content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(contentLabelWidth, 20000));
+        
+        if imageNum > 0 {
+            imageGroupHeight = defaultImageGroupHeight
+        }
+        
+        return contentLabelOffsetY + size.height + imageGroupHeight + marginTop * 2
+    }
+
 
 }

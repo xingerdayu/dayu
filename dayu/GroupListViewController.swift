@@ -42,6 +42,8 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
         // Do any additional setup after loading the view.
         
         getGroupList()
+        
+        //myTableView.registerNib(UINib(nibName: "", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "")
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +55,11 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
         var group = groupList[indexPath.row] as Group
         
         var cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath) as UITableViewCell
+        
+        var bgView = cell.viewWithTag(10) as UIView?
+        
+        println("\(bgView) group on = \(group.on)")
+        bgView?.hidden = !group.on
         
         var ivPhoto = cell.viewWithTag(11) as UIImageView
         var lbName = cell.viewWithTag(12) as UILabel
@@ -74,6 +81,11 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        var group = groupList[indexPath.row] as Group
+        var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+        var topicVc = usb.instantiateViewControllerWithIdentifier("TopicListViewController") as TopicListViewController
+        topicVc.group = group
+        self.navigationController?.pushViewController(topicVc, animated: true)
     }
 
 }
