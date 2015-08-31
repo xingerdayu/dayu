@@ -11,6 +11,11 @@
 		435E626D1B916079006CA7C6 /* arrow_nav_small_indicate.png in Resources */ = {isa = PBXBuildFile; fileRef = 435E626C1B916079006CA7C6 /* arrow_nav_small_indicate.png */; };
 		435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */; };
 		435E62731B9164E5006CA7C6 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E62721B9164E5006CA7C6 /* BaseUIViewController.swift */; };
+		435E62751B91AD87006CA7C6 /* Items.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435E62741B91AD87006CA7C6 /* Items.xib */; };
+		435E62771B91EC5E006CA7C6 /* TopicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435E62761B91EC5E006CA7C6 /* TopicView.xib */; };
+		435E62791B91ECB7006CA7C6 /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E62781B91ECB7006CA7C6 /* TopicView.swift */; };
+		435E627C1B91F1C6006CA7C6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E627B1B91F1C6006CA7C6 /* Extension.swift */; };
+		435E627E1B91F7C9006CA7C6 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E627D1B91F7C9006CA7C6 /* TopicListViewController.swift */; };
 		43D9393B1B8F62C30090F47D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393A1B8F62C30090F47D /* AppDelegate.swift */; };
 		43D9393E1B8F62C30090F47D /* dayu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */; };
 		43D939401B8F62C30090F47D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393F1B8F62C30090F47D /* ViewController.swift */; };
@@ -181,6 +186,11 @@
 		435E626C1B916079006CA7C6 /* arrow_nav_small_indicate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_nav_small_indicate.png; sourceTree = "<group>"; };
 		435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		435E62721B9164E5006CA7C6 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		435E62741B91AD87006CA7C6 /* Items.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Items.xib; sourceTree = "<group>"; };
+		435E62761B91EC5E006CA7C6 /* TopicView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicView.xib; sourceTree = "<group>"; };
+		435E62781B91ECB7006CA7C6 /* TopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
+		435E627B1B91F1C6006CA7C6 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		435E627D1B91F7C9006CA7C6 /* TopicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
 		43D939351B8F62C30090F47D /* dayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D939391B8F62C30090F47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43D9393A1B8F62C30090F47D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -362,7 +372,12 @@
 		435E626E1B9161CE006CA7C6 /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				435E626A1B91597D006CA7C6 /* Group.storyboard */,
 				435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */,
+				435E62741B91AD87006CA7C6 /* Items.xib */,
+				435E62761B91EC5E006CA7C6 /* TopicView.xib */,
+				435E62781B91ECB7006CA7C6 /* TopicView.swift */,
+				435E627D1B91F7C9006CA7C6 /* TopicListViewController.swift */,
 			);
 			name = Group;
 			sourceTree = "<group>";
@@ -370,9 +385,18 @@
 		435E62711B916219006CA7C6 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				43D93B2A1B908B9F0090F47D /* User.storyboard */,
 				43D93B2C1B90A29C0090F47D /* LoginViewController.swift */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		435E627A1B91F1A8006CA7C6 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				435E627B1B91F1C6006CA7C6 /* Extension.swift */,
+			);
+			name = Ext;
 			sourceTree = "<group>";
 		};
 		43D9392C1B8F62C30090F47D = {
@@ -398,6 +422,7 @@
 		43D939371B8F62C30090F47D /* dayu */ = {
 			isa = PBXGroup;
 			children = (
+				435E627A1B91F1A8006CA7C6 /* Ext */,
 				435E62711B916219006CA7C6 /* User */,
 				435E626E1B9161CE006CA7C6 /* Group */,
 				43D939701B90531B0090F47D /* dayu-Bridging-Header.h */,
@@ -411,8 +436,6 @@
 				43D939441B8F62C30090F47D /* Images.xcassets */,
 				43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */,
 				43D939381B8F62C30090F47D /* Supporting Files */,
-				43D93B2A1B908B9F0090F47D /* User.storyboard */,
-				435E626A1B91597D006CA7C6 /* Group.storyboard */,
 				A15C390D1B91519F00FBD5F9 /* CombList.storyboard */,
 			);
 			path = dayu;
@@ -781,6 +804,7 @@
 				43D93B0C1B9058C90090F47D /* note_good_normal.png in Resources */,
 				43D93A7A1B9058BD0090F47D /* star_0.png in Resources */,
 				43D93AEF1B9058C90090F47D /* comb_up_5.png in Resources */,
+				435E62771B91EC5E006CA7C6 /* TopicView.xib in Resources */,
 				43D93A831B9058BD0090F47D /* tabhost_queue_selected.png in Resources */,
 				43D93A731B9058BD0090F47D /* signal_up_0.png in Resources */,
 				43D93B1A1B9058C90090F47D /* star5_4.png in Resources */,
@@ -807,6 +831,7 @@
 				43D93AE41B9058C90090F47D /* comb_down_2.png in Resources */,
 				43D93A7B1B9058BD0090F47D /* star_1.png in Resources */,
 				43D93B061B9058C90090F47D /* item_suggest_post.png in Resources */,
+				435E62751B91AD87006CA7C6 /* Items.xib in Resources */,
 				43D93A781B9058BD0090F47D /* signal_up_5.png in Resources */,
 				43D93A6A1B9058BD0090F47D /* my_topic.png in Resources */,
 				43D93B101B9058C90090F47D /* note_shit_normal.png in Resources */,
@@ -918,6 +943,7 @@
 				43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */,
 				435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */,
 				43D9396F1B9053090090F47D /* Group.swift in Sources */,
+				435E62791B91ECB7006CA7C6 /* TopicView.swift in Sources */,
 				435E62731B9164E5006CA7C6 /* BaseUIViewController.swift in Sources */,
 				43D939791B90531C0090F47D /* FileUtil.swift in Sources */,
 				43D9397A1B90531C0090F47D /* ImageLoader.swift in Sources */,
@@ -927,11 +953,13 @@
 				43D9396D1B9053090090F47D /* News.swift in Sources */,
 				43D9393E1B8F62C30090F47D /* dayu.xcdatamodeld in Sources */,
 				43D939781B90531C0090F47D /* ViewUtil.swift in Sources */,
+				435E627C1B91F1C6006CA7C6 /* Extension.swift in Sources */,
 				43D9396C1B9053090090F47D /* User.swift in Sources */,
 				43D939771B90531C0090F47D /* MBProgressHUD.m in Sources */,
 				43D9393B1B8F62C30090F47D /* AppDelegate.swift in Sources */,
 				43D9396E1B9053090090F47D /* Message.swift in Sources */,
 				43D939621B9052FD0090F47D /* HttpUtil.swift in Sources */,
+				435E627E1B91F7C9006CA7C6 /* TopicListViewController.swift in Sources */,
 				43D9396B1B9053090090F47D /* Topic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

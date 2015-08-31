@@ -14,6 +14,7 @@ class LoginViewController: BaseUIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationController?.interactivePopGestureRecognizer.enabled = true
     }
 
     override func didReceiveMemoryWarning() {

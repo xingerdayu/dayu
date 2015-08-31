@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func isLogin() -> Bool {
-        return token["token"] as Int > 0
+        return token["authority"] as Int > 0
     }
 
 
