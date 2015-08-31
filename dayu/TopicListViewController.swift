@@ -13,6 +13,7 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
     private let FONT_SIZE:CGFloat = 15.0
     
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var refreshControl = UIRefreshControl()
     var topicList = NSMutableArray();
@@ -34,6 +35,8 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         refreshControl.attributedTitle = NSAttributedString(string: "加载更多")
         refreshControl.frame.size = CGSizeMake(320, 20)
         myTableView.addSubview(refreshControl)
+        
+        titleLabel.text = group.name
 
         refreshData()
     }

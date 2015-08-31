@@ -21,12 +21,17 @@ class ItemsView: UIView {
     @IBOutlet weak var tvCommetNum: UILabel!
     
     @IBAction func support(sender: AnyObject) {
+        ViewUtil.showToast(self, text: "点赞！还没实现", afterDelay: 2)
+        ivSupport.highlighted = true
     }
     
     @IBAction func disSupport(sender: AnyObject) {
+        ViewUtil.showToast(self, text: "点踩！测试，待实现", afterDelay: 2)
+        ivShit.highlighted = true
     }
     
     @IBAction func reply(sender: AnyObject) {
+        ViewUtil.showToast(self, text: "评论！测试，带实现", afterDelay: 2)
     }
     
 }
