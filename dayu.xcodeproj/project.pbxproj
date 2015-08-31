@@ -162,6 +162,7 @@
 		43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D93B2C1B90A29C0090F47D /* LoginViewController.swift */; };
 		A15C390E1B91519F00FBD5F9 /* CombList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15C390D1B91519F00FBD5F9 /* CombList.storyboard */; };
 		A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */; };
+		A19B89701B91F6F2007B4D17 /* Comb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B896F1B91F6F2007B4D17 /* Comb.swift */; };
 		D05A368AA6B9ABFF04A30C66 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976EC4564FEA6A306018327 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -339,6 +340,7 @@
 		43D93B2C1B90A29C0090F47D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A15C390D1B91519F00FBD5F9 /* CombList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CombList.storyboard; sourceTree = "<group>"; };
 		A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombListViewController.swift; sourceTree = "<group>"; };
+		A19B896F1B91F6F2007B4D17 /* Comb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comb.swift; sourceTree = "<group>"; };
 		E6CD2BD01D02E81BE5C0365E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -457,6 +459,7 @@
 				43D939671B9053090090F47D /* News.swift */,
 				43D939681B9053090090F47D /* Message.swift */,
 				43D939691B9053090090F47D /* Group.swift */,
+				A19B896F1B91F6F2007B4D17 /* Comb.swift */,
 			);
 			name = Bean;
 			sourceTree = "<group>";
@@ -918,6 +921,7 @@
 			files = (
 				43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */,
 				43D9397B1B90531C0090F47D /* StringUtil.swift in Sources */,
+				A19B89701B91F6F2007B4D17 /* Comb.swift in Sources */,
 				43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */,
 				435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */,
 				43D9396F1B9053090090F47D /* Group.swift in Sources */,
@@ -1055,10 +1059,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = dayu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "dayu/dayu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1070,9 +1076,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = dayu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "dayu/dayu-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

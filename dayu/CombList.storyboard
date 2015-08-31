@@ -7,8 +7,7 @@
         <!--Comb List View Controller-->
         <scene sceneID="evM-zA-T07">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PA3-Ny-A2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="jrb-nl-ksH" customClass="CombListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CombListController" id="jrb-nl-ksH" customClass="CombListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CJn-20-3EP"/>
                         <viewControllerLayoutGuide type="bottom" id="NIj-0u-bwF"/>
@@ -31,61 +30,58 @@
                                 <rect key="frame" x="0.0" y="220" width="320" height="393"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="90" id="kRd-b2-Ruf">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CombCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CombCell" rowHeight="90" id="kRd-b2-Ruf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kRd-b2-Ruf" id="Zh6-eT-ODb">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="comb_circle_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="uDv-GC-hCs">
+                                                <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="comb_circle_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="uDv-GC-hCs">
                                                     <rect key="frame" x="8" y="8" width="60" height="60"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-1W-ft1">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-1W-ft1">
                                                     <rect key="frame" x="76" y="8" width="26" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-lR-pUj">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-lR-pUj">
                                                     <rect key="frame" x="76" y="27" width="45" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgi-o6-u31">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="17" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgi-o6-u31">
                                                     <rect key="frame" x="95" y="56" width="26" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="note_good_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pqy-P9-5Tw">
-                                                    <rect key="frame" x="76" y="55" width="13" height="13"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-44-dnc">
-                                                    <rect key="frame" x="147" y="56" width="26" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="19" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-44-dnc">
+                                                    <rect key="frame" x="147" y="57" width="26" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tb-5D-xsH">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tb-5D-xsH">
                                                     <rect key="frame" x="17" y="23" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UT1-Lf-Zij">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UT1-Lf-Zij">
                                                     <rect key="frame" x="23" y="44" width="26" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="item_user_nick.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Ws-C4-1h0">
-                                                    <rect key="frame" x="131" y="55" width="13" height="13"/>
+                                                <imageView userInteractionEnabled="NO" tag="18" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="item_user_nick.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Ws-C4-1h0">
+                                                    <rect key="frame" x="129" y="56" width="13" height="13"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="comb_up_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="NQz-Tm-fcL">
-                                                    <rect key="frame" x="124" y="37" width="10" height="10"/>
+                                                <imageView userInteractionEnabled="NO" tag="15" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="comb_up_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="NQz-Tm-fcL">
+                                                    <rect key="frame" x="124" y="38" width="10" height="10"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5C-E3-3nO">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5C-E3-3nO">
                                                     <rect key="frame" x="204" y="28" width="45" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -103,16 +99,23 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1D-yL-SHN">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="21" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1D-yL-SHN">
                                                     <rect key="frame" x="260" y="56" width="26" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" tag="16" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="note_good_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pqy-P9-5Tw">
+                                                    <rect key="frame" x="76" y="55" width="13" height="13"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jrb-nl-ksH" id="GQq-si-b6P"/>
+                                    <outlet property="delegate" destination="jrb-nl-ksH" id="pea-bA-mRb"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击查看我的组合 &gt;&gt;&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOW-m5-rgI">
                                 <rect key="frame" x="0.0" y="190" width="320" height="30"/>
@@ -126,21 +129,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="hD2-fs-4zx"/>
                     <connections>
-                        <outlet property="UivFollow" destination="5Ws-C4-1h0" id="ih0-Rn-Q9L"/>
-                        <outlet property="UivSurpport" destination="Pqy-P9-5Tw" id="Nn2-d2-BIi"/>
-                        <outlet property="UlBodonglv" destination="O5C-E3-3nO" id="h6Y-Ef-bww"/>
-                        <outlet property="UlFollowNum" destination="eN3-44-dnc" id="JDF-VZ-jgt"/>
-                        <outlet property="UlScore" destination="Y1D-yL-SHN" id="6aN-RB-bgh"/>
-                        <outlet property="UlSurpportNum" destination="vgi-o6-u31" id="TZQ-s4-rtt"/>
-                        <outlet property="arrow" destination="NQz-Tm-fcL" id="1qR-OB-GLR"/>
-                        <outlet property="dataInCircle" destination="5Tb-5D-xsH" id="I3R-Zx-gxx"/>
-                        <outlet property="name" destination="ge3-lR-pUj" id="0Fa-sa-FZ0"/>
-                        <outlet property="nameInCircle" destination="UT1-Lf-Zij" id="exF-Ks-RLJ"/>
-                        <outlet property="time" destination="lNS-1W-ft1" id="aRM-Th-eqH"/>
+                        <outlet property="UtvCombs" destination="3el-X9-v6t" id="hTa-kV-QfS"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PA3-Ny-A2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="-469"/>
+            <point key="canvasLocation" x="-25" y="-471"/>
         </scene>
         <!--Title-->
         <scene sceneID="FkJ-yb-g46">
