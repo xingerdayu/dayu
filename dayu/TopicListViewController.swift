@@ -72,9 +72,18 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         
         var cell = tableView.dequeueReusableCellWithIdentifier("TopicCell", forIndexPath: indexPath) as UITableViewCell
         
+        cell.viewWithTag(5)?.removeFromSuperview() //TODO 这里不使用IOS自带的缓存，可能性能有影响，但是注意不要重复添加view，不然会有重叠
+        cell.viewWithTag(6)?.removeFromSuperview()
+        
         var topicView = NSBundle.mainBundle().loadNibNamed("TopicView", owner: self, options: nil)[0] as TopicView
+        topicView.tag = 5
         topicView.setTopic(topic)
         cell.addSubview(topicView)
+        
+        var itemsView = NSBundle.mainBundle().loadNibNamed("ItemsView", owner: self, options: nil)[0] as ItemsView
+        itemsView.frame = CGRectMake(10, topicView.frame.height - 35 , 300, 30)
+        itemsView.tag = 6
+        cell.addSubview(itemsView)
         
         return cell
     }
