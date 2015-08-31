@@ -29,7 +29,7 @@ class Topic: NSObject {
     
     var contentLabelOffsetX:CGFloat = 20
     
-    var contentLabelOffsetY:CGFloat = 60
+    var contentLabelOffsetY:CGFloat = 55
     
     var contentLabelWidth:CGFloat = 280
     
@@ -76,7 +76,7 @@ class Topic: NSObject {
             imageGroupHeight = defaultImageGroupHeight
         }
         
-        return contentLabelOffsetY + size.height + imageGroupHeight + marginTop * 2
+        return contentLabelOffsetY + size.height + imageGroupHeight + marginTop * 3 + 30
     }
 
 

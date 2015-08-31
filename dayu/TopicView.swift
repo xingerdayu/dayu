@@ -34,8 +34,8 @@ class TopicView: UIView {
             var imageGroupView = createGroupImageView(topic, offsetY: topic.contentLabelHeight)
             self.addSubview(imageGroupView)
         }
-
-        topic.contentHeight = topic.contentLabelOffsetY + topic.contentLabelHeight + topic.imageGroupHeight + topic.marginTop * 3
+        
+        topic.contentHeight = topic.contentLabelOffsetY + topic.contentLabelHeight + topic.imageGroupHeight + topic.marginTop * 3 + 30
         bgView.frame = CGRectMake(10, 5, 300, topic.contentHeight - 10)
         self.frame = CGRectMake(0, 0, 320, topic.contentHeight)
     }
