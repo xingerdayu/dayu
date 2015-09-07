@@ -35,7 +35,7 @@ class StringUtil {
     class func formatTime(time:Int64) -> NSString {
         var date = NSDate(timeIntervalSince1970: Double(time))
         var format = NSDateFormatter()
-        format.dateFormat = "yyyy/MM/dd"
+        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
         var stringDate = format.stringFromDate(date)
         return stringDate
     }

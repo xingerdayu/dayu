@@ -17,6 +17,7 @@ class Topic: NSObject {
     var isShare = 0;
     var originId:Int?;
     var replyCount = 0;
+    var disagreeCount = 0;
     var sendtime:Int64 = 0;
     var shareCount = 0;
     var userId = 0;
@@ -24,6 +25,7 @@ class Topic: NSObject {
     var visible = "";
     var shareCode:String = ""
     var timeString:NSString = ""
+    var isSupport:Int?
     
     var imageGroupHeight:CGFloat = 0
     
@@ -60,6 +62,8 @@ class Topic: NSObject {
         topic.userId = dict["user_id"] as Int
         topic.username = dict["username"] as String
         topic.visible = dict["visible"] as String
+        topic.disagreeCount = dict["disagreeCount"] as Int
+        topic.isSupport = dict["isSupport"] as? Int
         
         topic.timeString = StringUtil.formatTime(topic.sendtime)
         

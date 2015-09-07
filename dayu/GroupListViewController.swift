@@ -17,7 +17,7 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
     func getGroupList() {
         var params = ["token":app.getToken()]
         HttpUtil.post(URLConstants.getJoinedGroupsUrl, params: params, success: {(data:AnyObject!) in
-            println("group data = \(data)")
+            //println("group data = \(data)")
             if data["stat"] as String == "OK" {
                 self.groupList.removeAllObjects()
                 var array = data["groups"] as NSArray
@@ -38,9 +38,10 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBarHidden = true
+        //self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view.
         
+        self.title = "圈子"
         getGroupList()
         
         //myTableView.registerNib(UINib(nibName: "", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "")
@@ -58,7 +59,6 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
         
         var bgView = cell.viewWithTag(10) as UIView?
         
-        println("\(bgView) group on = \(group.on)")
         bgView?.hidden = !group.on
         
         var ivPhoto = cell.viewWithTag(11) as UIImageView
@@ -85,6 +85,7 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
         var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
         var topicVc = usb.instantiateViewControllerWithIdentifier("TopicListViewController") as TopicListViewController
         topicVc.group = group
+        topicVc.title = group.name
         self.navigationController?.pushViewController(topicVc, animated: true)
     }
 

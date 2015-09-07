@@ -37,12 +37,9 @@ class Group: NSObject {
         place = dict["place"] as? Int
         imagePath = dict["image_path"] as? String
         
-        //println(dict["on"])
-        on = dict["on"]!.boolValue
-        
-//        if ton != nil {
-//            self.on = dict["on"] as Bool
-//        }
+        if dict["on"] != nil {
+            self.on = dict["on"]!.boolValue
+        }
     }
     
 }

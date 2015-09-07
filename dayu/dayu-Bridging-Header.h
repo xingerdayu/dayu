@@ -11,6 +11,7 @@
 #import <ELCAlbumPickerController.h>
 #import <MagicPieLayer.h>
 #import <FSLineChart.h>
+#import<CommonCrypto/CommonCrypto.h>
 
 #include "IIViewDeckController.h"
 //#include "IISideController.h"
