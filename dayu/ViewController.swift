@@ -31,5 +31,11 @@ class ViewController: UIViewController {
         self.presentViewController(LeftMenuViewController(), animated: true, completion: {})
     }
 
+    @IBAction func jump3(sender: AnyObject) {
+        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+        var vc = usb.instantiateViewControllerWithIdentifier("CreateCombStepOneUI") as UIViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
 }
 

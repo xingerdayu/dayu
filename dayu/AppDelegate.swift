@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var token:NSDictionary!
-    var user:User?
+    var user:User!
     
     func getToken() -> String {
         return token["token"] as String
@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return token["authority"] as Int > 0
     }
 
+    func saveUser(response:AnyObject!) {
+        var user = User()
+        user.parse(response["user"] as NSDictionary)
+        self.user = user
+        self.token = response["token"] as NSDictionary
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

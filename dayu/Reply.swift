@@ -25,8 +25,14 @@ class Reply: NSObject {
         var reply = Reply()
         reply.content = dict["content"] as NSString
         reply.id = dict["id"] as Int
-        reply.sendtime = (dict["sendtime"] as NSString).longLongValue
-        reply.topicId = dict["topic_id"] as Int
+        
+        let tmp = (dict["sendtime"] as? NSString)?.longLongValue
+        if tmp != nil { //一直想不明白，在列表中循环解析就要转化为NSString,而单个直接解析时需要用NSNumber
+            reply.sendtime = tmp!
+        } else {
+            reply.sendtime = (dict["sendtime"] as NSNumber).longLongValue
+        }
+        reply.topicId = dict["attach_id"] as Int
         reply.userId = dict["user_id"] as Int
         reply.username = dict["username"] as String
         

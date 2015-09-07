@@ -15,6 +15,8 @@ class TopicView: UIView {
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbName: UILabel!
     
+    var shouldShowItems = true
+    
     func setTopic(topic:Topic) {
         lbTime.text = topic.timeString
         lbName.text = topic.username
@@ -35,7 +37,10 @@ class TopicView: UIView {
             self.addSubview(imageGroupView)
         }
         
-        topic.contentHeight = topic.contentLabelOffsetY + topic.contentLabelHeight + topic.imageGroupHeight + topic.marginTop * 3 + 30
+        topic.contentHeight = topic.contentLabelOffsetY + topic.contentLabelHeight + topic.imageGroupHeight + topic.marginTop * 3
+        if shouldShowItems {
+            topic.contentHeight = topic.contentHeight + 30
+        }
         bgView.frame = CGRectMake(10, 5, 300, topic.contentHeight - 10)
         self.frame = CGRectMake(0, 0, 320, topic.contentHeight)
     }

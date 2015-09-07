@@ -8,15 +8,16 @@
 
 import UIKit
 
-class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
+class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, WriteDelegete {
     
     private let FONT_SIZE:CGFloat = 15.0
     
     @IBOutlet weak var myTableView: UITableView!
-    @IBOutlet weak var titleLabel: UILabel!
+    //@IBOutlet weak var titleLabel: UILabel!
     
     var refreshControl = UIRefreshControl()
     var topicList = NSMutableArray();
+    var chooseIndexPath:NSIndexPath?
     
     var group:Group!
 
@@ -25,7 +26,7 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
 
         // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
-        self.navigationController?.navigationBarHidden = true        
+        //self.navigationController?.navigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer.enabled = true
 
         //myTableView.registerNib(UINib(nibName: "", bundle: nil), forCellReuseIdentifier: identifier)
@@ -36,9 +37,18 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         refreshControl.frame.size = CGSizeMake(320, 20)
         myTableView.addSubview(refreshControl)
         
-        titleLabel.text = group.name
+        //titleLabel.text = group.name
 
         refreshData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if chooseIndexPath != nil {
+            println(topicList[chooseIndexPath!.row] as Topic)
+            myTableView.reloadRowsAtIndexPaths([chooseIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
+        }
     }
     
     func refreshData() {
@@ -85,6 +95,7 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         
         var itemsView = NSBundle.mainBundle().loadNibNamed("ItemsView", owner: self, options: nil)[0] as ItemsView
         itemsView.frame = CGRectMake(10, topicView.frame.height - 35 , 300, 30)
+        itemsView.setTopic(topic)
         itemsView.tag = 6
         cell.addSubview(itemsView)
         
@@ -98,9 +109,29 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.chooseIndexPath = indexPath
+        var topic = topicList[indexPath.row] as Topic
+        var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+        var replyVc = usb.instantiateViewControllerWithIdentifier("ReplyListControllerUI") as ReplyListViewController
+        replyVc.topic = topic
+        self.navigationController?.pushViewController(replyVc, animated: true)
+
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topicList.count
+    }
+    
+    @IBAction func post(sender: AnyObject) {
+        var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+        var writeVc = usb.instantiateViewControllerWithIdentifier("WriteViewUI") as WriteViewController
+        writeVc.group = group
+        writeVc.delegate = self
+        self.navigationController?.pushViewController(writeVc, animated: true)
+    }
+    
+    func onWriteFinished() {
+        refreshData()
     }
 }

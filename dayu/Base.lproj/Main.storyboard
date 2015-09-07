@@ -50,6 +50,15 @@
                                     <action selector="jump2:" destination="dZz-Dt-aaD" eventType="touchUpInside" id="Uds-wZ-eya"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgN-2o-N5X">
+                                <rect key="frame" x="85" y="123" width="151" height="30"/>
+                                <state key="normal" title="创建组合">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="jump3:" destination="dZz-Dt-aaD" eventType="touchUpInside" id="ahC-Xc-UJY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
