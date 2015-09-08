@@ -1,0 +1,214 @@
+//
+//  CCombStepThreeViewController.swift
+//  dayu
+//
+//  Created by Xinger on 15/9/7.
+//  Copyright (c) 2015年 Xinger. All rights reserved.
+//
+
+import UIKit
+
+var CCOMB_totalMoney:CGFloat = 100000
+var CCOMB_lever = 100
+var CCOMB_remaining:CGFloat = 0
+
+class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+
+    @IBOutlet weak var utfTotalMoney: UITextField!
+    @IBOutlet weak var utfRestMoney: UILabel!
+    @IBOutlet weak var segLevel: UISegmentedControl!
+    
+    @IBOutlet weak var viewCrashBg: UIView!
+    @IBOutlet weak var labelCurrentMoney: UILabel!
+    
+    var cyTypes:Array<CurrencyType>!
+    var ccomb:CComb!
+    @IBOutlet weak var myTableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        //viewCrashBg.setTranslatesAutoresizingMaskIntoConstraints(true) //清除 AutoLayout的影响
+        getPrices()
+        
+        utfTotalMoney.text = "\(CCOMB_totalMoney)"
+        switch CCOMB_lever {
+        case 50:
+            segLevel.selectedSegmentIndex = 1
+        case 500:
+            segLevel.selectedSegmentIndex = 2
+        case 200:
+            segLevel.selectedSegmentIndex = 3
+        default:
+            segLevel.selectedSegmentIndex = 0
+        }
+    }
+    
+    func getPrices() {
+        var priceUrl = "http://112.74.195.144:8080/price/all"
+        
+        HttpUtil.get(priceUrl, success: {(response:AnyObject!) in
+            //println(response)
+            
+            var dict = response["prices"] as NSDictionary
+            for cType in CURRENCT_ARRAY {
+                //println("\(cType.key) sss \(dict[cType.key])")
+                cType.price = (dict[cType.key] as NSDictionary!)["ask"] as CGFloat
+            }
+            self.notifyDateChanged()
+            self.myTableView.reloadData()
+        })
+    }
+    
+    @IBAction func onSwitch(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 1:
+            CCOMB_lever = 50
+        case 2:
+            CCOMB_lever = 500
+        case 3:
+            CCOMB_lever = 200
+        default:
+            CCOMB_lever = 100
+        }
+        notifyDateChanged()
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("CurrencyTypeCell", forIndexPath: indexPath) as UITableViewCell
+        
+        var ct = cyTypes[indexPath.row]
+        
+        var keyLabel = cell.viewWithTag(20) as UILabel
+        var priceLabel = cell.viewWithTag(21) as UILabel
+        var positionLabel = cell.viewWithTag(22) as UILabel
+        var numUtf = cell.viewWithTag(23) as CurrencyTextField
+        var oBtn = cell.viewWithTag(24) as CurrencyButton
+        oBtn.indexPath = indexPath
+        numUtf.indexPath = indexPath
+        //var priceStr = NSString(format: "%.02lf", ct.rate * 100.0)
+        positionLabel.text = "\(ct.rate * 100) %"
+        if !(ct.tradeNum < 0.001) {
+            numUtf.text = "\(ct.tradeNum)"
+        }
+        priceLabel.text = "\(ct.price)"
+        keyLabel.text = ct.value
+        
+        if ct.operation == "SELL" {
+            oBtn.backgroundColor = Colors.SellYellowColor
+            oBtn.setTitle("空仓", forState: UIControlState.Normal)
+        } else {
+            oBtn.backgroundColor = Colors.WordMainBlueColor
+            oBtn.setTitle("多仓", forState: UIControlState.Normal)
+        }
+        oBtn.addTarget(self, action: "sellOrBuy:", forControlEvents: UIControlEvents.TouchUpInside)
+        numUtf.delegate = self
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cyTypes.count
+    }
+    
+    func sellOrBuy(obtn:CurrencyButton) {
+        var cType = cyTypes[obtn.indexPath.row]
+        if cType.operation == "SELL" {
+            cType.operation = "BUY"
+            obtn.backgroundColor = Colors.WordMainBlueColor
+            obtn.setTitle("多仓", forState: UIControlState.Normal)
+        } else {
+            cType.operation = "SELL"
+            obtn.backgroundColor = Colors.SellYellowColor
+            obtn.setTitle("空仓", forState: UIControlState.Normal)
+        }
+    }
+
+    func textFieldDidEndEditing(textField: UITextField) {
+        var num = NSString(string: textField.text).floatValue
+        
+        textField.text = NSString(format: "%.02lf", num)
+        
+        if textField is CurrencyTextField {
+            //修改的是手数
+            var indexPath =  (textField as CurrencyTextField).indexPath
+            var cType = cyTypes[indexPath.row]
+            cType.setCurrentRate(CGFloat(num), totalMoney: CCOMB_totalMoney, lever: CCOMB_lever)
+            
+            //var priceStr = NSString(format: "%.02lf", cType.rate * 100.0) //保留两位小数
+            (myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(cType.rate * 100) %"
+            notifyRowChanged()
+        } else {
+            //修改的是总金额
+            CCOMB_totalMoney = CGFloat(num)
+            notifyDateChanged()
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func notifyRowChanged() {
+        var sumRate:CGFloat = 0
+        for cType in cyTypes {
+            sumRate += cType.rate
+        }
+        CCOMB_remaining = 1 - sumRate
+        changeData()
+    }
+    
+    func notifyDateChanged() {
+        var sumRate:CGFloat = 0
+        for cType in cyTypes {
+            cType.setCurrentRate(cType.tradeNum, totalMoney: CCOMB_totalMoney, lever: CCOMB_lever)
+            sumRate += cType.rate
+        }
+        myTableView.reloadData()
+        CCOMB_remaining = 1 - sumRate
+        changeData()
+    }
+    
+    func changeData() {
+        if CCOMB_remaining < 0.0001 {
+            UIAlertView(title: "您的现金不够，请重新设置!", message: "", delegate: self, cancelButtonTitle: "确定").show()
+        }
+        //self.viewCrashBg.frame = CGRectMake(0, 528, 320.0 * remaining, 40)
+        //var restRate = NSString(format: "%.02lf", remaining * CGFloat(100))
+        self.labelCurrentMoney.text = "\(CCOMB_remaining * 100)%"
+        self.utfRestMoney.text = "$\(CCOMB_remaining * CGFloat(CCOMB_lever) * CCOMB_totalMoney)"
+    }
+    
+    @IBAction func finishCreate(sender: UIBarButtonItem) {
+        var array = Array<String>()
+        for cType in cyTypes {
+            //println(cType.toJsonString())
+            array.append(cType.toJsonString())
+        }
+        println("\(array)", "")
+        var params = ["token":/**app.user.id**/1, "username": /**app.user.getUsername()**/"simafei", "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "combination_description":ccomb.des, "combination_types":ccomb.aType]
+        
+        HttpUtil.post(URLConstants.addCombinationUrl(), params: params, success: {(response:AnyObject!) in
+            println(response)
+        })
+    }
+    
+    @IBAction func modifyTypes(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
+}
+
+class CurrencyButton: UIButton {
+    var indexPath:NSIndexPath!
+}
+
+class CurrencyTextField: UITextField {
+    var indexPath:NSIndexPath!
+}

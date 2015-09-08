@@ -29,6 +29,7 @@
 		4386C2B41B9D42490080A175 /* CCombStepTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2B31B9D42490080A175 /* CCombStepTwoViewController.swift */; };
 		4386C2B61B9D74A70080A175 /* CurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2B51B9D74A70080A175 /* CurrencyType.swift */; };
 		4386C2B81B9D7C710080A175 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2B71B9D7C710080A175 /* Colors.swift */; };
+		4386C2BB1B9D84910080A175 /* CCombStepThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2BA1B9D84910080A175 /* CCombStepThreeViewController.swift */; };
 		43D9393B1B8F62C30090F47D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393A1B8F62C30090F47D /* AppDelegate.swift */; };
 		43D9393E1B8F62C30090F47D /* dayu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */; };
 		43D939401B8F62C30090F47D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393F1B8F62C30090F47D /* ViewController.swift */; };
@@ -179,6 +180,8 @@
 		43D93B2B1B908B9F0090F47D /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D93B2A1B908B9F0090F47D /* User.storyboard */; };
 		43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D93B2C1B90A29C0090F47D /* LoginViewController.swift */; };
 		A15C390E1B91519F00FBD5F9 /* CombList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15C390D1B91519F00FBD5F9 /* CombList.storyboard */; };
+		A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */; };
+		A19B89701B91F6F2007B4D17 /* Comb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B896F1B91F6F2007B4D17 /* Comb.swift */; };
 		D05A368AA6B9ABFF04A30C66 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976EC4564FEA6A306018327 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +220,7 @@
 		4386C2B31B9D42490080A175 /* CCombStepTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCombStepTwoViewController.swift; sourceTree = "<group>"; };
 		4386C2B51B9D74A70080A175 /* CurrencyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyType.swift; sourceTree = "<group>"; };
 		4386C2B71B9D7C710080A175 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		4386C2BA1B9D84910080A175 /* CCombStepThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCombStepThreeViewController.swift; sourceTree = "<group>"; };
 		43D939351B8F62C30090F47D /* dayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D939391B8F62C30090F47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43D9393A1B8F62C30090F47D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 		43D93B2A1B908B9F0090F47D /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		43D93B2C1B90A29C0090F47D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A15C390D1B91519F00FBD5F9 /* CombList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CombList.storyboard; sourceTree = "<group>"; };
+		A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombListViewController.swift; sourceTree = "<group>"; };
+		A19B896F1B91F6F2007B4D17 /* Comb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comb.swift; sourceTree = "<group>"; };
 		E6CD2BD01D02E81BE5C0365E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -437,6 +443,7 @@
 				4386C2AF1B9AF97F0080A175 /* CComb.storyboard */,
 				4386C2B11B9C1A520080A175 /* CCombStepOneViewController.swift */,
 				4386C2B31B9D42490080A175 /* CCombStepTwoViewController.swift */,
+				4386C2BA1B9D84910080A175 /* CCombStepThreeViewController.swift */,
 				4386C2B51B9D74A70080A175 /* CurrencyType.swift */,
 			);
 			name = CComb;
@@ -481,7 +488,9 @@
 				43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */,
 				43D939381B8F62C30090F47D /* Supporting Files */,
 				A15C390D1B91519F00FBD5F9 /* CombList.storyboard */,
+				A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */,
 				4386C2B71B9D7C710080A175 /* Colors.swift */,
+
 			);
 			path = dayu;
 			sourceTree = "<group>";
@@ -522,6 +531,7 @@
 				43D939671B9053090090F47D /* News.swift */,
 				43D939681B9053090090F47D /* Message.swift */,
 				43D939691B9053090090F47D /* Group.swift */,
+				A19B896F1B91F6F2007B4D17 /* Comb.swift */,
 			);
 			name = Bean;
 			sourceTree = "<group>";
@@ -993,6 +1003,7 @@
 				4386C2B61B9D74A70080A175 /* CurrencyType.swift in Sources */,
 				43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */,
 				43D9397B1B90531C0090F47D /* StringUtil.swift in Sources */,
+				A19B89701B91F6F2007B4D17 /* Comb.swift in Sources */,
 				4386C2B21B9C1A520080A175 /* CCombStepOneViewController.swift in Sources */,
 				43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */,
 				435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */,
@@ -1003,8 +1014,10 @@
 				4386C2B41B9D42490080A175 /* CCombStepTwoViewController.swift in Sources */,
 				4386C2A51B9938750080A175 /* ItemsView2.swift in Sources */,
 				43D939791B90531C0090F47D /* FileUtil.swift in Sources */,
+				4386C2BB1B9D84910080A175 /* CCombStepThreeViewController.swift in Sources */,
 				43D9397A1B90531C0090F47D /* ImageLoader.swift in Sources */,
 				43D9396A1B9053090090F47D /* Reply.swift in Sources */,
+				A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */,
 				43D939401B8F62C30090F47D /* ViewController.swift in Sources */,
 				43D939631B9052FD0090F47D /* URLConstants.swift in Sources */,
 				43D9396D1B9053090090F47D /* News.swift in Sources */,
@@ -1139,10 +1152,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = dayu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "dayu/dayu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1154,9 +1169,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = dayu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "dayu/dayu-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

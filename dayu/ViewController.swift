@@ -28,7 +28,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func jump2(sender: AnyObject) {
-        self.presentViewController(LeftMenuViewController(), animated: true, completion: {})
+        var usb = UIStoryboard(name: "CombList", bundle: NSBundle.mainBundle())
+        var vc = usb.instantiateViewControllerWithIdentifier("CombListController") as UIViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func jump3(sender: AnyObject) {

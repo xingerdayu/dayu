@@ -47,5 +47,28 @@ class StringUtil {
         }
         return str
     }
+    
+    class func colorWithHexString (hex:String)-> UIColor {
+        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+        
+        if (cString.hasPrefix("#")) {
+            cString = cString.substringFromIndex(advance(cString.startIndex, 1))
+        }
+        
+        if (countElements(cString) != 6) {
+            return UIColor.grayColor()
+        }
+        
+        var rString = cString.substringToIndex(advance(cString.startIndex, 2))
+        var gString = cString.substringFromIndex(advance(cString.startIndex, 2)).substringToIndex(advance(cString.startIndex, 2))
+        var bString = cString.substringFromIndex(advance(cString.startIndex, 4)).substringToIndex(advance(cString.startIndex, 2))
+        
+        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        NSScanner.scannerWithString(rString).scanHexInt(&r)
+        NSScanner.scannerWithString(gString).scanHexInt(&g)
+        NSScanner.scannerWithString(bString).scanHexInt(&b)
+        return UIColor(red: CGFloat(r) / 255.0, green:CGFloat(g) / 255.0, blue:CGFloat(b) / 255.0, alpha:CGFloat(1))
+    }
+
 
 }
