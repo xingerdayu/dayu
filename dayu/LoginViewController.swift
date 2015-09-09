@@ -38,9 +38,10 @@ class LoginViewController: BaseUIViewController {
             } else if stat == "OK" {
                 self.app.saveUser(response)
                 
-                var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
-                var groupVc = usb.instantiateViewControllerWithIdentifier("GroupControllerId") as GroupListViewController
-                self.navigationController?.pushViewController(groupVc, animated: true)
+                var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                var mainVc = usb.instantiateViewControllerWithIdentifier("ucMainView") as UIViewController
+                //self.navigationController?.pushViewController(mainVc, animated: true)
+                self.presentViewController(mainVc, animated: true, completion: {})
             }
             }, failure:{(error:NSError!) in
                 println(error.localizedDescription)

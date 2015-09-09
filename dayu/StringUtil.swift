@@ -48,6 +48,21 @@ class StringUtil {
         return str
     }
     
+    //格式化时间
+    class func fitFormatTime(time:Int64) -> NSString {
+        var current = Int64(NSDate().timeIntervalSince1970)
+        var pTime = (current - time) / 60
+        if pTime < 0 {
+            return "刚刚"
+        } else if pTime < 60 {
+            return "\(pTime)分钟前"
+        } else if pTime / 60 < 24 {
+            return "\(pTime / 60)小时前"
+        } else {
+            return formatTime(time)
+        }
+    }
+    
     class func colorWithHexString (hex:String)-> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         

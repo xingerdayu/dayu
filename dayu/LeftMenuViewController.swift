@@ -8,40 +8,63 @@
 
 import UIKit
 
-class LeftMenuViewController: IIViewDeckController {
+class LeftMenuViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var items = Array<UserCenterItem>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle());
+        self.title = "个人中心"
+        self.automaticallyAdjustsScrollViewInsets = false
+        items.append(UserCenterItem(name: "个人中心", icon: "my_page.png"))
+        items.append(UserCenterItem(name: "我的消息", icon: "my_topic.png"))
+        items.append(UserCenterItem(name: "我的设置", icon: "my_setting.png"))
+        //items.append(UserCenterItem(name: "个人中心", icon: "my_setting.png"))
         
-        var mainController = storyboard.instantiateViewControllerWithIdentifier("ucMainView") as UIViewController
-        
-        var leftController = storyboard.instantiateViewControllerWithIdentifier("ucLeftMenu")  as UIViewController;
-        
-        var containerController = IIViewDeckController(centerViewController: mainController, leftViewController: leftController)
-        
-        containerController.leftSize = 80;
-        
-        containerController.view.frame = self.view.bounds;
-        self.view.addSubview(containerController.view)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("UserCenterCell", forIndexPath: indexPath) as UITableViewCell
+        var item = items[indexPath.row]
+        
+        var iconIv = cell.viewWithTag(31) as UIImageView
+        var nameLabel = cell.viewWithTag(32) as UILabel
+        
+        iconIv.image = UIImage(named: item.itemIcon)
+        nameLabel.text = item.itemName
+        
+        return cell
     }
-    */
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var identifier:String!
+        switch indexPath.row {
+        case 0:
+            identifier = "SettingControllerUI"
+        case 1:
+            identifier = "MessageControllerUI"
+        default:
+            identifier = "SettingControllerUI"
+        }
+        var vc = usb.instantiateViewControllerWithIdentifier(identifier) as UIViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
 
+class UserCenterItem {
+    var itemName : String!
+    var itemIcon : String!
+    
+    init(name:String, icon:String) {
+        self.itemName = name
+        self.itemIcon = icon
+    }
 }

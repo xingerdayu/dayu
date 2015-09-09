@@ -15,6 +15,7 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
     private var groupList = NSMutableArray();
     
     func getGroupList() {
+        //println("token = \(app.getToken())")
         var params = ["token":app.getToken()]
         HttpUtil.post(URLConstants.getJoinedGroupsUrl, params: params, success: {(data:AnyObject!) in
             //println("group data = \(data)")
@@ -40,16 +41,12 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
         
         //self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view.
+        println("Coming")
         
         self.title = "圈子"
         getGroupList()
         
         //myTableView.registerNib(UINib(nibName: "", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
