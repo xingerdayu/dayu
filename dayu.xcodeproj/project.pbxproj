@@ -20,6 +20,9 @@
 		4360FD201BA00F3E00BF3F9E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD1F1BA00F3E00BF3F9E /* SettingViewController.swift */; };
 		4360FD221BA018DE00BF3F9E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD211BA018DE00BF3F9E /* MessageViewController.swift */; };
 		4360FD241BA0685D00BF3F9E /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD231BA0685D00BF3F9E /* FeedbackViewController.swift */; };
+		4360FD261BA1316400BF3F9E /* ModifyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD251BA1316400BF3F9E /* ModifyInfoViewController.swift */; };
+		4360FD281BA1645500BF3F9E /* BaseChooseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD271BA1645500BF3F9E /* BaseChooseImageViewController.swift */; };
+		4360FD2A1BA16F0F00BF3F9E /* ModifyIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD291BA16F0F00BF3F9E /* ModifyIntroViewController.swift */; };
 		4386C2A01B9897C80080A175 /* ReplyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C29F1B9897C80080A175 /* ReplyListViewController.swift */; };
 		4386C2A21B9931E50080A175 /* ItemsView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4386C2A11B9931E50080A175 /* ItemsView2.xib */; };
 		4386C2A51B9938750080A175 /* ItemsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2A41B9938750080A175 /* ItemsView2.swift */; };
@@ -220,6 +223,9 @@
 		4360FD1F1BA00F3E00BF3F9E /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		4360FD211BA018DE00BF3F9E /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		4360FD231BA0685D00BF3F9E /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		4360FD251BA1316400BF3F9E /* ModifyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyInfoViewController.swift; sourceTree = "<group>"; };
+		4360FD271BA1645500BF3F9E /* BaseChooseImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseChooseImageViewController.swift; sourceTree = "<group>"; };
+		4360FD291BA16F0F00BF3F9E /* ModifyIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyIntroViewController.swift; sourceTree = "<group>"; };
 		4386C29F1B9897C80080A175 /* ReplyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyListViewController.swift; sourceTree = "<group>"; };
 		4386C2A11B9931E50080A175 /* ItemsView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemsView2.xib; sourceTree = "<group>"; };
 		4386C2A41B9938750080A175 /* ItemsView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsView2.swift; sourceTree = "<group>"; };
@@ -576,6 +582,9 @@
 				4360FD1F1BA00F3E00BF3F9E /* SettingViewController.swift */,
 				4360FD211BA018DE00BF3F9E /* MessageViewController.swift */,
 				4360FD231BA0685D00BF3F9E /* FeedbackViewController.swift */,
+				4360FD251BA1316400BF3F9E /* ModifyInfoViewController.swift */,
+				4360FD271BA1645500BF3F9E /* BaseChooseImageViewController.swift */,
+				4360FD291BA16F0F00BF3F9E /* ModifyIntroViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1042,14 +1051,17 @@
 				435E62791B91ECB7006CA7C6 /* TopicView.swift in Sources */,
 				4360FD241BA0685D00BF3F9E /* FeedbackViewController.swift in Sources */,
 				435E62731B9164E5006CA7C6 /* BaseUIViewController.swift in Sources */,
+				4360FD281BA1645500BF3F9E /* BaseChooseImageViewController.swift in Sources */,
 				435E62801B94127B006CA7C6 /* ItemsView.swift in Sources */,
 				4386C2B41B9D42490080A175 /* CCombStepTwoViewController.swift in Sources */,
+				4360FD2A1BA16F0F00BF3F9E /* ModifyIntroViewController.swift in Sources */,
 				4386C2A51B9938750080A175 /* ItemsView2.swift in Sources */,
 				4360FD221BA018DE00BF3F9E /* MessageViewController.swift in Sources */,
 				43D939791B90531C0090F47D /* FileUtil.swift in Sources */,
 				4386C2C51B9F07AA0080A175 /* MainViewController.swift in Sources */,
 				4386C2BB1B9D84910080A175 /* CCombStepThreeViewController.swift in Sources */,
 				4360FD201BA00F3E00BF3F9E /* SettingViewController.swift in Sources */,
+				4360FD261BA1316400BF3F9E /* ModifyInfoViewController.swift in Sources */,
 				43D9397A1B90531C0090F47D /* ImageLoader.swift in Sources */,
 				43D9396A1B9053090090F47D /* Reply.swift in Sources */,
 				A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */,

@@ -6,6 +6,8 @@
 
 #import <AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <SDWebImage/SDImageCache.h>
 #import <FMDB/FMDB.h>
 #import <ELCImagePickerController.h>
 #import <ELCAlbumPickerController.h>
