@@ -384,7 +384,7 @@
         <!--Message View Controller-->
         <scene sceneID="2bV-5E-9Ni">
             <objects>
-                <viewController storyboardIdentifier="MessageControllerUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yrh-I1-xGS" customClass="MessageViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageControllerUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yrh-I1-xGS" customClass="MessageViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3F6-hx-Cxd"/>
                         <viewControllerLayoutGuide type="bottom" id="Cf3-1M-tMP"/>
@@ -474,7 +474,7 @@
         <!--个人信息修改-->
         <scene sceneID="CDH-ZF-AFb">
             <objects>
-                <tableViewController storyboardIdentifier="ModifyInfoViewUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tB9-pD-hO1" customClass="ModifyInfoViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ModifyInfoViewUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tB9-pD-hO1" customClass="ModifyInfoViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="kXw-U6-sQg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -571,7 +571,7 @@
         <!--Modify Intro View Controller-->
         <scene sceneID="Gre-NW-eNY">
             <objects>
-                <viewController storyboardIdentifier="ModifyIntroViewUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h78-oe-YMt" customClass="ModifyIntroViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModifyIntroViewUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h78-oe-YMt" customClass="ModifyIntroViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nsp-UP-7el"/>
                         <viewControllerLayoutGuide type="bottom" id="aVm-5r-9af"/>
@@ -637,7 +637,7 @@
         <!--View Controller-->
         <scene sceneID="ev5-a0-d5D">
             <objects>
-                <viewController storyboardIdentifier="AboutDayuUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uj4-Pf-Rc5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutDayuUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uj4-Pf-Rc5" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0c5-ze-scL"/>
                         <viewControllerLayoutGuide type="bottom" id="eI7-ka-uyd"/>
@@ -675,7 +675,7 @@
         <!--Feedback View Controller-->
         <scene sceneID="x1I-5u-0cP">
             <objects>
-                <viewController storyboardIdentifier="FeedBackViewUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k9V-9y-hy0" customClass="FeedbackViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedBackViewUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k9V-9y-hy0" customClass="FeedbackViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DyV-7v-gqY"/>
                         <viewControllerLayoutGuide type="bottom" id="kJc-Bv-DCY"/>

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource {
+class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
     
     @IBOutlet weak var myTableView: UITableView!
     var messageList = NSMutableArray()
+    var groupMessage:Message!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,54 @@ class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        var m_message = messageList[indexPath.row] as Message
+        
+        switch m_message.msgType {
+        case MessageType.JOIN_GROUP:
+            groupMessage = m_message
+            if m_message.isHandle {
+                ViewUtil.showToast(self.view, text: "您已经处理过该消息", afterDelay: 2)
+            } else {
+                var alertView = UIAlertView(title: "是否同意\(m_message.username)加入该圈子?", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                alertView.show()
+            }
+        case MessageType.ADJUST:
+            //调仓消息，等待东哥那边处理
+            println("Adjust \(m_message.attachId)")
+        case MessageType.SYSTEM:
+            //TODO 处理系统消息
+            println("系统消息")
+        default:
+            var topicId = m_message.attachId
+            toTopicActivity(topicId)
+        }
+    }
+    
+    func toTopicActivity(topicId:Int) {
+        var params = ["token":app.getToken(), "id":topicId]
+        HttpUtil.post(URLConstants.getTopicUrl, params: params, success: {(response:AnyObject!) in
+            var topic = Topic.parseTopic(response["topic"] as NSDictionary)
+            var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+            var replyVc = usb.instantiateViewControllerWithIdentifier("ReplyListControllerUI") as ReplyListViewController
+            replyVc.topic = topic
+            self.navigationController?.pushViewController(replyVc, animated: true)
+        })
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            var params = ["token":app.getToken(), "userId":groupMessage.sendId, "groupId":groupMessage.attachId]
+            HttpUtil.post(URLConstants.agreeJoinGroupUrl, params: params,
+                success: {(response:AnyObject!) in
+                    self.groupMessage.isHandle = true
+                    ViewUtil.showToast(self.view, text: "已同意\(self.groupMessage.username)加入该圈子", afterDelay: 2)
+                }, failure: {(error:NSError!) in
+                    println(error.description)
+                }, resultError: {(errorCode:String, errorText:String) in
+                    ViewUtil.showToast(self.view, text: "已处理过该消息", afterDelay: 2)
+            })
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -92,10 +141,16 @@ class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         tableView.setEditing(false, animated: true)
-        //var msg = app.msgList[indexPath.row] as Message
-        //deleteMessage(msg)
-        //app.msgList.removeObject(msg)
-        //tableView.reloadData()
+        var msg = messageList[indexPath.row] as Message
+        deleteMessage(msg)
+    }
+    
+    func deleteMessage(msg:Message) {
+        var params = ["token":app.getToken(), "msgId":msg.id]
+        HttpUtil.post(URLConstants.deleteMessageUrl, params: params, success: {(response:AnyObject!) in
+            self.messageList.removeObject(msg)
+            self.myTableView.reloadData()
+        })
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {

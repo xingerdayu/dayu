@@ -104,7 +104,7 @@
         <!--Topic List View Controller-->
         <scene sceneID="mv6-v7-WgC">
             <objects>
-                <viewController storyboardIdentifier="TopicListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qr8-ED-T0L" customClass="TopicListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopicListViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qr8-ED-T0L" customClass="TopicListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IeK-85-wDU"/>
                         <viewControllerLayoutGuide type="bottom" id="ZMv-dg-iWq"/>
@@ -193,7 +193,7 @@
         <!--Reply List View Controller-->
         <scene sceneID="DgD-l8-NqA">
             <objects>
-                <viewController storyboardIdentifier="ReplyListControllerUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ymz-Va-xo9" customClass="ReplyListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReplyListControllerUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ymz-Va-xo9" customClass="ReplyListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="udl-gx-Sfy"/>
                         <viewControllerLayoutGuide type="bottom" id="X9U-AB-fVt"/>
@@ -258,7 +258,7 @@
         <!--写笔记-->
         <scene sceneID="hVf-s8-OPH">
             <objects>
-                <viewController storyboardIdentifier="WriteViewUI" title="写笔记" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BB3-d1-cDx" customClass="WriteViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WriteViewUI" title="写笔记" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BB3-d1-cDx" customClass="WriteViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9D5-ad-QLZ"/>
                         <viewControllerLayoutGuide type="bottom" id="c51-9K-s2t"/>
