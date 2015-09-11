@@ -78,10 +78,11 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
             var attrContent = NSMutableAttributedString(string: reply.content)
             attrContent.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: range)
             attrContent.addAttribute(NSFontAttributeName, value: UIFont(name: "Arial", size: 14.0), range: range)
-            contentLable = ViewUtil.createLabelByString(reply.content, x: 10, y: 55, width: 300, attrContent:attrContent)
+            contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280, attrContent:attrContent)
         } else {
-            contentLable = ViewUtil.createLabelByString(reply.content, x: 10, y: 55, width: 300)
+            contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280)
         }
+        contentLable.textColor = Colors.ReplyContentColor
         contentLable.tag = 34
         cell.addSubview(contentLable)
         
@@ -105,8 +106,8 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
     func createHeaderView() -> UIView {
         var topicView = NSBundle.mainBundle().loadNibNamed("TopicView", owner: self, options: nil)[0] as TopicView
         topicView.shouldShowItems = false
+        topicView.shouldShowCommentLabel = true
         topicView.setTopic(topic)
-        
         return topicView
     }
 

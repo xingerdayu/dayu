@@ -31,7 +31,7 @@ class Topic: NSObject {
     
     var contentLabelOffsetX:CGFloat = 20
     
-    var contentLabelOffsetY:CGFloat = 55
+    var contentLabelOffsetY:CGFloat = 60
     
     var contentLabelWidth:CGFloat = 280
     

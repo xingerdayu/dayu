@@ -87,12 +87,13 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         var oBtn = cell.viewWithTag(24) as CurrencyButton
         oBtn.indexPath = indexPath
         numUtf.indexPath = indexPath
-        //var priceStr = NSString(format: "%.02lf", ct.rate * 100.0)
-        positionLabel.text = "\(ct.rate * 100) %"
+        var rateStr = NSString(format: "%.02lf", Float(ct.rate) * 100.0)
+        positionLabel.text = "\(rateStr) %"
         if !(ct.tradeNum < 0.001) {
             numUtf.text = "\(ct.tradeNum)"
         }
-        priceLabel.text = "\(ct.price)"
+        var priceStr = NSString(format: "%.05lf", Float(ct.price))
+        priceLabel.text = "\(priceStr)"
         keyLabel.text = ct.value
         
         if ct.operation == "SELL" {
@@ -140,8 +141,9 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
             var cType = cyTypes[indexPath.row]
             cType.setCurrentRate(CGFloat(num), totalMoney: CCOMB_totalMoney, lever: CCOMB_lever)
             
-            //var priceStr = NSString(format: "%.02lf", cType.rate * 100.0) //保留两位小数
-            (myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(cType.rate * 100) %"
+            var priceStr = NSString(format: "%.02lf", Float(cType.rate) * 100.0) //保留两位小数
+            //(myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(cType.rate * 100) %"
+            (myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(priceStr) %"
             notifyRowChanged()
         } else {
             //修改的是总金额
@@ -179,9 +181,10 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         if CCOMB_remaining < 0.0001 {
             UIAlertView(title: "您的现金不够，请重新设置!", message: "", delegate: self, cancelButtonTitle: "确定").show()
         }
-        //self.viewCrashBg.frame = CGRectMake(0, 528, 320.0 * remaining, 40)
-        //var restRate = NSString(format: "%.02lf", remaining * CGFloat(100))
-        self.labelCurrentMoney.text = "\(CCOMB_remaining * 100)%"
+        self.viewCrashBg.frame = CGRectMake(0, 528, 320.0 * CCOMB_remaining, 40)
+        var restRate = NSString(format: "%.02lf", Float(CCOMB_remaining) * Float(100))
+        //self.labelCurrentMoney.text = "\(CCOMB_remaining * 100)"
+        self.labelCurrentMoney.text = "\(restRate)"
         self.utfRestMoney.text = "$\(CCOMB_remaining * CGFloat(CCOMB_lever) * CCOMB_totalMoney)"
     }
     
@@ -196,6 +199,7 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         
         HttpUtil.post(URLConstants.addCombinationUrl(), params: params, success: {(response:AnyObject!) in
             println(response)
+            ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
         })
     }
     

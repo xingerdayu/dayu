@@ -44,6 +44,11 @@ class CCombStepOneViewController: BaseUIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        utfCombName.resignFirstResponder()
+        utfCombIntro.resignFirstResponder()
+    }
+    
     @IBAction func nextStep(sender: AnyObject) {
         var ccomb = CComb()
         if utfCombName.text.isEmpty {
