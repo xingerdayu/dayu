@@ -59,6 +59,11 @@ class User: NSObject {
         return name!
     }
     
+    func getUserIntro() -> String {
+        var tIntro = intro == nil ? "无" : intro!
+        return tIntro
+    }
+    
     func getShowUsername() -> String {
         var name = username == nil ? "新用户" : username
         return name!

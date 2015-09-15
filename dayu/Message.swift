@@ -14,6 +14,14 @@ struct MessageStat {
     static let All = 2
 }
 
+struct MessageType {
+    static let JOIN_GROUP = 1
+    static let REPLY = 2
+    static let INVITE = 3
+    static let ADJUST = 4
+    static let SYSTEM = 5
+}
+
 class Message: NSObject {
     
     var id = 0
@@ -26,6 +34,7 @@ class Message: NSObject {
     var createTime:Int64 = 0
     var status = 0
     var username = ""
+    var isHandle = false
     
     class func parseMessage(dict:NSDictionary) -> Message {
         var msg = Message()

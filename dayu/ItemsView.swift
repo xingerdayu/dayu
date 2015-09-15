@@ -31,32 +31,25 @@ class ItemsView: UIView, UIAlertViewDelegate {
         
         HttpUtil.post(URLConstants.supportTopicUrl, params: params, success: success, failure: {(error:NSError!) in
                 println(error.localizedDescription)
+            }, resultError: {(errorCode:String, errorText:String) in
+                ViewUtil.showToast(self, text: "您已经点过赞了", afterDelay: 1)
         })
     }
     
     @IBAction func support(sender: AnyObject) {
         agreeOrDisagree(true, success: {(response:AnyObject!) in
             println(response)
-            if response["stat"] as String == "OK" {
-                self.ivSupport.highlighted = true
-                self.topic.agreeCount += 1
-                self.tvSupportNum.text = "\(self.topic.agreeCount)"
-            } else {
-                ViewUtil.showToast(self, text: "您已经点过赞了", afterDelay: 1)
-            }
+            self.ivSupport.highlighted = true
+            self.topic.agreeCount += 1
+            self.tvSupportNum.text = "\(self.topic.agreeCount)"
         })
     }
     
     @IBAction func disSupport(sender: AnyObject) {
         agreeOrDisagree(false, success: {(response:AnyObject!) in
-            println(response)
-            if response["stat"] as String == "OK" {
-                self.ivShit.highlighted = true
-                self.topic.disagreeCount += 1
-                self.tvShitNum.text = "\(self.topic.disagreeCount)"
-            } else {
-                ViewUtil.showToast(self, text: "您已经点过赞了", afterDelay: 1)
-            }
+            self.ivShit.highlighted = true
+            self.topic.disagreeCount += 1
+            self.tvShitNum.text = "\(self.topic.disagreeCount)"
         })
     }
     

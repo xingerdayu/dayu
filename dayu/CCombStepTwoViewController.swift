@@ -11,6 +11,7 @@ import UIKit
 class CCombStepTwoViewController: BaseUIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var cyTypes:Array<CurrencyType>!
+    var ccomb:CComb!
     @IBOutlet weak var myCollectionView: UICollectionView!
 
     override func viewDidLoad() {
@@ -21,9 +22,22 @@ class CCombStepTwoViewController: BaseUIViewController, UICollectionViewDataSour
         //myCollectionView.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func getChooseCurrencys() -> Array<CurrencyType> {
+        var array = Array<CurrencyType>()
+        for currencyType in cyTypes {
+            if currencyType.isSelected {
+                array.append(currencyType)
+            }
+        }
+        return array
+    }
+    
+    @IBAction func nextStep(sender: UIBarButtonItem) {
+        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+        var lastVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
+        lastVc.cyTypes = getChooseCurrencys()
+        lastVc.ccomb = self.ccomb
+        self.navigationController?.pushViewController(lastVc, animated: true)
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -44,8 +58,8 @@ class CCombStepTwoViewController: BaseUIViewController, UICollectionViewDataSour
             valueLabel.textColor = UIColor.whiteColor()
         } else {
             bgView?.backgroundColor = Colors.MyLightGrayColor
-            keyLabel.textColor = Colors.MainBlueColor
-            valueLabel.textColor = Colors.MainBlueColor
+            keyLabel.textColor = Colors.WordMainBlueColor
+            valueLabel.textColor = Colors.WordMainBlueColor
         }
         return cell
     }

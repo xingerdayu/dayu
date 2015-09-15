@@ -6,6 +6,8 @@
 
 #import <AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <SDWebImage/SDImageCache.h>
 #import <FMDB/FMDB.h>
 #import <ELCImagePickerController.h>
 #import <ELCAlbumPickerController.h>
@@ -13,7 +15,7 @@
 #import <FSLineChart.h>
 #import<CommonCrypto/CommonCrypto.h>
 
-#include "IIViewDeckController.h"
+//#include "IIViewDeckController.h"
 //#include "IISideController.h"
 //#include "IIWrapController.h"
 

@@ -14,4 +14,9 @@ struct Colors {
     
     static let LargeBlackColor = UIColor(red: 51.0 / 255, green: 51.0 / 255, blue: 51.0 / 255, alpha: 1)
 
+    static let WordMainBlueColor = UIColor(red: 71.0 / 255, green: 127.0 / 255, blue: 231.0 / 255, alpha: 1)
+    
+    static let SellYellowColor = UIColor(red: 235.0 / 255, green: 133.0 / 255, blue: 32.0 / 255, alpha: 1)
+    
+    static let ReplyContentColor = UIColor(red: 83.0 / 255, green: 83.0 / 255, blue: 83.0 / 255, alpha: 1)
 }

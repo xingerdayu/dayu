@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var user:User!
     
     func getToken() -> String {
-//        return token["token"] as String
-        return "77b7b4d6fff82dbd126227d19cf30a62"
+        return token["token"] as String
+//        return "77b7b4d6fff82dbd126227d19cf30a62"
     }
     
     func isLogin() -> Bool {
