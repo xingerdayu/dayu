@@ -42,7 +42,7 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var params = ["token":app.getToken(), "type":type, "timetype":timeType, "startnum":0]
         HttpUtil.post(URLConstants.getSortCombinationsUrl, params: params, success: {(data:AnyObject!) in
             self.refreshControl.endRefreshing()
-//            println("combs data = \(data)")
+            println("combs data = \(data)")
             if data["stat"] as String == "OK" {
                 self.combList.removeAllObjects()
                 var array = data["combinations"] as NSArray
@@ -62,6 +62,7 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         refreshControl.addTarget(self, action: "getCombList", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "加载更多")
         refreshControl.frame.size = CGSizeMake(320, 20)
@@ -97,15 +98,14 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         if buttonIndex == 0 {
             return
         } else {
-            println("selectStr[tag][buttonIndex - 1] == " + selectStr[tag][buttonIndex - 1])
             //select[tag] = selectStr[tag][buttonIndex - 1]
             if tag == 0 {
                 type = selectStr[tag][buttonIndex - 1]
             } else {
                 timeType = selectStr[tag][buttonIndex - 1]
             }
-            println("ubsStrs[tag][buttonIndex - 1] == " + ubsStrs[tag][buttonIndex - 1])
             ubs[tag].titleLabel?.text = ubsStrs[tag][buttonIndex - 1]
+//            ubs[tag].setTitle(<#title: String?#>, forState: <#UIControlState#>)
             typeFlag[tag] = buttonIndex - 1
             getCombList()
         }
@@ -152,6 +152,16 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GoDetail" {
+            var vc = segue.destinationViewController as CombDetailViewController
+            var indexPath = UtvCombs.indexPathForSelectedRow()
+            if let index = indexPath {
+                vc.comb = combList[index.row] as Comb
+            }
+        }
     }
     
 }

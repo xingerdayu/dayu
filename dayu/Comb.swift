@@ -24,25 +24,108 @@ class Comb: NSObject {
     var yesFollow = 0
     var yseSupport = 0
     
+    var types = 0
+    var descriptionStr = ""
+    var now_amount : Float = 0.0
+    var cash_remaining : Float = 0.0
+    var amount : Float = 0.0
+    var lever = 0
+    var modify_time:Int64 = 0
+    var changeTimes = 0
+    var recentEarning : Float = 0.0
+    var recentpro : Float = 0.0
+    var frequency_rate : Float = 0.0
+    
+    var grades = Array<Score>()
+    var currencys = Array<Currency>()
+    
     var contentLabelWidth:CGFloat = 280
     var MAXFLOAT = 26;
     
     func parse(dict:NSDictionary) {
         var t: AnyObject? = dict["id"]
-        id = "\(t)"
+        id = "\(t!)"
         createTime = (dict["create_time"] as NSString).longLongValue
         grade = dict["grade"] as Int
         drawdown = dict["drawdown"] as Float
         name = dict["name"] as String
-        followNum = dict["follownum"] as Int
+        var f = dict["follownum"] as? Int
+        if f != nil { followNum = f!}
         gradego = dict["gradego"] as Int
         pro = dict["pro"] as Float
         situation = dict["situation"] as Int
-        supportNum = dict["supportnum"] as Int
+        var s = dict["supportnum"] as? Int
+        if s != nil { supportNum = s! }
         uid = dict["uid"] as String
-        userName = dict["username"] as String
+        var n = dict["username"] as? String
+        if n != nil {userName = n!}
         yesFollow = dict["yesfollow"] as Int
         yseSupport = dict["yessupport"] as Int
+    }
+    
+    func parseDetail(dict:NSDictionary) {
+        types = dict["analysis_types"] as Int
+        descriptionStr = dict["description"] as String
+        now_amount = dict["now_amount"] as Float
+        cash_remaining = dict["cash_remaining"] as Float
+        amount = dict["amount"] as Float
+        lever = dict["lever"] as Int
+        modify_time = (dict["modify_time"] as NSString).longLongValue
+        changeTimes = dict["changetimes"] as Int
+        //recentEarning = dict["recentearning"] as Float
+        //recentpro = dict["recentpro"] as Float
+        frequency_rate = dict["frequency_rate"] as Float
+        var gradeStr = ["D", "W", "M", "S"]
+        var json_score = dict["score"] as NSDictionary
+        for i in 0...3 {
+            var s = Score()
+            var json2 = json_score[gradeStr[i]] as NSDictionary
+            s.grade = json2["grade"] as Int
+            s.gradego = json2["gradego"] as Int
+            s.drawdown_mark_drawdown = json2["drawdown"] as Double
+            s.drawdown_mark_mark = json2["drawdown_mark"] as Int
+            s.pro_mark_pro = json2["pro"] as Double
+            s.pro_mark_mark = json2["pro_mark"] as Int
+            self.grades.append(s)
+        }
+        var json_currency_types = dict["currency_types"] as NSArray
+        for i in 0..<json_currency_types.count {
+            var c = Currency()
+            var json3 = json_currency_types[i] as NSDictionary
+            c.value = json3["value"] as String
+            c.buyRate = json3["buyRate"] as Float
+            c.operation = json3["operation"] as String
+            c.key = json3["key"] as String
+            c.lots = json3["lots"] as Float
+            c.earning = json3["earning"] as Float
+            c.selected = true
+            self.currencys.append(c)
+        }
+        var cash = Currency()
+        cash.value = "可用保证金"
+        cash.buyRate = self.cash_remaining
+        cash.key = "cash_remaining"
+        cash.operation = ""
+        self.currencys.append(cash)
+    }
+    
+    class Score {
+        var grade : Int = 0
+        var gradego : Int = 0
+        var drawdown_mark_drawdown : Double = 0
+        var drawdown_mark_mark : Int = 0
+        var pro_mark_pro : Double = 0
+        var pro_mark_mark : Int = 0
+    }
+    
+    class Currency {
+        var key = ""
+        var value = ""
+        var buyRate : Float = 0.0
+        var operation = ""
+        var lots : Float = 0.0
+        var selected : Bool = false
+        var earning : Float = 0.0
     }
     
 //    func getNameWidth() -> CGFloat {

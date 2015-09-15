@@ -178,9 +178,15 @@
 		43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D93B281B9084B40090F47D /* LeftMenuViewController.swift */; };
 		43D93B2B1B908B9F0090F47D /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D93B2A1B908B9F0090F47D /* User.storyboard */; };
 		43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D93B2C1B90A29C0090F47D /* LoginViewController.swift */; };
+		A13CC7E81BA2B83500199D6D /* UnderPieItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13CC7E71BA2B83500199D6D /* UnderPieItem.xib */; };
+		A13CC7EA1BA3FC6800199D6D /* FsLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13CC7E91BA3FC6800199D6D /* FsLineView.swift */; };
+		A13CC7EC1BA4037700199D6D /* FsLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13CC7EB1BA4037700199D6D /* FsLineView.xib */; };
 		A15C390E1B91519F00FBD5F9 /* CombList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15C390D1B91519F00FBD5F9 /* CombList.storyboard */; };
 		A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */; };
 		A19B89701B91F6F2007B4D17 /* Comb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B896F1B91F6F2007B4D17 /* Comb.swift */; };
+		A1B30B7E1BA162F5005DEBE1 /* PieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B30B7D1BA162F5005DEBE1 /* PieView.xib */; };
+		A1B30B821BA16D9D005DEBE1 /* PieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B30B811BA16D9D005DEBE1 /* PieView.swift */; };
+		A1DD92FC1B9D8937008404F6 /* CombDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DD92FB1B9D8937008404F6 /* CombDetailViewController.swift */; };
 		D05A368AA6B9ABFF04A30C66 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976EC4564FEA6A306018327 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -374,9 +380,15 @@
 		43D93B281B9084B40090F47D /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		43D93B2A1B908B9F0090F47D /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		43D93B2C1B90A29C0090F47D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A13CC7E71BA2B83500199D6D /* UnderPieItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderPieItem.xib; sourceTree = "<group>"; };
+		A13CC7E91BA3FC6800199D6D /* FsLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FsLineView.swift; sourceTree = "<group>"; };
+		A13CC7EB1BA4037700199D6D /* FsLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FsLineView.xib; sourceTree = "<group>"; };
 		A15C390D1B91519F00FBD5F9 /* CombList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CombList.storyboard; sourceTree = "<group>"; };
 		A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombListViewController.swift; sourceTree = "<group>"; };
 		A19B896F1B91F6F2007B4D17 /* Comb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comb.swift; sourceTree = "<group>"; };
+		A1B30B7D1BA162F5005DEBE1 /* PieView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PieView.xib; sourceTree = "<group>"; };
+		A1B30B811BA16D9D005DEBE1 /* PieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieView.swift; sourceTree = "<group>"; };
+		A1DD92FB1B9D8937008404F6 /* CombDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombDetailViewController.swift; sourceTree = "<group>"; };
 		E6CD2BD01D02E81BE5C0365E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -469,7 +481,7 @@
 		43D939371B8F62C30090F47D /* dayu */ = {
 			isa = PBXGroup;
 			children = (
-				43D939701B90531B0090F47D /* dayu-Bridging-Header.h */,
+				A1DD92FA1B9D88D5008404F6 /* Comb */,
 				435E627A1B91F1A8006CA7C6 /* Ext */,
 				435E62711B916219006CA7C6 /* User */,
 				435E626E1B9161CE006CA7C6 /* Group */,
@@ -484,10 +496,7 @@
 				43D939441B8F62C30090F47D /* Images.xcassets */,
 				43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */,
 				43D939381B8F62C30090F47D /* Supporting Files */,
-				A15C390D1B91519F00FBD5F9 /* CombList.storyboard */,
-				A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */,
 				4386C2B71B9D7C710080A175 /* Colors.swift */,
-
 			);
 			path = dayu;
 			sourceTree = "<group>";
@@ -523,6 +532,7 @@
 			isa = PBXGroup;
 			children = (
 				43D939641B9053090090F47D /* Reply.swift */,
+				43D939701B90531B0090F47D /* dayu-Bridging-Header.h */,
 				43D939651B9053090090F47D /* Topic.swift */,
 				43D939661B9053090090F47D /* User.swift */,
 				43D939671B9053090090F47D /* News.swift */,
@@ -725,6 +735,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A1DD92FA1B9D88D5008404F6 /* Comb */ = {
+			isa = PBXGroup;
+			children = (
+				A15C390D1B91519F00FBD5F9 /* CombList.storyboard */,
+				A15C390F1B918CB800FBD5F9 /* CombListViewController.swift */,
+				A1DD92FB1B9D8937008404F6 /* CombDetailViewController.swift */,
+				A1B30B7D1BA162F5005DEBE1 /* PieView.xib */,
+				A1B30B811BA16D9D005DEBE1 /* PieView.swift */,
+				A13CC7E71BA2B83500199D6D /* UnderPieItem.xib */,
+				A13CC7E91BA3FC6800199D6D /* FsLineView.swift */,
+				A13CC7EB1BA4037700199D6D /* FsLineView.xib */,
+			);
+			name = Comb;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -835,6 +860,7 @@
 				43D93A641B9058BD0090F47D /* item_user_nick.png in Resources */,
 				43D93B011B9058C90090F47D /* ic_showbaocang.png in Resources */,
 				43D93B2B1B908B9F0090F47D /* User.storyboard in Resources */,
+				A13CC7E81BA2B83500199D6D /* UnderPieItem.xib in Resources */,
 				43D93ADF1B9058C90090F47D /* comb_circle_3.png in Resources */,
 				43D93A691B9058BD0090F47D /* my_setting.png in Resources */,
 				43D93A661B9058BD0090F47D /* my_about.png in Resources */,
@@ -852,10 +878,12 @@
 				43D93B0E1B9058C90090F47D /* note_good_selected2.png in Resources */,
 				43D93B131B9058C90090F47D /* queue_user_num_indicate.png in Resources */,
 				43D93AF81B9058C90090F47D /* from_camera.png in Resources */,
+				A1B30B7E1BA162F5005DEBE1 /* PieView.xib in Resources */,
 				43D93A6C1B9058BD0090F47D /* signal_0.png in Resources */,
 				43D93A581B9058BD0090F47D /* country_greece.png in Resources */,
 				43D93AFD1B9058C90090F47D /* ic_love_blue.png in Resources */,
 				43D93B0C1B9058C90090F47D /* note_good_normal.png in Resources */,
+				A13CC7EC1BA4037700199D6D /* FsLineView.xib in Resources */,
 				43D93A7A1B9058BD0090F47D /* star_0.png in Resources */,
 				43D93AEF1B9058C90090F47D /* comb_up_5.png in Resources */,
 				435E62771B91EC5E006CA7C6 /* TopicView.xib in Resources */,
@@ -1001,6 +1029,7 @@
 				43D93B2D1B90A29C0090F47D /* LoginViewController.swift in Sources */,
 				43D9397B1B90531C0090F47D /* StringUtil.swift in Sources */,
 				A19B89701B91F6F2007B4D17 /* Comb.swift in Sources */,
+				A1B30B821BA16D9D005DEBE1 /* PieView.swift in Sources */,
 				4386C2B21B9C1A520080A175 /* CCombStepOneViewController.swift in Sources */,
 				43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */,
 				435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */,
@@ -1012,6 +1041,7 @@
 				4386C2A51B9938750080A175 /* ItemsView2.swift in Sources */,
 				43D939791B90531C0090F47D /* FileUtil.swift in Sources */,
 				43D9397A1B90531C0090F47D /* ImageLoader.swift in Sources */,
+				A13CC7EA1BA3FC6800199D6D /* FsLineView.swift in Sources */,
 				43D9396A1B9053090090F47D /* Reply.swift in Sources */,
 				A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */,
 				43D939401B8F62C30090F47D /* ViewController.swift in Sources */,
@@ -1026,6 +1056,7 @@
 				4386C2B81B9D7C710080A175 /* Colors.swift in Sources */,
 				43D9393B1B8F62C30090F47D /* AppDelegate.swift in Sources */,
 				4386C2AD1B9ADFBF0080A175 /* RegisterViewController.swift in Sources */,
+				A1DD92FC1B9D8937008404F6 /* CombDetailViewController.swift in Sources */,
 				43D9396E1B9053090090F47D /* Message.swift in Sources */,
 				43D939621B9052FD0090F47D /* HttpUtil.swift in Sources */,
 				435E627E1B91F7C9006CA7C6 /* TopicListViewController.swift in Sources */,
