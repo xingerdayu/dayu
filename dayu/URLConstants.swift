@@ -8,15 +8,9 @@
 
 import Foundation
 
-<<<<<<< HEAD
 let prefix = "http://112.74.85.171/"; //真实地址
 let URL_PREFIX = "http://112.74.85.171/Community";
 //let URL_COMB = "http://192.168.1.101:8080"
-let URL_COMB = "http://120.24.96.69";
-=======
->>>>>>> origin/master
-//let prefix = "http://112.74.85.171/"; //真实地址
-//let URL_PREFIX = "http://112.74.85.171/Community";
 let URL_COMB = "http://120.24.96.69";
 
 //let prefix = "http://192.168.1.104:8080/Community";  //测试地址
@@ -128,12 +122,9 @@ struct URLConstants {
 
     //====combination====
     static let getSortCombinationsUrl = "\(URL_COMB)/combination/sortlist"
-    
-<<<<<<< HEAD
+
     static let getCombinationDetialUrl = "\(URL_COMB)/combination/info"
     
     static let getCombinationWaveUrl = "\(URL_COMB)/combination/wave"
     
-=======
->>>>>>> origin/master
 }

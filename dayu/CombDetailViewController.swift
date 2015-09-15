@@ -212,7 +212,8 @@ class CombDetailViewController: BaseUIViewController {
 
     @IBAction func goReposition(sender: AnyObject) {
         var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-        var groupVc = usb.instantiateViewControllerWithIdentifier("GroupControllerId") as CCombStepTwoViewController
+        var groupVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
+        
         self.navigationController?.pushViewController(groupVc, animated: true)
     }
 }

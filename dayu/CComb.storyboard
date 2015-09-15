@@ -253,11 +253,9 @@
         <!--仓位比例-->
         <scene sceneID="kia-Pn-gwj">
             <objects>
-<<<<<<< HEAD
-                <viewController storyboardIdentifier="CCombStepTwo" id="pBc-No-SXO" sceneMemberID="viewController">
-=======
+
                 <viewController storyboardIdentifier="CCombStepThreeViewUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pBc-No-SXO" customClass="CCombStepThreeViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
->>>>>>> origin/master
+
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7e5-zq-TMO"/>
                         <viewControllerLayoutGuide type="bottom" id="agp-EI-A1D"/>
