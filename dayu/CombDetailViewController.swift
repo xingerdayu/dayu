@@ -33,14 +33,18 @@ class CombDetailViewController: BaseUIViewController {
     @IBOutlet weak var uivProStar: UIImageView!
     @IBOutlet weak var uivRiskStar: UIImageView!
     
+    @IBOutlet weak var ubReposition: UIButton!
     var fsLineView:FsLineView!
     //grade info 区域的年月日全， 0、1、2、3
     var flag = 3
     var flagStr = ["年", "月", "日", "总 "]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.usvMain.contentSize.height = 1000
+        self.usvMain.contentSize.height = 800
         self.automaticallyAdjustsScrollViewInsets = false
+        if app.user.id.description != comb.uid {
+            ubReposition.hidden = true
+        }
         getCombList()
         // Do any additional setup after loading the view.
     }
@@ -60,7 +64,7 @@ class CombDetailViewController: BaseUIViewController {
         println("idStr == \(c.id)")
         var params = ["id":c.id]
         HttpUtil.post(URLConstants.getCombinationDetialUrl, params: params, success: {(data:AnyObject!) in
-            println("combs data = \(data)")
+            //println("combs data = \(data)")
             if data["stat"] as String == "OK" {
                 var item = data["combinations"] as NSObject
                 self.comb.parseDetail(item as NSDictionary)
@@ -117,12 +121,12 @@ class CombDetailViewController: BaseUIViewController {
         ulType2.text = str2
         
         var pie = NSBundle.mainBundle().loadNibNamed("PieView", owner: self, options: nil)[0] as PieView
-        pie.frame = CGRectMake(0, 261 , 340, pie.utvUnderPie.frame.height + 80)
         pie.createMagicPie(comb)
+        pie.frame = CGRectMake(0, 261 , 340, pie.utvUnderPie.frame.height + 275 )
         self.usvMain.addSubview(pie)
         
         fsLineView = NSBundle.mainBundle().loadNibNamed("FsLineView", owner: self, options: nil)[0] as FsLineView
-        fsLineView.frame = CGRectMake(0, 220 + pie.frame.height, 340, 300)
+        fsLineView.frame = CGRectMake(0, 210 + pie.frame.height, 340, 300)
         println("pie.frame.height == \(pie.frame.height)")
         usvMain.addSubview(fsLineView)
         fsLineView.getWave(comb, waveStyle: "S")
@@ -222,4 +226,6 @@ class CombDetailViewController: BaseUIViewController {
         groupVc.cyTypes = comb.toCyTypes(comb)
         self.navigationController?.pushViewController(groupVc, animated: true)
     }
+    
+    
 }

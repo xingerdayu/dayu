@@ -3,7 +3,6 @@
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -790,18 +789,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O59-r6-MNa">
-                                <rect key="frame" x="0.0" y="62" width="320" height="126"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alI-F8-R9Q">
-                                <rect key="frame" x="0.0" y="217" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="93" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vfa-rG-YiX">
-                                <rect key="frame" x="0.0" y="249" width="320" height="393"/>
+                                <rect key="frame" x="0.0" y="139" width="320" height="380"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CombCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CombCell" rowHeight="90" id="xgE-Er-JK3">
@@ -822,18 +818,6 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="疯一样的黄金" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDw-JD-xcH">
                                                     <rect key="frame" x="85" y="27" width="116" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="17" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CI6-tD-dqk">
-                                                    <rect key="frame" x="95" y="56" width="26" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="19" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pco-Ng-QJt">
-                                                    <rect key="frame" x="147" y="57" width="26" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -876,12 +860,32 @@
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="16" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="note_good_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="I6d-Qz-DZO">
-                                                    <rect key="frame" x="76" y="55" width="13" height="13"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="18" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_love_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="vPY-9V-dhB">
+                                                <button opaque="NO" tag="23" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbY-l3-mUP" customClass="CurrencyButton" customModule="dayu" customModuleProvider="target">
+                                                    <rect key="frame" x="95" y="56" width="26" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" tag="24" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akw-Zc-JKs" customClass="CurrencyButton" customModule="dayu" customModuleProvider="target">
                                                     <rect key="frame" x="130" y="56" width="13" height="12"/>
-                                                </imageView>
+                                                    <state key="normal" title="Button" image="ic_love_blue.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" tag="25" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mw-rY-XMm" customClass="CurrencyButton" customModule="dayu" customModuleProvider="target">
+                                                    <rect key="frame" x="147" y="57" width="26" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" tag="22" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ji2-DO-P8f" customClass="CurrencyButton" customModule="dayu" customModuleProvider="target">
+                                                    <rect key="frame" x="76" y="55" width="13" height="13"/>
+                                                    <state key="normal" image="note_good_normal.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -895,7 +899,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击查看我的组合 &gt;&gt;&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh6-4O-xxA">
-                                <rect key="frame" x="0.0" y="188" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -907,21 +911,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4Q-qC-XB8">
-                                <rect key="frame" x="16" y="229" width="10" height="8"/>
+                                <rect key="frame" x="16" y="113" width="10" height="8"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" image="ic_trangle_down.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftl-yT-ze3">
-                                <rect key="frame" x="133" y="229" width="10" height="8"/>
+                                <rect key="frame" x="133" y="113" width="10" height="8"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" image="ic_trangle_down.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Uq-0D-YxP">
-                                <rect key="frame" x="34" y="218" width="65" height="29"/>
+                                <rect key="frame" x="34" y="102" width="65" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="排序 收益">
                                     <color key="titleColor" white="0.48999999999999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -932,7 +936,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6U-iD-Slh">
-                                <rect key="frame" x="101" y="218" width="30" height="29"/>
+                                <rect key="frame" x="101" y="102" width="30" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="日">
                                     <color key="titleColor" white="0.48999999999999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -955,7 +959,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NM4-eR-zZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="-475"/>
+            <point key="canvasLocation" x="22" y="-483"/>
         </scene>
         <!--Title-->
         <scene sceneID="pNb-oz-buK">
@@ -969,20 +973,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGX-xi-4a4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGX-xi-4a4">
                                 <rect key="frame" x="-10" y="530" width="340" height="1"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIw-3b-3XD">
-                                <rect key="frame" x="0.0" y="530" width="320" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIw-3b-3XD">
+                                <rect key="frame" x="0.0" y="481" width="320" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="eJe-T5-rZD"/>
-                                    <constraint firstAttribute="width" constant="320" id="xyH-aW-adc"/>
-                                </constraints>
                                 <state key="normal" title="调仓">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -990,8 +990,8 @@
                                     <action selector="goReposition:" destination="rOK-wr-smC" eventType="touchUpInside" id="va0-69-ajp"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8IN-yW-9Az" colorLabel="IBBuiltInLabel-Gray">
-                                <rect key="frame" x="-11" y="20" width="342" height="511"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8IN-yW-9Az" colorLabel="IBBuiltInLabel-Gray">
+                                <rect key="frame" x="-11" y="20" width="342" height="462"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIS-ib-L08">
                                         <rect key="frame" x="19" y="57" width="55" height="55"/>
@@ -1154,20 +1154,12 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="VIw-3b-3XD" firstAttribute="bottom" secondItem="1HI-w3-Whs" secondAttribute="bottomMargin" id="CbH-OJ-XQh"/>
-                            <constraint firstItem="VIw-3b-3XD" firstAttribute="centerX" secondItem="8IN-yW-9Az" secondAttribute="centerX" id="Jac-5g-3dn"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="8IN-yW-9Az" secondAttribute="bottom" constant="37" id="PoG-h5-o80"/>
-                            <constraint firstItem="VIw-3b-3XD" firstAttribute="top" secondItem="uGX-xi-4a4" secondAttribute="top" id="b8r-gL-f4i"/>
-                            <constraint firstItem="VIw-3b-3XD" firstAttribute="bottom" secondItem="1HI-w3-Whs" secondAttribute="bottomMargin" id="goB-wN-70a"/>
-                            <constraint firstItem="VIw-3b-3XD" firstAttribute="trailing" secondItem="GB9-vN-CO3" secondAttribute="trailing" id="jvl-27-hyg"/>
-                            <constraint firstItem="VIw-3b-3XD" firstAttribute="centerX" secondItem="uGX-xi-4a4" secondAttribute="centerX" id="xfi-9c-cIs"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="1Og-uS-dgJ"/>
                     <connections>
                         <outlet property="uIv" destination="dIS-ib-L08" id="do1-Vs-1BU"/>
                         <outlet property="ubChange" destination="mov-Ng-p67" id="krB-FM-kcc"/>
+                        <outlet property="ubReposition" destination="VIw-3b-3XD" id="VD1-kC-mWR"/>
                         <outlet property="uivFluctuate" destination="nvD-vr-iBc" id="6DM-Ts-O03"/>
                         <outlet property="uivPro" destination="XWr-sw-X2E" id="O3x-0q-1fn"/>
                         <outlet property="uivProStar" destination="bsn-Xo-zKh" id="Hq0-eW-6Rr"/>
@@ -1190,7 +1182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMw-r2-3x3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="496" y="-565"/>
+            <point key="canvasLocation" x="521" y="-622"/>
         </scene>
         <!--组合-->
         <scene sceneID="zq1-Dr-UuS">

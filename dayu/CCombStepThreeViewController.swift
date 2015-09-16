@@ -229,6 +229,8 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
 
 class CurrencyButton: UIButton {
     var indexPath:NSIndexPath!
+    var btn:CurrencyButton!
+    var str:CurrencyButton!
 }
 
 class CurrencyTextField: UITextField {

@@ -122,12 +122,16 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var ulTime = cell.viewWithTag(13) as UILabel
         var ulName = cell.viewWithTag(14) as UILabel
         var uivArrow = cell.viewWithTag(15) as UIImageView
-        var uivSupport = cell.viewWithTag(16) as UIImageView
-        var ulSupportNum = cell.viewWithTag(17) as UILabel
-        var uivFollow = cell.viewWithTag(18) as UIImageView
-        var ulFollowtNum = cell.viewWithTag(19) as UILabel
+
+
+
+
         var ulBodonglv = cell.viewWithTag(20) as UILabel
         var ulGrade = cell.viewWithTag(21) as UILabel
+        var ubSupport = cell.viewWithTag(22) as CurrencyButton
+        var ubSupportStr = cell.viewWithTag(23) as CurrencyButton
+        var ubFollow = cell.viewWithTag(24) as CurrencyButton
+        var ubFollowStr = cell.viewWithTag(25) as CurrencyButton
         
 //        ivPhoto.sd_setImageWithURL(NSURL(string: URLConstants.getImageUrl(group)), placeholderImage: UIImage(named: "user_default_photo.png"))
         var color = comb.getColor(comb.grade, g: comb.gradego)
@@ -135,15 +139,85 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         uivArrow.image = UIImage(named: color[1])
         ulTime.text = StringUtil.formatTime(comb.createTime) + " \(comb.userName)创建"
         ulName.text = comb.name
-        ulSupportNum.text = String(comb.supportNum)
-        ulFollowtNum.text = String(comb.followNum)
+        ubSupportStr.setTitle(comb.supportNum.description, forState: UIControlState.Normal)
+        ubFollowStr.setTitle(comb.followNum.description, forState: UIControlState.Normal)
+        if comb.yesSupport == 1 {
+            ubSupport.setImage(UIImage(named:"note_good_selected2.png"), forState: UIControlState.Normal)
+        }
+        if comb.yesFollow == 1 {
+            ubFollow.setImage(UIImage(named:"ic_love_blue_selected.png"), forState: UIControlState.Normal)
+        }
         ulBodonglv.text = String(StringUtil.formatFloat(comb.drawdown) + "%")
         ulBodonglv.textColor = StringUtil.colorWithHexString(color[2])
         ulGrade.text = String(comb.grade)
         ulDataInCircle.text = StringUtil.formatFloat(comb.pro) + "%"
         ulTypeInCircle.text = "\(ubsTimeTypeStr[typeFlag[1]])收益"
 //        ulTime.lineBreakMode = UILineBreakModeCharacterWrap
+        ubSupport.indexPath = indexPath
+        ubSupport.btn = ubSupport
+        ubSupport.str = ubSupportStr
+        ubSupport.addTarget(self, action: "support:", forControlEvents: UIControlEvents.TouchUpInside)
+        ubSupportStr.indexPath = indexPath
+        ubSupportStr.btn = ubSupport
+        ubSupportStr.str = ubSupportStr
+        ubSupportStr.addTarget(self, action: "support:", forControlEvents: UIControlEvents.TouchUpInside)
         return cell
+    }
+    
+    func support(btn: CurrencyButton) {
+        var indexPath = btn.indexPath.row
+        var comb = combList[indexPath] as Comb
+        if app.isLogin() {
+            if comb.yesSupport == 0 {
+                var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
+                HttpUtil.post(URLConstants.getSupportCombinationUrl, params: params, success: {(data:AnyObject!) in
+                    self.refreshControl.endRefreshing()
+                    println("combs data = \(data)")
+                    if data["stat"] as String == "OK" {
+                        btn.btn.setImage(UIImage(named:"note_good_selected2.png"), forState: UIControlState.Normal)
+                        comb.yesSupport = true
+                        comb.supportNum = comb.supportNum + 1
+                        btn.str.setTitle(comb.supportNum.description, forState: UIControlState.Normal)
+                    }
+                    }, failure:{(error:NSError!) in
+                        //TODO 处理异常
+                        println(error.localizedDescription)
+                        self.refreshControl.endRefreshing()
+                })
+            } else {
+                ViewUtil.showToast(UtvCombs, text: "您已经点过赞了", afterDelay: 1)
+            }
+        } else {
+            
+        }
+    }
+    
+    func follow(btn: CurrencyButton) {
+        var indexPath = btn.indexPath.row
+        var comb = combList[indexPath] as Comb
+        if app.isLogin() {
+            if comb.yesSupport == 0 {
+                var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
+                HttpUtil.post(URLConstants.getSupportCombinationUrl, params: params, success: {(data:AnyObject!) in
+                    self.refreshControl.endRefreshing()
+                    println("combs data = \(data)")
+                    if data["stat"] as String == "OK" {
+                        btn.btn.setImage(UIImage(named:"note_good_selected2.png"), forState: UIControlState.Normal)
+                        comb.yesSupport = true
+                        comb.supportNum = comb.supportNum + 1
+                        btn.str.setTitle(comb.supportNum.description, forState: UIControlState.Normal)
+                    }
+                    }, failure:{(error:NSError!) in
+                        //TODO 处理异常
+                        println(error.localizedDescription)
+                        self.refreshControl.endRefreshing()
+                })
+            } else {
+                ViewUtil.showToast(UtvCombs, text: "您已经点过赞了", afterDelay: 1)
+            }
+        } else {
+            
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
