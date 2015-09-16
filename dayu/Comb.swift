@@ -166,4 +166,19 @@ class Comb: NSObject {
         }
         return colors
     }
+    
+    func toCyTypes(comb: Comb) -> Array<CurrencyType> {
+        var cs : Array<CurrencyType>
+        cs = Array<CurrencyType>()
+        for c in comb.currencys {
+            var ct = CurrencyType()
+            ct.key = c.key
+            ct.value = c.value
+            ct.isSelected = c.selected
+            ct.operation = c.operation
+            ct.tradeNum = CGFloat(c.lots)
+            cs.append(ct)
+        }
+        return cs
+    }
 }

@@ -122,7 +122,8 @@ class CombDetailViewController: BaseUIViewController {
         self.usvMain.addSubview(pie)
         
         fsLineView = NSBundle.mainBundle().loadNibNamed("FsLineView", owner: self, options: nil)[0] as FsLineView
-        fsLineView.frame = CGRectMake(0, 180 + pie.frame.height, 340, 300)
+        fsLineView.frame = CGRectMake(0, 220 + pie.frame.height, 340, 300)
+        println("pie.frame.height == \(pie.frame.height)")
         usvMain.addSubview(fsLineView)
         fsLineView.getWave(comb, waveStyle: "S")
         
@@ -213,7 +214,12 @@ class CombDetailViewController: BaseUIViewController {
     @IBAction func goReposition(sender: AnyObject) {
         var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
         var groupVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
-//        CCOMB_totalMoney = comb.
+        CCOMB_totalMoney = CGFloat(comb.now_amount)
+        CCOMB_lever = comb.lever
+        groupVc.isCreate = false
+        groupVc.combId = comb.id
+        groupVc.situation = comb.situation
+        groupVc.cyTypes = comb.toCyTypes(comb)
         self.navigationController?.pushViewController(groupVc, animated: true)
     }
 }
