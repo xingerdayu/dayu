@@ -11,7 +11,7 @@ import UIKit
 class User: NSObject {
    
     var id = 1;
-    var tel = "";
+    var tel:String?;
     var regTime:Int64 = 0;
     var havePhoto = 0
     
@@ -27,6 +27,8 @@ class User: NSObject {
     var copyNum = 0
     
     var pwd = ""
+    var token = ""
+    var authority = 0;
     
 //    func parse(dict:NSDictionary) {
 //        id = dict["id"] as Int
@@ -49,7 +51,7 @@ class User: NSObject {
     
     func parse(dict:NSDictionary) {
         id = dict["id"] as Int
-        tel = dict["tel"] as String
+        tel = dict["tel"] as? String
         username = dict["username"] as? String
         intro = dict["intro"] as? String
     }

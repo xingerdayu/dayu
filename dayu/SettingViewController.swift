@@ -10,6 +10,7 @@ import UIKit
 
 class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var logoutBtn: UIButton!
     var settingItems = Array<UserCenterItem>()
     var versionName:Float = 0
 
@@ -21,6 +22,10 @@ class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableV
         settingItems.append(UserCenterItem(name: "新版本检测", icon: "item_version_check.png"))
         settingItems.append(UserCenterItem(name: "意见反馈", icon: "item_suggest_post.png"))
         settingItems.append(UserCenterItem(name: "关于大鱼", icon: "item_help_center.png"))
+        
+        if !app.isLogin() {
+            logoutBtn.hidden = true
+        }
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -64,5 +69,8 @@ class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableV
     }
 
     @IBAction func logout(sender: UIButton) {
+        UserDao.delete()
+        app.user = UserDao.get()!
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

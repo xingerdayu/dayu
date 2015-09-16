@@ -36,14 +36,15 @@ class CurrencyType : NSObject {
     var rate:CGFloat = 0 //交易所占金额比例
     
     class func createCurrencys() -> Array<CurrencyType> {
-        if (CURRENCT_ARRAY.count == 0) {
+        //if (CURRENCT_ARRAY.count == 0) { //不缓存，每次都重新生成
+        CURRENCT_ARRAY.removeAll()
             for var i = 0; i < CURRENCY_TYPE_COUNT; i++ {
                 var currencyType = CurrencyType()
                 currencyType.key = CurrencyKeys[i]
                 currencyType.value = CurrencyValues[i]
                 CURRENCT_ARRAY.append(currencyType)
             }
-        }
+        //}
         return CURRENCT_ARRAY
     }
     

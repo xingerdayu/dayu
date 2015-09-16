@@ -20,9 +20,10 @@ class RegisterViewController: BaseUIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        utfPwd.resignFirstResponder()
+        utfAccount.resignFirstResponder()
+        utfNick.resignFirstResponder()
     }
     
     @IBAction func register(sender: AnyObject) {
@@ -43,7 +44,6 @@ class RegisterViewController: BaseUIViewController {
             return
         }
         var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString.md5;
-        println(deviceId)
         var params = ["tel":utfAccount.text, "username":utfNick.text, "password":utfPwd.text.md5, "code":"123456", "device_id": deviceId, "umeng_id":deviceId]
         
         HttpUtil.post(URLConstants.registerUrl, params: params, success: {(response:AnyObject!) in

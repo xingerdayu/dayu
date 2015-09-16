@@ -37,6 +37,8 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
         
         if app.isLogin() {
             loginBtn.setTitle(app.user.getUsername(), forState: UIControlState.Normal)
+        } else {
+            loginBtn.setTitle("注册/登录", forState: UIControlState.Normal)
         }
     }
     
@@ -82,7 +84,7 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
         var identifier:String!
         switch indexPath.row {
         case 0:
-            identifier = "SettingControllerUI"
+            identifier = "ModifyInfoViewUI"
         case 1:
             identifier = "MessageControllerUI"
         default:

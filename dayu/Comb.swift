@@ -168,16 +168,23 @@ class Comb: NSObject {
     }
     
     func toCyTypes(comb: Comb) -> Array<CurrencyType> {
-        var cs : Array<CurrencyType>
-        cs = Array<CurrencyType>()
+        var all = CurrencyType.createCurrencys()
+        var cacheMap = NSMutableDictionary();
+        for ct in all {
+            cacheMap[ct.key] = ct
+        }
+        var cs = Array<CurrencyType>()
         for c in comb.currencys {
-            var ct = CurrencyType()
-            ct.key = c.key
-            ct.value = c.value
-            ct.isSelected = c.selected
-            ct.operation = c.operation
-            ct.tradeNum = CGFloat(c.lots)
-            cs.append(ct)
+            if c.key != "cash_remaining" {
+                var ct = cacheMap[c.key] as CurrencyType
+                //ct.key = c.key
+                //ct.value = c.value
+                ct.isSelected = c.selected
+                ct.operation = c.operation
+                ct.tradeNum = CGFloat(c.lots)
+                cs.append(ct)
+            }
+            
         }
         return cs
     }

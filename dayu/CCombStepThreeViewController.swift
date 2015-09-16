@@ -8,10 +8,6 @@
 
 import UIKit
 
-var CCOMB_totalMoney:CGFloat = 100000
-var CCOMB_lever = 100
-var CCOMB_remaining:CGFloat = 0
-
 class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var utfTotalMoney: UITextField!
@@ -25,6 +21,9 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     var ccomb:CComb!
     @IBOutlet weak var myTableView: UITableView!
     
+    var CCOMB_totalMoney:CGFloat = 100000
+    var CCOMB_lever = 100
+    var CCOMB_remaining:CGFloat = 0
     var isCreate = true
     var combId = ""
     var situation = 0
@@ -33,9 +32,10 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //viewCrashBg.setTranslatesAutoresizingMaskIntoConstraints(true) //清除 AutoLayout的影响
+        viewCrashBg.setTranslatesAutoresizingMaskIntoConstraints(true) //清除 AutoLayout的影响
         
-        utfTotalMoney.text = "\(CCOMB_totalMoney)"
+        var tMoney = NSString(format: "%.02lf", Float(CCOMB_totalMoney))
+        utfTotalMoney.text = "\(tMoney)"
         switch CCOMB_lever {
         case 50:
             segLevel.selectedSegmentIndex = 1
@@ -50,6 +50,14 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         getPrices()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        cyTypes = getChooseCurrencys()
+        self.notifyDateChanged()
+        myTableView.reloadData()
+    }
+    
     func getPrices() {
         var priceUrl = "http://112.74.195.144:8080/price/all"
         
@@ -57,9 +65,10 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
             //println(response)
             
             var dict = response["prices"] as NSDictionary
+            var cacheDict = NSMutableDictionary()
             for cType in CURRENCT_ARRAY {
-                //println("\(cType.key) sss \(dict[cType.key])")
                 cType.price = (dict[cType.key] as NSDictionary!)["ask"] as CGFloat
+                cacheDict[cType.key] = cType
             }
             if self.isCreate {
                 self.notifyDateChanged()
@@ -147,13 +156,15 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         if textField is CurrencyTextField {
             //修改的是手数
             var indexPath =  (textField as CurrencyTextField).indexPath
-            var cType = cyTypes[indexPath.row]
-            cType.setCurrentRate(CGFloat(num), totalMoney: CCOMB_totalMoney, lever: CCOMB_lever)
-            
-            var priceStr = NSString(format: "%.02lf", Float(cType.rate) * 100.0) //保留两位小数
-            //(myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(cType.rate * 100) %"
-            (myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(priceStr) %"
-            notifyRowChanged()
+            if indexPath.row < cyTypes.count { //在调仓时，删除了某个品种，但是textFieldDidEndEditing还没调用，这时调用会出现数组越界错误，模拟机上会出现，手机上不知道会不会出现，统一判断下，防止这个错误
+                var cType = cyTypes[indexPath.row]
+                cType.setCurrentRate(CGFloat(num), totalMoney: CCOMB_totalMoney, lever: CCOMB_lever)
+                
+                var priceStr = NSString(format: "%.02lf", Float(cType.rate) * 100.0) //保留两位小数
+                //(myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(cType.rate * 100) %"
+                (myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(priceStr) %"
+                notifyRowChanged()
+            }
         } else {
             //修改的是总金额
             CCOMB_totalMoney = CGFloat(num)
@@ -205,14 +216,14 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         }
         println("\(array)", "")
         if isCreate { //新建组合
-            var params = ["token":/**app.user.id**/1, "username": /**app.user.getUsername()**/"simafei", "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_id":combId, "combination_description":ccomb.des, "combination_types":ccomb.aType]
+            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_id":combId, "combination_description":ccomb.des, "combination_types":ccomb.aType]
             
             HttpUtil.post(URLConstants.addCombinationUrl(), params: params, success: {(response:AnyObject!) in
                 println(response)
                 ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
             })
         } else { //调仓
-            var params = ["token":/**app.user.id**/1, "username": /**app.user.getUsername()**/"simafei", "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "situation":situation]
+            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "situation":situation]
             
             HttpUtil.post(URLConstants.adjustCombinationUrl(), params: params, success: {(response:AnyObject!) in
                 println(response)
@@ -222,7 +233,25 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     }
     
     @IBAction func modifyTypes(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
+        //self.navigationController?.popViewControllerAnimated(true)
+        //adjust = true
+        sender.becomeFirstResponder()
+        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+        var stepTwoVc = usb.instantiateViewControllerWithIdentifier("AddCombStepSecordUI") as CCombStepTwoViewController
+        stepTwoVc.ccomb = ccomb
+        stepTwoVc.cyTypes = CURRENCT_ARRAY
+        stepTwoVc.adjust = true
+        self.navigationController?.pushViewController(stepTwoVc, animated: true)
+    }
+    
+    func getChooseCurrencys() -> Array<CurrencyType> {
+        var array = Array<CurrencyType>()
+        for currencyType in CURRENCT_ARRAY {
+            if currencyType.isSelected {
+                array.append(currencyType)
+            }
+        }
+        return array
     }
 
 }

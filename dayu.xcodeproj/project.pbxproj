@@ -23,6 +23,8 @@
 		4360FD261BA1316400BF3F9E /* ModifyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD251BA1316400BF3F9E /* ModifyInfoViewController.swift */; };
 		4360FD281BA1645500BF3F9E /* BaseChooseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD271BA1645500BF3F9E /* BaseChooseImageViewController.swift */; };
 		4360FD2A1BA16F0F00BF3F9E /* ModifyIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4360FD291BA16F0F00BF3F9E /* ModifyIntroViewController.swift */; };
+		436B6BC31BA9A3610048F7C4 /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436B6BC21BA9A3610048F7C4 /* Db.swift */; };
+		436B6BC51BA9A4F70048F7C4 /* UserDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436B6BC41BA9A4F70048F7C4 /* UserDao.swift */; };
 		4386C2A01B9897C80080A175 /* ReplyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C29F1B9897C80080A175 /* ReplyListViewController.swift */; };
 		4386C2A21B9931E50080A175 /* ItemsView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4386C2A11B9931E50080A175 /* ItemsView2.xib */; };
 		4386C2A51B9938750080A175 /* ItemsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2A41B9938750080A175 /* ItemsView2.swift */; };
@@ -232,6 +234,8 @@
 		4360FD251BA1316400BF3F9E /* ModifyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyInfoViewController.swift; sourceTree = "<group>"; };
 		4360FD271BA1645500BF3F9E /* BaseChooseImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseChooseImageViewController.swift; sourceTree = "<group>"; };
 		4360FD291BA16F0F00BF3F9E /* ModifyIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyIntroViewController.swift; sourceTree = "<group>"; };
+		436B6BC21BA9A3610048F7C4 /* Db.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
+		436B6BC41BA9A4F70048F7C4 /* UserDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDao.swift; sourceTree = "<group>"; };
 		4386C29F1B9897C80080A175 /* ReplyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyListViewController.swift; sourceTree = "<group>"; };
 		4386C2A11B9931E50080A175 /* ItemsView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemsView2.xib; sourceTree = "<group>"; };
 		4386C2A41B9938750080A175 /* ItemsView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsView2.swift; sourceTree = "<group>"; };
@@ -469,7 +473,9 @@
 		435E627A1B91F1A8006CA7C6 /* Ext */ = {
 			isa = PBXGroup;
 			children = (
+				436B6BC21BA9A3610048F7C4 /* Db.swift */,
 				435E627B1B91F1C6006CA7C6 /* Extension.swift */,
+				436B6BC41BA9A4F70048F7C4 /* UserDao.swift */,
 			);
 			name = Ext;
 			sourceTree = "<group>";
@@ -1075,6 +1081,7 @@
 				43D9397B1B90531C0090F47D /* StringUtil.swift in Sources */,
 				A19B89701B91F6F2007B4D17 /* Comb.swift in Sources */,
 				A1B30B821BA16D9D005DEBE1 /* PieView.swift in Sources */,
+				436B6BC51BA9A4F70048F7C4 /* UserDao.swift in Sources */,
 				4386C2B21B9C1A520080A175 /* CCombStepOneViewController.swift in Sources */,
 				43D93B291B9084B40090F47D /* LeftMenuViewController.swift in Sources */,
 				435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */,
@@ -1096,6 +1103,7 @@
 				43D9397A1B90531C0090F47D /* ImageLoader.swift in Sources */,
 				A13CC7EA1BA3FC6800199D6D /* FsLineView.swift in Sources */,
 				43D9396A1B9053090090F47D /* Reply.swift in Sources */,
+				436B6BC31BA9A3610048F7C4 /* Db.swift in Sources */,
 				A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */,
 				43D939401B8F62C30090F47D /* ViewController.swift in Sources */,
 				43D939631B9052FD0090F47D /* URLConstants.swift in Sources */,

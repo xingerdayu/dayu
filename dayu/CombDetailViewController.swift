@@ -214,8 +214,8 @@ class CombDetailViewController: BaseUIViewController {
     @IBAction func goReposition(sender: AnyObject) {
         var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
         var groupVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
-        CCOMB_totalMoney = CGFloat(comb.now_amount)
-        CCOMB_lever = comb.lever
+        groupVc.CCOMB_totalMoney = CGFloat(comb.now_amount)
+        groupVc.CCOMB_lever = comb.lever
         groupVc.isCreate = false
         groupVc.combId = comb.id
         groupVc.situation = comb.situation

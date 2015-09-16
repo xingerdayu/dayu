@@ -12,32 +12,29 @@ class CCombStepTwoViewController: BaseUIViewController, UICollectionViewDataSour
     
     var cyTypes:Array<CurrencyType>!
     var ccomb:CComb!
+    var adjust = false
     @IBOutlet weak var myCollectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        cyTypes = CurrencyType.createCurrencys()
-        //myCollectionView.reloadData()
-    }
-
-    func getChooseCurrencys() -> Array<CurrencyType> {
-        var array = Array<CurrencyType>()
-        for currencyType in cyTypes {
-            if currencyType.isSelected {
-                array.append(currencyType)
-            }
+        if cyTypes == nil {
+            cyTypes = CurrencyType.createCurrencys()
         }
-        return array
+        //myCollectionView.reloadData()
     }
     
     @IBAction func nextStep(sender: UIBarButtonItem) {
-        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-        var lastVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
-        lastVc.cyTypes = getChooseCurrencys()
-        lastVc.ccomb = self.ccomb
-        self.navigationController?.pushViewController(lastVc, animated: true)
+        if adjust {
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+            var lastVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
+            //lastVc.cyTypes = getChooseCurrencys()
+            lastVc.ccomb = self.ccomb
+            self.navigationController?.pushViewController(lastVc, animated: true)
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

@@ -8,16 +8,34 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        var au = UserDao.get()
+        println(au)
+        if au == nil {
+            var params = ["device_id": UIDevice.currentDevice().identifierForVendor.UUIDString.md5]
+            
+            HttpUtil.post(URLConstants.guestUrl, params: params, success: {(response:AnyObject!) in
+                println(response)
+                self.app.saveUser(response)
+                
+                self.toMain()
+            })
+        } else {
+            app.user = au!
+            
+            self.toMain()
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func toMain() {
+        var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var mainVc = usb.instantiateViewControllerWithIdentifier("ucMainView") as UIViewController
+        self.presentViewController(mainVc, animated: true, completion: {})
     }
     
     

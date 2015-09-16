@@ -32,11 +32,11 @@ extension String {
             
             var hash = NSMutableString();
             for i in 0 ..< digestLen {
-                hash.appendFormat("%X", result[i]);
+                hash.appendFormat("%02x", result[i]);
             }
             result.destroy();
             
-            return String(format: hash)
+            return String(format: hash).lowercaseString
     }}
 
 extension UIImage {

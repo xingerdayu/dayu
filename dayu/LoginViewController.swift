@@ -17,9 +17,9 @@ class LoginViewController: BaseUIViewController {
         self.navigationController?.interactivePopGestureRecognizer.enabled = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        utfUsername.resignFirstResponder()
+        utfPwd.resignFirstResponder()
     }
     
     @IBOutlet weak var utfUsername: UITextField!
@@ -27,7 +27,8 @@ class LoginViewController: BaseUIViewController {
     @IBOutlet weak var utfPwd: UITextField!
 
     @IBAction func login(sender: AnyObject) {
-        var params = ["tel": utfUsername.text, "password": utfPwd.text]
+        println(utfPwd.text.md5)
+        var params = ["tel": utfUsername.text, "password": utfPwd.text.md5]
         
         HttpUtil.post(URLConstants.loginUrl, params: params, success: {(response:AnyObject!) in
             println(response)

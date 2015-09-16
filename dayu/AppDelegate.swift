@@ -14,23 +14,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
     
-    var token:NSDictionary!
+    //var token:NSDictionary!
     var user:User!
     
     func getToken() -> String {
-//        return token["token"] as String
-        return "77b7b4d6fff82dbd126227d19cf30a62"
+        return user.token
     }
     
     func isLogin() -> Bool {
-        return token["authority"] as Int > 0
+        return user.authority > 0
     }
 
     func saveUser(response:AnyObject!) {
-        var user = User()
+        user = User()
         user.parse(response["user"] as NSDictionary)
-        self.user = user
-        self.token = response["token"] as NSDictionary
+        var token = response["token"] as NSDictionary
+        user.token = token["token"] as String
+        user.authority = token["authority"] as Int
+        
+        if user.authority == 1 { //等于1，一定填写了账号
+            UserDao.save(user.id, tel: user.tel!, token: user.token, username: user.username, intro: user.intro, regTime: user.regTime)
+        } else {
+            UserDao.save(user.id, token: user.token)
+        }
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
