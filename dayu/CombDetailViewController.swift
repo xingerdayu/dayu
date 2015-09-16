@@ -117,7 +117,7 @@ class CombDetailViewController: BaseUIViewController {
         ulType2.text = str2
         
         var pie = NSBundle.mainBundle().loadNibNamed("PieView", owner: self, options: nil)[0] as PieView
-        pie.frame = CGRectMake(0, 261 , 340, 350)
+        pie.frame = CGRectMake(0, 261 , 340, pie.utvUnderPie.frame.height + 80)
         pie.createMagicPie(comb)
         self.usvMain.addSubview(pie)
         
