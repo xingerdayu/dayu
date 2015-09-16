@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 //let prefix = "http://112.74.85.171/"; //真实地址
 //let URL_PREFIX = "http://112.74.85.171/Community";
 //let URL_COMB = "http://120.24.96.69";
@@ -132,5 +133,7 @@ struct URLConstants {
     static let getCombinationDetialUrl = "\(URL_COMB)/combination/info"
     
     static let getCombinationWaveUrl = "\(URL_COMB)/combination/wave"
+    
+    static let getSupportCombinationUrl = "\(URL_COMB)/combination/support"
     
 }

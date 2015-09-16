@@ -22,7 +22,7 @@ class Comb: NSObject {
     var uid = ""
     var userName = ""
     var yesFollow = 0
-    var yseSupport = 0
+    var yesSupport = 0
     
     var types = 0
     var descriptionStr = ""
@@ -60,7 +60,7 @@ class Comb: NSObject {
         var n = dict["username"] as? String
         if n != nil {userName = n!}
         yesFollow = dict["yesfollow"] as Int
-        yseSupport = dict["yessupport"] as Int
+        yesSupport = dict["yessupport"] as Int
     }
     
     func parseDetail(dict:NSDictionary) {
@@ -88,6 +88,7 @@ class Comb: NSObject {
             s.pro_mark_mark = json2["pro_mark"] as Int
             self.grades.append(s)
         }
+        self.currencys.removeAll()
         var json_currency_types = dict["currency_types"] as NSArray
         for i in 0..<json_currency_types.count {
             var c = Currency()

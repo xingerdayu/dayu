@@ -41,7 +41,7 @@ class FsLineView: UIView {
     func getLineData() {
         var params = ["id":comb.id, "TIME" : waveStyle]
         HttpUtil.post(URLConstants.getCombinationWaveUrl, params: params, success: {(data:AnyObject!) in
-            println("combs data = \(data)")
+            //println("combs data = \(data)")
             if data["stat"] as String == "OK" {
                 var item = data["combinations"] as NSDictionary
                 var x = item["x"] as NSArray
