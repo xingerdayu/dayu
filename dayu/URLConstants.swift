@@ -116,6 +116,10 @@ struct URLConstants {
         return getSecondaryServerUrl() + "/combination/add"
     }
     
+    static func adjustCombinationUrl() -> String {
+        return getSecondaryServerUrl() + "/combination/adjust"
+    }
+    
     static func getSecondaryServerUrl() -> String {
         return "http://192.168.1.101:8080"
     }

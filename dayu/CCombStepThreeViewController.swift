@@ -25,6 +25,10 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     var ccomb:CComb!
     @IBOutlet weak var myTableView: UITableView!
     
+    var isCreate = true
+    var combId = ""
+    var situation = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -195,12 +199,21 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
             array.append(cType.toJsonString())
         }
         println("\(array)", "")
-        var params = ["token":/**app.user.id**/1, "username": /**app.user.getUsername()**/"simafei", "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "combination_description":ccomb.des, "combination_types":ccomb.aType]
-        
-        HttpUtil.post(URLConstants.addCombinationUrl(), params: params, success: {(response:AnyObject!) in
-            println(response)
-            ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
-        })
+        if isCreate { //新建组合
+            var params = ["token":/**app.user.id**/1, "username": /**app.user.getUsername()**/"simafei", "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_id":combId, "combination_description":ccomb.des, "combination_types":ccomb.aType]
+            
+            HttpUtil.post(URLConstants.addCombinationUrl(), params: params, success: {(response:AnyObject!) in
+                println(response)
+                ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
+            })
+        } else { //调仓
+            var params = ["token":/**app.user.id**/1, "username": /**app.user.getUsername()**/"simafei", "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "situation":situation]
+            
+            HttpUtil.post(URLConstants.adjustCombinationUrl(), params: params, success: {(response:AnyObject!) in
+                println(response)
+                ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
+            })
+        }
     }
     
     @IBAction func modifyTypes(sender: UIButton) {
