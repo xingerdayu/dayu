@@ -34,7 +34,6 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
 
         // Do any additional setup after loading the view.
         //viewCrashBg.setTranslatesAutoresizingMaskIntoConstraints(true) //清除 AutoLayout的影响
-        getPrices()
         
         utfTotalMoney.text = "\(CCOMB_totalMoney)"
         switch CCOMB_lever {
@@ -47,6 +46,8 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         default:
             segLevel.selectedSegmentIndex = 0
         }
+        
+        getPrices()
     }
     
     func getPrices() {
@@ -60,8 +61,12 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
                 //println("\(cType.key) sss \(dict[cType.key])")
                 cType.price = (dict[cType.key] as NSDictionary!)["ask"] as CGFloat
             }
-            self.notifyDateChanged()
-            self.myTableView.reloadData()
+            if self.isCreate {
+                self.notifyDateChanged()
+                self.myTableView.reloadData()
+            } else {
+                self.notifyDateChanged()
+            }
         })
     }
     
