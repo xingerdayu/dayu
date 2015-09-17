@@ -83,7 +83,7 @@ class PieView: UIView , UITableViewDataSource, UITabBarDelegate {
             var name = cell.viewWithTag(11 + i) as UILabel
             name.text = c.value
             var percent = cell.viewWithTag(12 + i) as UILabel
-            percent.text = StringUtil.formatFloat(c.buyRate) + "%"
+            percent.text = StringUtil.formatFloat(c.buyRate * 100) + "%"
             percent.textColor = color
             i = 10
         }
