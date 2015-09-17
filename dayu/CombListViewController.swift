@@ -39,7 +39,7 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
     func getCombList() {
         println(type + "--" + timeType)
         combList.removeAllObjects()
-        var params = ["token":app.getToken(), "type":type, "timetype":timeType, "startnum":0]
+        var params = ["token":app.user.id, "type":type, "timetype":timeType, "startnum":0]
         HttpUtil.post(URLConstants.getSortCombinationsUrl, params: params, success: {(data:AnyObject!) in
             self.refreshControl.endRefreshing()
             println("combs data = \(data)")
@@ -161,6 +161,15 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         ubSupportStr.btn = ubSupport
         ubSupportStr.str = ubSupportStr
         ubSupportStr.addTarget(self, action: "support:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        ubFollow.indexPath = indexPath
+        ubFollow.btn = ubFollow
+        ubFollow.str = ubFollowStr
+        ubFollow.addTarget(self, action: "follow:", forControlEvents: UIControlEvents.TouchUpInside)
+        ubFollowStr.indexPath = indexPath
+        ubFollowStr.btn = ubFollow
+        ubFollowStr.str = ubFollowStr
+        ubFollowStr.addTarget(self, action: "follow:", forControlEvents: UIControlEvents.TouchUpInside)
         return cell
     }
     
@@ -171,18 +180,16 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
             if comb.yesSupport == 0 {
                 var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
                 HttpUtil.post(URLConstants.getSupportCombinationUrl, params: params, success: {(data:AnyObject!) in
-                    self.refreshControl.endRefreshing()
                     println("combs data = \(data)")
                     if data["stat"] as String == "OK" {
                         btn.btn.setImage(UIImage(named:"note_good_selected2.png"), forState: UIControlState.Normal)
-                        comb.yesSupport = true
+                        comb.yesSupport = 1
                         comb.supportNum = comb.supportNum + 1
                         btn.str.setTitle(comb.supportNum.description, forState: UIControlState.Normal)
                     }
                     }, failure:{(error:NSError!) in
                         //TODO 处理异常
                         println(error.localizedDescription)
-                        self.refreshControl.endRefreshing()
                 })
             } else {
                 ViewUtil.showToast(UtvCombs, text: "您已经点过赞了", afterDelay: 1)
@@ -196,24 +203,35 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var indexPath = btn.indexPath.row
         var comb = combList[indexPath] as Comb
         if app.isLogin() {
-            if comb.yesSupport == 0 {
-                var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
-                HttpUtil.post(URLConstants.getSupportCombinationUrl, params: params, success: {(data:AnyObject!) in
-                    self.refreshControl.endRefreshing()
+            var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
+            if comb.yesFollow == 0 {
+                HttpUtil.post(URLConstants.getFollowCombinationUrl, params: params, success: {(data:AnyObject!) in
                     println("combs data = \(data)")
                     if data["stat"] as String == "OK" {
-                        btn.btn.setImage(UIImage(named:"note_good_selected2.png"), forState: UIControlState.Normal)
-                        comb.yesSupport = true
-                        comb.supportNum = comb.supportNum + 1
-                        btn.str.setTitle(comb.supportNum.description, forState: UIControlState.Normal)
+                        btn.btn.setImage(UIImage(named:"ic_love_blue_selected.png"), forState: UIControlState.Normal)
+                        comb.yesFollow = 1
+                        comb.followNum = comb.followNum + 1
+                        btn.str.setTitle(comb.followNum.description, forState: UIControlState.Normal)
+                        ViewUtil.showToast(self.UtvCombs, text: "关注成功，该组合的调仓都会通知您", afterDelay: 3)
                     }
                     }, failure:{(error:NSError!) in
                         //TODO 处理异常
                         println(error.localizedDescription)
-                        self.refreshControl.endRefreshing()
                 })
             } else {
-                ViewUtil.showToast(UtvCombs, text: "您已经点过赞了", afterDelay: 1)
+                HttpUtil.post(URLConstants.getCancelFollowCombinationUrl, params: params, success: {(data:AnyObject!) in
+                    println("combs data = \(data)")
+                    if data["stat"] as String == "OK" {
+                        btn.btn.setImage(UIImage(named:"ic_love_blue.png"), forState: UIControlState.Normal)
+                        comb.yesFollow = 0
+                        comb.followNum = comb.followNum - 1
+                        btn.str.setTitle(comb.followNum.description, forState: UIControlState.Normal)
+                        ViewUtil.showToast(self.UtvCombs, text: "取消关注成功", afterDelay: 1)
+                    }
+                    }, failure:{(error:NSError!) in
+                        //TODO 处理异常
+                        println(error.localizedDescription)
+                })
             }
         } else {
             
@@ -238,4 +256,9 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         }
     }
     
+    @IBAction func addComb(sender: AnyObject) {
+        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+        var vc = usb.instantiateViewControllerWithIdentifier("CreateCombStepOneUI") as UIViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

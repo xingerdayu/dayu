@@ -43,8 +43,13 @@ class CombDetailViewController: BaseUIViewController {
         self.usvMain.contentSize.height = 800
         self.automaticallyAdjustsScrollViewInsets = false
         if app.user.id.description != comb.uid {
-            ubReposition.hidden = true
+            if comb.yesSupport == 0 {
+                ubReposition.setTitle("点赞", forState: UIControlState.Normal)
+            } else {
+                ubReposition.setTitle("已赞", forState: UIControlState.Normal)
+            }
         }
+        self.title = comb.name
         getCombList()
         // Do any additional setup after loading the view.
     }
@@ -216,16 +221,41 @@ class CombDetailViewController: BaseUIViewController {
     }
 
     @IBAction func goReposition(sender: AnyObject) {
-        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-        var groupVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
-        groupVc.CCOMB_totalMoney = CGFloat(comb.now_amount)
-        groupVc.CCOMB_lever = comb.lever
-        groupVc.isCreate = false
-        groupVc.combId = comb.id
-        groupVc.situation = comb.situation
-        groupVc.cyTypes = comb.toCyTypes(comb)
-        self.navigationController?.pushViewController(groupVc, animated: true)
+        if app.user.id.description == comb.uid {
+            var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+            var groupVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
+            groupVc.CCOMB_totalMoney = CGFloat(comb.now_amount)
+            groupVc.CCOMB_lever = comb.lever
+            groupVc.isCreate = false
+            groupVc.combId = comb.id
+            groupVc.situation = comb.situation
+            groupVc.cyTypes = comb.toCyTypes(comb)
+            self.navigationController?.pushViewController(groupVc, animated: true)
+        } else {
+            support()
+        }
     }
     
-    
+    func support() {
+        if app.isLogin() {
+            if comb.yesSupport == 0 {
+                var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
+                HttpUtil.post(URLConstants.getSupportCombinationUrl, params: params, success: {(data:AnyObject!) in
+                    println("combs data = \(data)")
+                    if data["stat"] as String == "OK" {
+                        self.ubReposition.setTitle("已赞", forState: UIControlState.Normal)
+                        self.comb.yesSupport = 1
+                        self.comb.supportNum = self.comb.supportNum + 1
+                    }
+                    }, failure:{(error:NSError!) in
+                        //TODO 处理异常
+                        println(error.localizedDescription)
+                })
+            } else {
+                ViewUtil.showToast(self.uvMain, text: "您已经点过赞了", afterDelay: 1)
+            }
+        } else {
+            
+        }
+    }
 }

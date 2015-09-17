@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3yJ-la-IdR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3yJ-la-IdR">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -781,7 +780,7 @@
             </objects>
             <point key="canvasLocation" x="1304" y="1394"/>
         </scene>
-        <!--Comb List View Controller-->
+        <!--组合-->
         <scene sceneID="ujP-It-dnx">
             <objects>
                 <viewController storyboardIdentifier="CombListController" id="QgL-KV-ZWw" customClass="CombListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
@@ -954,7 +953,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" id="bKC-qm-Pwn"/>
+                    <navigationItem key="navigationItem" title="组合" id="bKC-qm-Pwn">
+                        <barButtonItem key="rightBarButtonItem" image="ic_add_comb" id="Uxh-Cg-z2z">
+                            <connections>
+                                <action selector="addComb:" destination="QgL-KV-ZWw" id="Ate-JV-dEz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="UbTimeType" destination="b6U-iD-Slh" id="Fft-3d-6Nr"/>
                         <outlet property="UbType" destination="8Uq-0D-YxP" id="STR-iN-n96"/>
@@ -1216,6 +1221,7 @@
         <image name="country_america.png" width="85" height="85"/>
         <image name="dayu.png" width="120" height="60"/>
         <image name="fluctuation4.png" width="97" height="49"/>
+        <image name="ic_add_comb" width="24" height="24"/>
         <image name="ic_launcher.png" width="127" height="127"/>
         <image name="ic_love.png" width="20" height="21"/>
         <image name="ic_love_blue.png" width="20" height="21"/>
