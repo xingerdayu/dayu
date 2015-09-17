@@ -52,7 +52,7 @@ class CombDetailViewController: BaseUIViewController {
             }
         }
         self.title = comb.name
-        getCombList()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -62,7 +62,7 @@ class CombDetailViewController: BaseUIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        getCombList()
     }
     
     func getCombList() {
