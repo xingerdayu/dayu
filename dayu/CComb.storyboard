@@ -172,7 +172,7 @@
         <!--添加品种-->
         <scene sceneID="0w0-pI-Ns3">
             <objects>
-                <viewController storyboardIdentifier="AddCombStepSecordUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7wO-GJ-f6g" customClass="CCombStepTwoViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCombStepSecordUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7wO-GJ-f6g" customClass="CCombStepTwoViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dgb-ck-Got"/>
                         <viewControllerLayoutGuide type="bottom" id="cLu-af-5Yf"/>
@@ -253,7 +253,7 @@
         <!--仓位比例-->
         <scene sceneID="kia-Pn-gwj">
             <objects>
-                <viewController storyboardIdentifier="CCombStepThreeViewUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pBc-No-SXO" customClass="CCombStepThreeViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CCombStepThreeViewUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pBc-No-SXO" customClass="CCombStepThreeViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7e5-zq-TMO"/>
                         <viewControllerLayoutGuide type="bottom" id="agp-EI-A1D"/>
