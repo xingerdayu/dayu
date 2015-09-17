@@ -33,6 +33,8 @@ class CombDetailViewController: BaseUIViewController {
     @IBOutlet weak var uivProStar: UIImageView!
     @IBOutlet weak var uivRiskStar: UIImageView!
     
+    
+    
     @IBOutlet weak var ubReposition: UIButton!
     var fsLineView:FsLineView!
     //grade info 区域的年月日全， 0、1、2、3
@@ -83,12 +85,13 @@ class CombDetailViewController: BaseUIViewController {
     
     func initView() {
         uIv.sd_setImageWithURL(NSURL(string: URLConstants.getUserPhotoUrl(comb.uid.toInt()!)), placeholderImage:UIImage(named: "user_default_photo.png"))
+        println(" URLConstants.getUserPhotoUrl(comb.uid.toInt()!) == \(URLConstants.getUserPhotoUrl(comb.uid.toInt()!))")
         uIv.layer.cornerRadius = 25
         uIv.clipsToBounds = true
         ulTime.text = "创建于" + StringUtil.formatTime(comb.createTime).substringToIndex(10) + " 修改于" + StringUtil.formatTime(comb.modify_time).substringToIndex(10)
         ulUserName.text = comb.userName
         ulDescription.text = comb.descriptionStr
-        ulRate.text = "共调仓" + "\(comb.changeTimes)" + "次 均" + "\(comb.frequency_rate)" + "日/次"
+        ulRate.text = "共调仓" + "\(comb.changeTimes)" + "次 均" + "\(StringUtil.formatFloat(comb.frequency_rate))" + "日/次"
         ulFollow.text = "\(comb.followNum)人关注"
         var typeArry = Array<String>()
         if comb.types & 1 > 0 {
@@ -136,6 +139,13 @@ class CombDetailViewController: BaseUIViewController {
         usvMain.addSubview(fsLineView)
         fsLineView.getWave(comb, waveStyle: "S")
         
+        var amount = NSBundle.mainBundle().loadNibNamed("AmountView", owner: self, options: nil)[0] as UIView
+        var amount1 = amount.viewWithTag(1) as UILabel
+        var amount2 = amount.viewWithTag(2) as UILabel
+        amount1.text = "$\(StringUtil.formatFloat(comb.amount))"
+        amount2.text = "$\(StringUtil.formatFloat(comb.now_amount))"
+        amount.frame = CGRectMake(0, 120 + pie.frame.height + fsLineView.frame.height, 340, 45)
+        self.usvMain.addSubview(amount)
         changeTime()
     }
     

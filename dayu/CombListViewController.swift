@@ -137,20 +137,24 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var color = comb.getColor(comb.grade, g: comb.gradego)
         uivCircle.image = UIImage(named:color[0]);
         uivArrow.image = UIImage(named: color[1])
-        ulTime.text = StringUtil.formatTime(comb.createTime) + " \(comb.userName)创建"
+        ulTime.text = StringUtil.formatTime(comb.createTime).substringToIndex(10) + " \(comb.userName)创建"
         ulName.text = comb.name
         ubSupportStr.setTitle(comb.supportNum.description, forState: UIControlState.Normal)
         ubFollowStr.setTitle(comb.followNum.description, forState: UIControlState.Normal)
         if comb.yesSupport == 1 {
             ubSupport.setImage(UIImage(named:"note_good_selected2.png"), forState: UIControlState.Normal)
+        } else {
+            ubSupport.setImage(UIImage(named:"note_good_normal.png"), forState: UIControlState.Normal)
         }
         if comb.yesFollow == 1 {
             ubFollow.setImage(UIImage(named:"ic_love_blue_selected.png"), forState: UIControlState.Normal)
+        } else {
+            ubFollow.setImage(UIImage(named:"ic_love_blue.png"), forState: UIControlState.Normal)
         }
         ulBodonglv.text = String(StringUtil.formatFloat(comb.drawdown) + "%")
         ulBodonglv.textColor = StringUtil.colorWithHexString(color[2])
         ulGrade.text = String(comb.grade)
-        ulDataInCircle.text = StringUtil.formatFloat(comb.pro) + "%"
+        ulDataInCircle.text = StringUtil.formatFloat(comb.pro * 100) + "%"
         ulTypeInCircle.text = "\(ubsTimeTypeStr[typeFlag[1]])收益"
 //        ulTime.lineBreakMode = UILineBreakModeCharacterWrap
         ubSupport.indexPath = indexPath
@@ -212,7 +216,7 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
                         comb.yesFollow = 1
                         comb.followNum = comb.followNum + 1
                         btn.str.setTitle(comb.followNum.description, forState: UIControlState.Normal)
-                        ViewUtil.showToast(self.UtvCombs, text: "关注成功，该组合的调仓都会通知您", afterDelay: 3)
+                        ViewUtil.showToast(self.UtvCombs, text: "关注成功，该组合的调仓都会通知您", afterDelay: 1.5)
                     }
                     }, failure:{(error:NSError!) in
                         //TODO 处理异常
@@ -261,4 +265,9 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var vc = usb.instantiateViewControllerWithIdentifier("CreateCombStepOneUI") as UIViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func goMyCombs(sender: AnyObject) {
+        
+    }
+    
 }

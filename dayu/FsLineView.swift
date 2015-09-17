@@ -27,8 +27,13 @@ class FsLineView: UIView {
             //return "\(floor(value * 100) / 100)"
             return String(format: "%.2f", Float(value))
         }
+        println("pointsY.count == \(pointsY.count)")
+        if pointsY.count > 1 {
+//            var point = pointsY[0]
+//            pointsY.append(point)
+            lineChart.setChartData(pointsY)
+        }
         
-        lineChart.setChartData(pointsY)
         self.addSubview(lineChart)
     }
     
