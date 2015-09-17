@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GRB-Og-50l">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -943,7 +944,7 @@
         <!--Title-->
         <scene sceneID="pNb-oz-buK">
             <objects>
-                <viewController id="rOK-wr-smC" customClass="CombDetailViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="rOK-wr-smC" customClass="CombDetailViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IDx-J0-g3i"/>
                         <viewControllerLayoutGuide type="bottom" id="GB9-vN-CO3"/>
@@ -953,7 +954,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIw-3b-3XD">
-                                <rect key="frame" x="0.0" y="481" width="320" height="38"/>
+                                <rect key="frame" x="0.0" y="530" width="320" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="调仓">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -963,7 +964,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8IN-yW-9Az" colorLabel="IBBuiltInLabel-Gray">
-                                <rect key="frame" x="-11" y="20" width="342" height="462"/>
+                                <rect key="frame" x="-11" y="20" width="342" height="510"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIS-ib-L08">
                                         <rect key="frame" x="19" y="57" width="55" height="55"/>
@@ -1159,7 +1160,7 @@
         <!--One Comb List View Controller-->
         <scene sceneID="mrE-ji-t8M">
             <objects>
-                <viewController id="vcY-af-AX8" customClass="OneCombListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="vcY-af-AX8" customClass="OneCombListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="666-za-L7Z"/>
                         <viewControllerLayoutGuide type="bottom" id="Otq-Ly-vu7"/>
@@ -1169,7 +1170,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="F1c-wn-CiN">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CombCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CombCell" rowHeight="90" id="UFU-so-Glo">
