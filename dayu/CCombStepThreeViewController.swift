@@ -17,7 +17,7 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     @IBOutlet weak var viewCrashBg: UIView!
     @IBOutlet weak var labelCurrentMoney: UILabel!
     
-    var cyTypes:Array<CurrencyType>!
+    var cyTypes = Array<CurrencyType>()
     var ccomb:CComb!
     @IBOutlet weak var myTableView: UITableView!
     
@@ -216,20 +216,32 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         }
         println("\(array)", "")
         if isCreate { //新建组合
-            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_id":combId, "combination_description":ccomb.des, "combination_types":ccomb.aType]
+            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "combination_description":ccomb.des, "combination_types":ccomb.aType]
             
             HttpUtil.post(URLConstants.addCombinationUrl(), params: params, success: {(response:AnyObject!) in
                 println(response)
                 ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
+                NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "closeCreate", userInfo: nil, repeats: false)
             })
         } else { //调仓
-            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "situation":situation]
+            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_id":combId]
             
             HttpUtil.post(URLConstants.adjustCombinationUrl(), params: params, success: {(response:AnyObject!) in
                 println(response)
-                ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
+                ViewUtil.showToast(self.view, text: "调仓成功!", afterDelay: 2)
+                
+                //TODO 创建组合成功
+                NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "closeAdjust", userInfo: nil, repeats: false)
             })
         }
+    }
+    
+    func closeCreate() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    func closeAdjust() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func modifyTypes(sender: UIButton) {

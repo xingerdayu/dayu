@@ -13,6 +13,7 @@ class ViewController: BaseUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.navigationBarHidden = true
         
         var au = UserDao.get()
         println(au)
