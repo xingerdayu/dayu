@@ -28,6 +28,7 @@ class ModifyIntroViewController: BaseUIViewController, UITextViewDelegate {
         HttpUtil.post(URLConstants.updateUserUrl, params: params, success: {(response:AnyObject!) in
             if response["stat"] as String == "OK" {
                 self.app.user.intro = intro
+                UserDao.modifyIntro(intro, id: self.app.user.id)
                 ViewUtil.showToast(self.view, text: "修改成功", afterDelay: 1)
                 NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "cancel", userInfo: nil, repeats: false)
             }

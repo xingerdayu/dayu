@@ -63,6 +63,7 @@ class ModifyInfoViewController: UITableViewController, UIActionSheetDelegate, UI
             HttpUtil.post(URLConstants.updateUserUrl, params: params, success: {(response:AnyObject!) in
                     if response["stat"] as String == "OK" {
                         self.app.user.username = nick
+                        UserDao.modifyNick(nick!, id: self.app.user.id)
                         self.nameLabel.text = nick
                     }
                 }

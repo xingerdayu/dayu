@@ -27,6 +27,16 @@ class UserDao {
         Db.executeSql(sql, arguments: [id, token, 0])
     }
     
+    class func modifyNick(nick:String, id:Int) {
+        let sql = "UPDATE USERINFO SET USERNAME=? WHERE USER_ID=?"
+        Db.executeSql(sql, arguments: [nick, id])
+    }
+    
+    class func modifyIntro(intro:String, id:Int) {
+        let sql = "UPDATE USERINFO SET INTRO=? WHERE USER_ID=?"
+        Db.executeSql(sql, arguments: [intro, id])
+    }
+    
     class func get() -> User? {
         var user:User?
         let sql = "SELECT * FROM USERINFO"

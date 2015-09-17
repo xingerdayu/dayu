@@ -59,8 +59,11 @@ class HttpUtil {
             if response["stat"] as String == "OK" {
                 success(response)
             } else {
-                println(response)
-                resultError(response["stat"] as String, response["errText"] as String)
+                var errText = response["errText"] as? String
+                if errText == nil {
+                    errText = response["stat"] as? String
+                }
+                resultError(response["stat"] as String, errText!)
             }
             }, failure: {(AFHTTPRequestOperation, error:NSError!) in
                 failure(error)
