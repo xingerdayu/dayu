@@ -43,6 +43,7 @@
 		4386C2C11B9EFA050080A175 /* LOGO58.png in Resources */ = {isa = PBXBuildFile; fileRef = 4386C2BE1B9EFA050080A175 /* LOGO58.png */; };
 		4386C2C31B9F019E0080A175 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4386C2C21B9F019E0080A175 /* background.png */; };
 		4386C2C51B9F07AA0080A175 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2C41B9F07AA0080A175 /* MainViewController.swift */; };
+		43AA87751BAAE1E9008592A9 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43AA87741BAAE1E9008592A9 /* background.jpg */; };
 		43C75AD11B9F14B800775F15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C75AD01B9F14B800775F15 /* QuartzCore.framework */; };
 		43D9393B1B8F62C30090F47D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393A1B8F62C30090F47D /* AppDelegate.swift */; };
 		43D9393E1B8F62C30090F47D /* dayu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393C1B8F62C30090F47D /* dayu.xcdatamodeld */; };
@@ -254,6 +255,7 @@
 		4386C2BE1B9EFA050080A175 /* LOGO58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO58.png; sourceTree = "<group>"; };
 		4386C2C21B9F019E0080A175 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		4386C2C41B9F07AA0080A175 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		43AA87741BAAE1E9008592A9 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		43C75AD01B9F14B800775F15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		43D939351B8F62C30090F47D /* dayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D939391B8F62C30090F47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 		43D9397C1B9058310090F47D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				43AA87741BAAE1E9008592A9 /* background.jpg */,
 				4386C2C21B9F019E0080A175 /* background.png */,
 				4386C2A81B99C3620080A175 /* cse_from_system.png */,
 				4386C2A91B99C3620080A175 /* cse_take_photo.png */,
@@ -975,6 +978,7 @@
 				43D93A791B9058BD0090F47D /* signal_up_6.png in Resources */,
 				43D93AD61B9058C90090F47D /* arrow_indicate_right.png in Resources */,
 				43D93AE91B9058C90090F47D /* comb_reposition.png in Resources */,
+				43AA87751BAAE1E9008592A9 /* background.jpg in Resources */,
 				43D93AE21B9058C90090F47D /* comb_closed.png in Resources */,
 				43D93AD51B9058C90090F47D /* arrow_hide_down.png in Resources */,
 				435E626B1B91597D006CA7C6 /* Group.storyboard in Resources */,

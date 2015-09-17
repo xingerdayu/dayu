@@ -41,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        MobClick.startWithAppkey("55fa848be0f55ae62500109e")
+        MobClick.checkUpdate()
         return true
     }
 
