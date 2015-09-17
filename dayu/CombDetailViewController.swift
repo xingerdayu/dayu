@@ -140,9 +140,11 @@ class CombDetailViewController: BaseUIViewController {
         var amount2 = amount.viewWithTag(2) as UILabel
         amount1.text = "$\(StringUtil.formatFloat(comb.amount))"
         amount2.text = "$\(StringUtil.formatFloat(comb.now_amount))"
-        amount.frame = CGRectMake(0, 150 + pie.frame.height + fsLineView.frame.height, 340, 100)
+        amount.frame = CGRectMake(0, 120 + pie.frame.height + fsLineView.frame.height, 340, 100)
         self.usvMain.addSubview(amount)
         changeTime()
+        
+        self.usvMain.contentSize.height = amount.frame.origin.y + 50
     }
     
     @IBAction func change(sender: AnyObject) {
