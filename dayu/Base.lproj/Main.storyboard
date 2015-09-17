@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3yJ-la-IdR">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -936,7 +935,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vcY-af-AX8" kind="push" id="7Jb-dK-FLg"/>
+                                    <segue destination="vcY-af-AX8" kind="push" identifier="GoMyCombs" id="7Jb-dK-FLg"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_trangle_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZQS-6e-coS">
@@ -1182,10 +1181,10 @@
             </objects>
             <point key="canvasLocation" x="447" y="-910"/>
         </scene>
-        <!--View Controller-->
+        <!--One Comb List View Controller-->
         <scene sceneID="mrE-ji-t8M">
             <objects>
-                <viewController id="vcY-af-AX8" sceneMemberID="viewController">
+                <viewController id="vcY-af-AX8" customClass="OneCombListViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="666-za-L7Z"/>
                         <viewControllerLayoutGuide type="bottom" id="Otq-Ly-vu7"/>
@@ -1287,19 +1286,28 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="rOK-wr-smC" kind="push" id="zrD-Bl-Phs"/>
+                                            <segue destination="rOK-wr-smC" kind="push" identifier="GoDetail" id="zrD-Bl-Phs"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="QgL-KV-ZWw" id="yIl-d1-WHA"/>
-                                    <outlet property="delegate" destination="QgL-KV-ZWw" id="3E5-f8-h7G"/>
+                                    <outlet property="dataSource" destination="vcY-af-AX8" id="XQA-Gt-equ"/>
+                                    <outlet property="delegate" destination="vcY-af-AX8" id="ukW-2i-AW9"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6pD-SL-fwc"/>
+                    <navigationItem key="navigationItem" id="6pD-SL-fwc">
+                        <barButtonItem key="rightBarButtonItem" image="ic_add_comb" id="vM7-lH-7R6">
+                            <connections>
+                                <action selector="addComb:" destination="vcY-af-AX8" id="Oby-NC-ygM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="UtvCombs" destination="F1c-wn-CiN" id="1HV-B4-l2b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQu-x1-kpt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1359,6 +1367,6 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mc2-Gp-M3a"/>
+        <segue reference="zrD-Bl-Phs"/>
     </inferredMetricsTieBreakers>
 </document>

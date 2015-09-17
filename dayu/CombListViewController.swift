@@ -37,7 +37,6 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
     
     
     func getCombList() {
-        println(type + "--" + timeType)
         combList.removeAllObjects()
         var params = ["token":app.user.id, "type":type, "timetype":timeType, "startnum":0]
         HttpUtil.post(URLConstants.getSortCombinationsUrl, params: params, success: {(data:AnyObject!) in
@@ -94,7 +93,6 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var selectStr = [typeStr,timeTypeStr]
         var ubs = [UbType,UbTimeType]
         var tag = actionSheet.tag
-        println("tag == \(tag)")
         if buttonIndex == 0 {
             return
         } else {
@@ -264,10 +262,5 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
         var vc = usb.instantiateViewControllerWithIdentifier("CreateCombStepOneUI") as UIViewController
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func goMyCombs(sender: AnyObject) {
-        
-    }
-    
+    }    
 }
