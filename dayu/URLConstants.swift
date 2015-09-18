@@ -124,10 +124,12 @@ struct URLConstants {
     }
     
     static func getSecondaryServerUrl() -> String {
-        return "http://192.168.1.101:8080"
+        return URL_COMB
     }
 
     //====combination====
+    static let getCombinationInfoUrl = "\(URL_COMB)/combination/get"
+    
     static let getSortCombinationsUrl = "\(URL_COMB)/combination/sortlist"
     
     static let getCombinationsUrl = "\(URL_COMB)/combination/list"

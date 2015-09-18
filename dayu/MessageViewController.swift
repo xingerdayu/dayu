@@ -43,6 +43,16 @@ class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableV
         case MessageType.ADJUST:
             //调仓消息，等待东哥那边处理
             println("Adjust \(m_message.attachId)")
+            var params = ["cid": m_message.attachId]
+            HttpUtil.post(URLConstants.getCombinationInfoUrl, params: params, success: {(response:AnyObject!) in
+                println(response)
+                var comb = Comb()
+                comb.parse(response["combinations"] as NSDictionary)
+                var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                var vc = usb.instantiateViewControllerWithIdentifier("CombDetailViewController") as CombDetailViewController
+                vc.comb = comb
+                self.navigationController?.pushViewController(vc, animated: true)
+             })
         case MessageType.SYSTEM:
             //TODO 处理系统消息
             println("系统消息")

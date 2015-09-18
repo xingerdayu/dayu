@@ -27,13 +27,17 @@ class ItemsView: UIView, UIAlertViewDelegate {
     var replyDelegate:ReplyDelegate?
     
     func agreeOrDisagree(isSupport:Bool, success:(AnyObject!)->Void) {
-        var params = ["token":app.getToken(), "topicId": topic.id, "isSupport": "\(isSupport)"]
-        
-        HttpUtil.post(URLConstants.supportTopicUrl, params: params, success: success, failure: {(error:NSError!) in
-                println(error.localizedDescription)
-            }, resultError: {(errorCode:String, errorText:String) in
-                ViewUtil.showToast(self, text: "您已经点过赞了", afterDelay: 1)
-        })
+        if app.isLogin() {
+            var params = ["token":app.getToken(), "topicId": topic.id, "isSupport": "\(isSupport)"]
+            
+            HttpUtil.post(URLConstants.supportTopicUrl, params: params, success: success, failure: {(error:NSError!) in
+                    println(error.localizedDescription)
+                }, resultError: {(errorCode:String, errorText:String) in
+                    ViewUtil.showToast(self, text: "您已经点过赞了", afterDelay: 1)
+            })
+        } else {
+            ViewUtil.showToast(self, text: "请先登录", afterDelay: 1)
+        }
     }
     
     @IBAction func support(sender: AnyObject) {
@@ -54,8 +58,12 @@ class ItemsView: UIView, UIAlertViewDelegate {
     }
     
     @IBAction func reply(sender: AnyObject) {
-        reply_reply = nil
-        reply()
+        if app.isLogin() {
+            reply_reply = nil
+            reply()
+        } else {
+            ViewUtil.showToast(self, text: "请先登录", afterDelay: 1)
+        }
     }
     
     func reply() {

@@ -155,7 +155,7 @@
         <!--Setting View Controller-->
         <scene sceneID="9xY-AM-6Hb">
             <objects>
-                <viewController storyboardIdentifier="SettingControllerUI" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sxv-PX-ewD" customClass="SettingViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingControllerUI" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sxv-PX-ewD" customClass="SettingViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xR0-ER-gWz"/>
                         <viewControllerLayoutGuide type="bottom" id="vrO-Qu-XmB"/>
@@ -944,7 +944,7 @@
         <!--Title-->
         <scene sceneID="pNb-oz-buK">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="rOK-wr-smC" customClass="CombDetailViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CombDetailViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rOK-wr-smC" customClass="CombDetailViewController" customModule="dayu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IDx-J0-g3i"/>
                         <viewControllerLayoutGuide type="bottom" id="GB9-vN-CO3"/>

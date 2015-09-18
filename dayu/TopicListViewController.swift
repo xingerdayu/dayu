@@ -19,6 +19,8 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
     var topicList = NSMutableArray();
     var chooseIndexPath:NSIndexPath?
     
+    var moreData = true
+    
     var group:Group!
 
     override func viewDidLoad() {
@@ -51,23 +53,41 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         }
     }
     
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
+            //滑到底部加载更多
+            if moreData {
+                getTopicList(1);
+            }
+        }
+    }
+    
     func refreshData() {
-        getTopicList()
+        getTopicList(0)
     }
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    func getTopicList() {
-        var params = ["token":app.getToken(), "groupId":group.id]
+    func getTopicList(stat:Int) {
+        var params = ["token":app.getToken(), "groupId":group.id] as NSMutableDictionary
+        
+        if stat == 1 && topicList.count > 0{
+            params["minTopicId"] = (topicList.lastObject as Topic).id
+        }
         HttpUtil.post(URLConstants.getGroupOrUserTopicsUrl, params: params, success: {(response:AnyObject!) in
             self.refreshControl.endRefreshing()
-            println(response)
+            //println(response)
             if response["stat"] as String == "OK" {
                 var array = response["topics"] as NSArray
-                if array.count > 0 {
+                if array.count > 0 && stat == 0 {
+                    self.moreData = true
                     self.topicList.removeAllObjects()
+                }
+                if array.count == 0 && stat == 1 {
+                    ViewUtil.showToast(self.view, text: "没有更多了", afterDelay: 1)
+                    self.moreData = false
                 }
                 for item in array{
                     self.topicList.addObject(Topic.parseTopic(item as NSDictionary))
