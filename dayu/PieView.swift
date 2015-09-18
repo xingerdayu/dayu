@@ -78,7 +78,7 @@ class PieView: UIView , UITableViewDataSource, UITabBarDelegate {
             if c.value != "可用保证金" {
                 dot.text = c.operation == "SELL" ? "空" : "多"
                 var pro = cell.viewWithTag(13 + i) as UILabel
-                pro.text = "当前盈亏$\(c.earning)"
+                pro.text = "当前盈亏$\(StringUtil.formatFloat(c.earning))"
             }
             var name = cell.viewWithTag(11 + i) as UILabel
             name.text = c.value
