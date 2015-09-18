@@ -24,7 +24,8 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
     var ubsTypeStr = ["排序 收益", "排序 波动", "排序 得分","排序 人气"]
     var ubsTimeTypeStr = ["日", "周", "月","总"]
     var typeFlag = [0,0]
-    
+    var startNum = 0
+    var moreData = true
     
     @IBAction func type(sender: AnyObject) {
         selectType()
@@ -37,14 +38,20 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
     
     
     func getCombList() {
-        combList.removeAllObjects()
-        var params = ["token":app.user.id, "type":type, "timetype":timeType, "startnum":0]
+        var params = ["token":app.user.id, "type":type, "timetype":timeType, "startnum":startNum]
         HttpUtil.post(URLConstants.getSortCombinationsUrl, params: params, success: {(data:AnyObject!) in
             self.refreshControl.endRefreshing()
             println("combs data = \(data)")
             if data["stat"] as String == "OK" {
-                self.combList.removeAllObjects()
                 var array = data["combinations"] as NSArray
+                if array.count > 0 && self.startNum == 0 {
+                    self.moreData = true
+                    self.combList.removeAllObjects()
+                }
+                if array.count == 0 {
+                    ViewUtil.showToast(self.view, text: "没有更多了", afterDelay: 1)
+                    self.moreData = false
+                }
                 for item in array {
                     var comb = Comb()
                     comb.parse(item as NSDictionary)
@@ -247,6 +254,16 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
+            //滑到底部加载更多
+            if moreData {
+                startNum = startNum + 1
+                getCombList()
+            }
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
