@@ -197,7 +197,7 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
                 ViewUtil.showToast(UtvCombs, text: "您已经点过赞了", afterDelay: 1)
             }
         } else {
-            
+            ViewUtil.showToast(UtvCombs, text: "请先登录", afterDelay: 1)
         }
     }
     
@@ -205,7 +205,8 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
         var indexPath = btn.indexPath.row
         var comb = combList[indexPath] as Comb
         if app.isLogin() {
-            var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
+            var params = ["id":comb.id, "token_follower":app.user.id, "token_host":comb.uid]
+            println("\(comb.id) -- \(app.user.id) -- \(comb.uid)")
             if comb.yesFollow == 0 {
                 HttpUtil.post(URLConstants.getFollowCombinationUrl, params: params, success: {(data:AnyObject!) in
                     println("combs data = \(data)")
@@ -236,7 +237,7 @@ class CombListViewController: BaseUIViewController ,UITableViewDataSource, UITab
                 })
             }
         } else {
-            
+            ViewUtil.showToast(UtvCombs, text: "请先登录", afterDelay: 1)
         }
     }
     
