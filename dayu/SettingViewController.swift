@@ -55,6 +55,9 @@ class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableV
         
         if indexPath.row == 0 {
             versionLabel.hidden = false
+            let majorVersion: AnyObject? = NSBundle.mainBundle().infoDictionary["CFBundleShortVersionString"]
+            //println(majorVersion)
+            versionLabel.text = "V\(majorVersion!)"
         } else {
             versionLabel.hidden = true
         }
