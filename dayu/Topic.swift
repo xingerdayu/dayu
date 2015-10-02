@@ -47,22 +47,22 @@ class Topic: NSObject {
 
     
     class func parseTopic(dict:NSDictionary) -> Topic {
-        var topic = Topic()
-        topic.content = dict["content"] as NSString
-        topic.agreeCount = dict["agreeCount"] as Int
+        let topic = Topic()
+        topic.content = dict["content"] as! NSString
+        topic.agreeCount = dict["agreeCount"] as! Int
         topic.groupId = dict["group_id"] as? Int
-        topic.id = dict["id"] as Int
-        topic.imageNum = dict["image_num"] as Int
-        topic.isShare = dict["is_reprint"] as Int
+        topic.id = dict["id"] as! Int
+        topic.imageNum = dict["image_num"] as! Int
+        topic.isShare = dict["is_reprint"] as! Int
         topic.originId = dict["origin_id"] as? Int
-        topic.replyCount = dict["replyCount"] as Int
-        topic.sendtime = (dict["sendtime"] as NSString).longLongValue
-        topic.shareCount = dict["share_num"] as Int
-        topic.shareCode = dict["share_code"] as String
-        topic.userId = dict["user_id"] as Int
-        topic.username = dict["username"] as String
-        topic.visible = dict["visible"] as String
-        topic.disagreeCount = dict["disagreeCount"] as Int
+        topic.replyCount = dict["replyCount"] as! Int
+        topic.sendtime = (dict["sendtime"] as! NSString).longLongValue
+        topic.shareCount = dict["share_num"] as! Int
+        topic.shareCode = dict["share_code"] as! String
+        topic.userId = dict["user_id"] as! Int
+        topic.username = dict["username"] as! String
+        topic.visible = dict["visible"] as! String
+        topic.disagreeCount = dict["disagreeCount"] as! Int
         topic.isSupport = dict["isSupport"] as? Int
         
         topic.timeString = StringUtil.formatTime(topic.sendtime)
@@ -74,7 +74,7 @@ class Topic: NSObject {
     计算TopicView的高度
     **/
     func getContentHeight() -> CGFloat {
-        var size = content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(contentLabelWidth, 20000));
+        let size = content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(contentLabelWidth, 20000));
         
         if imageNum > 0 {
             imageGroupHeight = defaultImageGroupHeight

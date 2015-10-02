@@ -25,7 +25,7 @@ class CCombStepOneViewController: BaseUIViewController {
     }
 
     @IBAction func choose(sender: UITapGestureRecognizer) {
-        var tag = sender.view!.tag - 1
+        let tag = sender.view!.tag - 1
         
         var btnList:[UILabel] = [btnEvent, btnModel, btnTech, btnNews]
         
@@ -44,27 +44,31 @@ class CCombStepOneViewController: BaseUIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//        utfCombName.resignFirstResponder()
+//        utfCombIntro.resignFirstResponder()
+//    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         utfCombName.resignFirstResponder()
         utfCombIntro.resignFirstResponder()
     }
     
     @IBAction func nextStep(sender: AnyObject) {
-        var ccomb = CComb()
-        if utfCombName.text.isEmpty {
+        let ccomb = CComb()
+        if utfCombName.text!.isEmpty {
             UIAlertView(title: "名称不能为空!", message: "", delegate: self, cancelButtonTitle: "确定").show()
             return
         }
         ccomb.name = utfCombName.text
-        if !utfCombIntro.text.isEmpty {
-            ccomb.des = utfCombIntro.text
+        if !utfCombIntro.text!.isEmpty {
+            ccomb.des = utfCombIntro.text!
         }
         for var i = 0; i < checkList.count; i++ {
             ccomb.aType = ccomb.aType & (1 << i)
         }
         
-        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-        var stepTwoVc = usb.instantiateViewControllerWithIdentifier("AddCombStepSecordUI") as CCombStepTwoViewController
+        let usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+        let stepTwoVc = usb.instantiateViewControllerWithIdentifier("AddCombStepSecordUI") as! CCombStepTwoViewController
         stepTwoVc.ccomb = ccomb
         self.navigationController?.pushViewController(stepTwoVc, animated: true)
     }

@@ -10,7 +10,7 @@ import UIKit
 
 class BaseUIViewController: UIViewController {
     
-    var app = UIApplication.sharedApplication().delegate as AppDelegate
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

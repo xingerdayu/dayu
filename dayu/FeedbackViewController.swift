@@ -31,7 +31,11 @@ class FeedbackViewController: BaseUIViewController, UITextViewDelegate {
         bgView.layer.masksToBounds = true
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//        utfFeedback.resignFirstResponder()
+//        utfContact.resignFirstResponder()
+//    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         utfFeedback.resignFirstResponder()
         utfContact.resignFirstResponder()
     }
@@ -56,7 +60,7 @@ class FeedbackViewController: BaseUIViewController, UITextViewDelegate {
     }
     
     func changeLength() {
-        var length = (utfFeedback.text as NSString).length
+        let length = (utfFeedback.text as NSString).length
         wordLabel.text = "\(length)/150"
     }
 
@@ -65,16 +69,16 @@ class FeedbackViewController: BaseUIViewController, UITextViewDelegate {
             ViewUtil.showAlertView("反馈内容不能为空!", view: self)
             return
         }
-        var params = ["token":app.getToken(), "contact":utfContact.text, "content":utfFeedback.text]
+        let params = ["token":app.getToken(), "contact":utfContact.text!, "content":utfFeedback.text!]
         
         HttpUtil.post(URLConstants.suggestUrl, params: params, success: {(response:AnyObject!) in
-            if (response["stat"] as String) == "OK" {
+            if (response["stat"] as! String) == "OK" {
                 self.initFeedback()
                 self.changeLength()
                 ViewUtil.showToast(self.view, text: "您的意见我们已经收到,谢谢支持！", afterDelay: 1)
             }
             }, failure: {(error:NSError!) in
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
     

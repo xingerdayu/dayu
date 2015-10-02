@@ -10,7 +10,7 @@ import UIKit
 
 class ModifyInfoViewController: UITableViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate {
     
-    var app = UIApplication.sharedApplication().delegate as AppDelegate
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var ivPhoto: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -26,7 +26,7 @@ class ModifyInfoViewController: UITableViewController, UIActionSheetDelegate, UI
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        var urlStr = URLConstants.getUserPhotoUrl(app.user.id)
+        let urlStr = URLConstants.getUserPhotoUrl(app.user.id)
         ivPhoto.sd_setImageWithURL(NSURL(string: urlStr), placeholderImage: UIImage(named: "user_default_photo.png"))
         
         nameLabel.text = app.user.getUsername()
@@ -39,29 +39,29 @@ class ModifyInfoViewController: UITableViewController, UIActionSheetDelegate, UI
         if indexPath.row == 0 {
             chooseUploadType()
         } else if indexPath.row == 1 {
-            var alertView = UIAlertView(title: "好名字会让鱼友们更容易记得您", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+            let alertView = UIAlertView(title: "好名字会让鱼友们更容易记得您", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
             alertView.alertViewStyle = UIAlertViewStyle.PlainTextInput
             alertView.textFieldAtIndex(0)?.text = app.user.username
             alertView.delegate = self
             alertView.show()
         } else  {
-            var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var vc = usb.instantiateViewControllerWithIdentifier("ModifyIntroViewUI") as UIViewController
+            let usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            let vc = usb.instantiateViewControllerWithIdentifier("ModifyIntroViewUI") as UIViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1 {
-            var nick = alertView.textFieldAtIndex(0)?.text
+            let nick = alertView.textFieldAtIndex(0)?.text
             if (nick?.isEmpty != nil) && nick!.isEmpty {
                 ViewUtil.showToast(self.view, text: "用户名不能修改为空!", afterDelay: 1)
                 return
             }
-            var params = ["token":app.getToken(), "username":nick!]
+            let params = ["token":app.getToken(), "username":nick!]
             
             HttpUtil.post(URLConstants.updateUserUrl, params: params, success: {(response:AnyObject!) in
-                    if response["stat"] as String == "OK" {
+                    if response["stat"] as! String == "OK" {
                         self.app.user.username = nick
                         UserDao.modifyNick(nick!, id: self.app.user.id)
                         self.nameLabel.text = nick
@@ -80,14 +80,14 @@ class ModifyInfoViewController: UITableViewController, UIActionSheetDelegate, UI
     }
     
     func getImageFromCamera() {
-        var imagePicker = UIImagePickerController()
+        let imagePicker = UIImagePickerController()
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         imagePicker.delegate = self
         self.presentViewController(imagePicker, animated: true, completion: {})
     }
     
     func getImageFromAlbum() {
-        var imagePicker = UIImagePickerController()
+        let imagePicker = UIImagePickerController()
         imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
@@ -95,30 +95,29 @@ class ModifyInfoViewController: UITableViewController, UIActionSheetDelegate, UI
     }
     
     func chooseUploadType() {
-        var actionSheet = UIActionSheet(title: "操作选项", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册中选", "相机拍照")
+        let actionSheet = UIActionSheet(title: "操作选项", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册中选", "相机拍照")
         
         actionSheet.actionSheetStyle = UIActionSheetStyle.BlackTranslucent
         actionSheet.showInView(self.view)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         self.navigationController?.dismissViewControllerAnimated(false, completion: {})
-        var chooseImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        let chooseImage = info[UIImagePickerControllerEditedImage] as? UIImage
         
         //上传照片
         //获取UIImage NSData的方法
-        var data = UIImagePNGRepresentation(chooseImage)
-        var params = ["token": app.getToken()]
+        let data = UIImagePNGRepresentation(chooseImage!)!
+        let params = ["token": app.getToken()]
         HttpUtil.post(URLConstants.updateUserUrl, params: params, imageData: [data], success: {(response:AnyObject!) in
-            println(response)
-            if response["stat"] as String == "OK" {
-                var urlStr = URLConstants.getUserPhotoUrl(self.app.user.id)
+            if response["stat"] as! String == "OK" {
+                let urlStr = URLConstants.getUserPhotoUrl(self.app.user.id)
                 SDImageCache.sharedImageCache().removeImageForKey(urlStr)
                 ViewUtil.showToast(self.view, text: "图像上传成功!", afterDelay: 1)
                 self.onUploadSuccess(chooseImage)
             }
             }, failure: {(error:NSError!) in
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
     

@@ -851,6 +851,8 @@
 		43D9392D1B8F62C30090F47D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Xinger;
 				TargetAttributes = {

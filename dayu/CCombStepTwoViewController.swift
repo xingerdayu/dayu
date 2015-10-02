@@ -29,8 +29,8 @@ class CCombStepTwoViewController: BaseUIViewController, UICollectionViewDataSour
         if adjust {
             self.navigationController?.popViewControllerAnimated(true)
         } else {
-            var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-            var lastVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
+            let usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+            let lastVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as! CCombStepThreeViewController
             //lastVc.cyTypes = getChooseCurrencys()
             lastVc.ccomb = self.ccomb
             self.navigationController?.pushViewController(lastVc, animated: true)
@@ -38,13 +38,13 @@ class CCombStepTwoViewController: BaseUIViewController, UICollectionViewDataSour
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var ct = cyTypes[indexPath.row]
+        let ct = cyTypes[indexPath.row]
         
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("CurrencyItemUI", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CurrencyItemUI", forIndexPath: indexPath) as UICollectionViewCell
         
-        var bgView = cell.viewWithTag(10)
-        var keyLabel = cell.viewWithTag(11) as UILabel
-        var valueLabel = cell.viewWithTag(12) as UILabel
+        let bgView = cell.viewWithTag(10)
+        let keyLabel = cell.viewWithTag(11) as! UILabel
+        let valueLabel = cell.viewWithTag(12) as! UILabel
         
         keyLabel.text = ct.key
         keyLabel.text = ct.value
@@ -66,7 +66,7 @@ class CCombStepTwoViewController: BaseUIViewController, UICollectionViewDataSour
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var ct = cyTypes[indexPath.row]
+        let ct = cyTypes[indexPath.row]
         ct.isSelected = !ct.isSelected
         myCollectionView.reloadItemsAtIndexPaths([indexPath])
     }

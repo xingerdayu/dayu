@@ -16,22 +16,22 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
     
     func getGroupList() {
         //println("token = \(app.getToken())")
-        var params = ["token":app.getToken()]
+        let params = ["token":app.getToken()]
         HttpUtil.post(URLConstants.getJoinedGroupsUrl, params: params, success: {(data:AnyObject!) in
             //println("group data = \(data)")
-            if data["stat"] as String == "OK" {
+            if data["stat"] as! String == "OK" {
                 self.groupList.removeAllObjects()
-                var array = data["groups"] as NSArray
+                let array = data["groups"] as! NSArray
                 for item in array {
-                    var group = Group()
-                    group.parse(item as NSDictionary)
+                    let group = Group()
+                    group.parse(item as! NSDictionary)
                     self.groupList.addObject(group)
                 }
                 self.myTableView.reloadData()
             }
             }, failure:{(error:NSError!) in
                 //TODO 处理异常
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
 
@@ -41,7 +41,7 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
         
         //self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view.
-        println("Coming")
+        print("Coming")
         
         self.title = "圈子"
         getGroupList()
@@ -50,18 +50,18 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var group = groupList[indexPath.row] as Group
+        let group = groupList[indexPath.row] as! Group
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath) as UITableViewCell
         
-        var bgView = cell.viewWithTag(10) as UIView?
+        let bgView = cell.viewWithTag(10) as UIView?
         
         bgView?.hidden = !group.on
         
-        var ivPhoto = cell.viewWithTag(11) as UIImageView
-        var lbName = cell.viewWithTag(12) as UILabel
-        var lbTime = cell.viewWithTag(13) as UILabel
-        var lbUserNum = cell.viewWithTag(15) as UILabel
+        let ivPhoto = cell.viewWithTag(11) as! UIImageView
+        let lbName = cell.viewWithTag(12) as! UILabel
+        let lbTime = cell.viewWithTag(13) as! UILabel
+        let lbUserNum = cell.viewWithTag(15) as! UILabel
         
         ivPhoto.sd_setImageWithURL(NSURL(string: URLConstants.getImageUrl(group)), placeholderImage: UIImage(named: "user_default_photo.png"))
         
@@ -78,9 +78,9 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        var group = groupList[indexPath.row] as Group
-        var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
-        var topicVc = usb.instantiateViewControllerWithIdentifier("TopicListViewController") as TopicListViewController
+        let group = groupList[indexPath.row] as! Group
+        let usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+        let topicVc = usb.instantiateViewControllerWithIdentifier("TopicListViewController") as! TopicListViewController
         topicVc.group = group
         topicVc.title = group.name
         self.navigationController?.pushViewController(topicVc, animated: true)

@@ -11,7 +11,7 @@ import UIKit
 class BaseChooseImageViewController: BaseUIViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
-        println("click = \(buttonIndex)")
+        print("click = \(buttonIndex)")
         
         if buttonIndex == 1 {
             getImageFromAlbum()
@@ -21,14 +21,14 @@ class BaseChooseImageViewController: BaseUIViewController, UIActionSheetDelegate
     }
     
     func getImageFromCamera() {
-        var imagePicker = UIImagePickerController()
+        let imagePicker = UIImagePickerController()
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         imagePicker.delegate = self
         self.presentViewController(imagePicker, animated: true, completion: {})
     }
     
     func getImageFromAlbum() {
-        var imagePicker = UIImagePickerController()
+        let imagePicker = UIImagePickerController()
         imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
@@ -36,7 +36,7 @@ class BaseChooseImageViewController: BaseUIViewController, UIActionSheetDelegate
     }
     
     func chooseUploadType() {
-        var actionSheet = UIActionSheet(title: "操作选项", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册中选", "相机拍照")
+        let actionSheet = UIActionSheet(title: "操作选项", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "从相册中选", "相机拍照")
         
         actionSheet.actionSheetStyle = UIActionSheetStyle.BlackTranslucent
         actionSheet.showInView(self.view)
@@ -51,24 +51,24 @@ class BaseChooseImageViewController: BaseUIViewController, UIActionSheetDelegate
     NSString *const  UIImagePickerControllerReferenceURL ;原件的URL
     NSString *const  UIImagePickerControllerMediaMetadata;当来数据来源是照相机的时候这个值才有效
     **/
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         self.navigationController?.dismissViewControllerAnimated(false, completion: {})
-        var chooseImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        let chooseImage = info[UIImagePickerControllerEditedImage] as? UIImage
         
         //上传照片
         //获取UIImage NSData的方法
-        var data = UIImagePNGRepresentation(chooseImage)
-        var params = ["token": app.getToken()]
+        let data = UIImagePNGRepresentation(chooseImage!)!
+        let params = ["token": app.getToken()]
         HttpUtil.post(URLConstants.updateUserUrl, params: params, imageData: [data], success: {(response:AnyObject!) in
-            println(response)
-            if response["stat"] as String == "OK" {
-                var urlStr = URLConstants.getUserPhotoUrl(self.app.user.id)
+            print(response)
+            if response["stat"] as! String == "OK" {
+                let urlStr = URLConstants.getUserPhotoUrl(self.app.user.id)
                 SDImageCache.sharedImageCache().removeImageForKey(urlStr)
                 ViewUtil.showToast(self.view, text: "图像上传成功!", afterDelay: 1)
                 self.onUploadSuccess(chooseImage)
             }
             }, failure: {(error:NSError!) in
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
 

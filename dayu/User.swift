@@ -50,24 +50,24 @@ class User: NSObject {
 //    }
     
     func parse(dict:NSDictionary) {
-        id = dict["id"] as Int
+        id = dict["id"] as! Int
         tel = dict["tel"] as? String
         username = dict["username"] as? String
         intro = dict["intro"] as? String
     }
     
     func getUsername() -> String {
-        var name = username == nil ? "\(id)" : username
+        let name = username == nil ? "\(id)" : username
         return name!
     }
     
     func getUserIntro() -> String {
-        var tIntro = intro == nil ? "无" : intro!
+        let tIntro = intro == nil ? "无" : intro!
         return tIntro
     }
     
     func getShowUsername() -> String {
-        var name = username == nil ? "新用户" : username
+        let name = username == nil ? "新用户" : username
         return name!
     }
     

@@ -41,7 +41,7 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
     }
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
-        println("click = \(buttonIndex)")
+        print("click = \(buttonIndex)")
         
         if buttonIndex == 1 {
             getImageFromAlbum()
@@ -65,15 +65,15 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
     }
     
     func getImageFromCamera() {
-        var imagePicker = UIImagePickerController()
+        let imagePicker = UIImagePickerController()
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         imagePicker.delegate = self
         self.presentViewController(imagePicker, animated: true, completion: {})
     }
     
     func getImageFromAlbum() {
-        var albumController = ELCAlbumPickerController(style: UITableViewStyle.Plain)
-        var imagePicker = ELCImagePickerController(rootViewController: albumController)
+        let albumController = ELCAlbumPickerController(style: UITableViewStyle.Plain)
+        let imagePicker = ELCImagePickerController(rootViewController: albumController)
         imagePicker.maximumImagesCount = MaxImageCount - buttonList.count
         
         //imagePicker.returnsOriginalImage = true
@@ -89,8 +89,8 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
         picker.dismissViewControllerAnimated(true, completion: {})
         
         for item in info {
-            let dict = item as NSDictionary
-            var image = dict[UIImagePickerControllerOriginalImage] as UIImage
+            let dict = item as! NSDictionary
+            let image = dict[UIImagePickerControllerOriginalImage] as! UIImage
             //var data = UIImagePNGRepresentation(tempImage)
             createButton(image)
         }
@@ -108,7 +108,7 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
     }
     
     func createButton(image:UIImage) -> UIButton {
-        var button = UIButton()
+        let button = UIButton()
         button.setImage(image, forState: UIControlState.Normal)
         buttonList.addObject(button)
         button.addTarget(self, action: "deleteImage:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -119,8 +119,8 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
     
     func setButtonGroupView() {
         //这里限制只能上传4张图片
-        for var i=0; i<buttonList.count; i++ {
-            var button = buttonList[i] as UIButton
+        for var i = 0; i < buttonList.count; i++ {
+            let button = buttonList[i] as! UIButton
             //button.removeFromSuperview()
             button.frame = CGRectMake(CGFloat(10 + i * 65), 280, 60, 60)
             //self.view.addSubview(button)
@@ -152,19 +152,19 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
             ViewUtil.showAlertView("输入内容不能为空", view: self)
             return
         }
-        var params = createParams()
+        let params = createParams()
         
         var dataList = Array<NSData>()
         for button in buttonList {
-            var image = (button as UIButton).imageForState(UIControlState.Normal)
-            dataList.append(UIImageJPEGRepresentation(image, 0.4))
+            let image = (button as! UIButton).imageForState(UIControlState.Normal)
+            dataList.append(UIImageJPEGRepresentation(image!, 0.4)!)
         }
-        var toast = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        let toast = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         HttpUtil.post(URLConstants.postUrl, params: params, imageData: dataList,
             success: {(response:AnyObject!) in
-                println(response)
+                print(response)
                 
-                if response["stat"] as String == "OK" {
+                if response["stat"] as! String == "OK" {
                     self.delegate?.onWriteFinished()
                     
                     ViewUtil.showToast(self.view, text: "帖子发表成功", afterDelay: 1)
@@ -179,14 +179,17 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
         })
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        //self.view.endEditing(true)
+//    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//        //self.view.endEditing(true)
+//        contentText.resignFirstResponder()
+//
+//    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         contentText.resignFirstResponder()
-
     }
     
     func createParams() -> NSDictionary {
-        var username = app.user.username
+        //var username = app.user.username
         if group == nil {
             return ["token":app.getToken(), "username": app.user.getUsername(), "visible":"ALL", "content":contentText.text]
         } else {
@@ -203,7 +206,7 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
     }
     
     func changeLength() {
-        var length = (contentText.text as NSString).length
+        let length = (contentText.text as NSString).length
         wordLabel.text = "\(length)/500"
     }
     
@@ -214,7 +217,7 @@ class WriteViewController: BaseUIViewController, UITextViewDelegate, UIActionShe
     
     //集成了表情插件时需要用这个方法
     func onDeletedFace() {
-        var content:NSString = contentText.text
+        let content:NSString = contentText.text
         if content.length >= 2 {
             contentText.text = content.substringToIndex(content.length - 2)
             changeLength()

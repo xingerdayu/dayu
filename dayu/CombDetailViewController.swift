@@ -66,26 +66,26 @@ class CombDetailViewController: BaseUIViewController {
     }
     
     func getCombList() {
-        var c = comb!
-        var params = ["id":c.id]
+        let c = comb!
+        let params = ["id":c.id]
         HttpUtil.post(URLConstants.getCombinationDetialUrl, params: params, success: {(data:AnyObject!) in
             //println("combs data = \(data)")
-            if data["stat"] as String == "OK" {
-                var item = data["combinations"] as NSObject
-                self.comb.parseDetail(item as NSDictionary)
+            //if data["stat"] as! String == "OK" {
+                let item = data["combinations"] as! NSObject
+                self.comb.parseDetail(item as! NSDictionary)
                 self.initView()
-            }
+            //}
             }, failure:{(error:NSError!) in
                 //TODO 处理异常
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
     
     func initView() {
-        uIv.sd_setImageWithURL(NSURL(string: URLConstants.getUserPhotoUrl(comb.uid.toInt()!)), placeholderImage:UIImage(named: "user_default_photo.png"))
+        uIv.sd_setImageWithURL(NSURL(string: URLConstants.getUserPhotoUrl(Int(comb.uid)!)), placeholderImage:UIImage(named: "user_default_photo.png"))
         uIv.layer.cornerRadius = 25
         uIv.clipsToBounds = true
-        ulTime.text = "创建于" + StringUtil.formatTime(comb.createTime).substringToIndex(10) + " 修改于" + StringUtil.formatTime(comb.modify_time).substringToIndex(10)
+        ulTime.text = "创建于" + (StringUtil.formatTime(comb.createTime) as NSString).substringToIndex(10) + " 修改于" + (StringUtil.formatTime(comb.modify_time) as NSString).substringToIndex(10)
         ulUserName.text = comb.userName
         ulDescription.text = comb.descriptionStr
         ulRate.text = "共调仓" + "\(comb.changeTimes)" + "次 均" + "\(StringUtil.formatFloat(comb.frequency_rate))" + "日/次"
@@ -125,19 +125,19 @@ class CombDetailViewController: BaseUIViewController {
         ulType1.text = str1
         ulType2.text = str2
         
-        var pie = NSBundle.mainBundle().loadNibNamed("PieView", owner: self, options: nil)[0] as PieView
+        let pie = NSBundle.mainBundle().loadNibNamed("PieView", owner: self, options: nil)[0] as! PieView
         pie.createMagicPie(comb)
         pie.frame = CGRectMake(0, 261 , 340, pie.utvUnderPie.frame.height + 275 )
         self.usvMain.addSubview(pie)
         
-        fsLineView = NSBundle.mainBundle().loadNibNamed("FsLineView", owner: self, options: nil)[0] as FsLineView
+        fsLineView = NSBundle.mainBundle().loadNibNamed("FsLineView", owner: self, options: nil)[0] as! FsLineView
         fsLineView.frame = CGRectMake(0, 210 + pie.frame.height, 340, 300)
         usvMain.addSubview(fsLineView)
         fsLineView.getWave(comb, waveStyle: "S")
         
-        var amount = NSBundle.mainBundle().loadNibNamed("AmountView", owner: self, options: nil)[0] as UIView
-        var amount1 = amount.viewWithTag(1) as UILabel
-        var amount2 = amount.viewWithTag(2) as UILabel
+        let amount = NSBundle.mainBundle().loadNibNamed("AmountView", owner: self, options: nil)[0] as! UIView
+        let amount1 = amount.viewWithTag(1) as! UILabel
+        let amount2 = amount.viewWithTag(2) as! UILabel
         amount1.text = "$\(StringUtil.formatFloat(comb.amount))"
         amount2.text = "$\(StringUtil.formatFloat(comb.now_amount))"
         amount.frame = CGRectMake(0, 120 + pie.frame.height + fsLineView.frame.height, 340, 100)
@@ -153,8 +153,8 @@ class CombDetailViewController: BaseUIViewController {
     }
     
     func changeTime() {
-        var score = comb.grades[flag]
-        var proPic = getTrapezoidByScore(score.pro_mark_pro, type: 0)
+        let score = comb.grades[flag]
+        let proPic = getTrapezoidByScore(score.pro_mark_pro, type: 0)
         ulScore.text = "\(score.grade)"
         uivPro.image = UIImage(named: proPic)
         uivFluctuate.image = UIImage(named: getTrapezoidByScore(score.drawdown_mark_drawdown, type: 1))
@@ -230,8 +230,8 @@ class CombDetailViewController: BaseUIViewController {
 
     @IBAction func goReposition(sender: AnyObject) {
         if app.user.id.description == comb.uid {
-            var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-            var groupVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as CCombStepThreeViewController
+            let usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+            let groupVc = usb.instantiateViewControllerWithIdentifier("CCombStepThreeViewUI") as! CCombStepThreeViewController
             groupVc.CCOMB_totalMoney = CGFloat(comb.now_amount)
             groupVc.CCOMB_lever = comb.lever
             groupVc.isCreate = false
@@ -247,17 +247,16 @@ class CombDetailViewController: BaseUIViewController {
     func support() {
         if app.isLogin() {
             if comb.yesSupport == 0 {
-                var params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
+                let params = ["id":comb.id, "token_supporter":app.user.id, "token_host":comb.uid]
                 HttpUtil.post(URLConstants.getSupportCombinationUrl, params: params, success: {(data:AnyObject!) in
-                    println("combs data = \(data)")
-                    if data["stat"] as String == "OK" {
+                    //if data["stat"] as String == "OK" {
                         self.ubReposition.setTitle("已赞", forState: UIControlState.Normal)
                         self.comb.yesSupport = 1
                         self.comb.supportNum = self.comb.supportNum + 1
-                    }
+                    //}
                     }, failure:{(error:NSError!) in
                         //TODO 处理异常
-                        println(error.localizedDescription)
+                        print(error.localizedDescription)
                 })
             } else {
                 ViewUtil.showToast(self.uvMain, text: "您已经点过赞了", afterDelay: 1)

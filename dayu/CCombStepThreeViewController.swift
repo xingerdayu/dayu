@@ -13,7 +13,9 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     @IBOutlet weak var utfTotalMoney: UITextField!
     @IBOutlet weak var utfRestMoney: UILabel!
     @IBOutlet weak var segLevel: UISegmentedControl!
+    @IBOutlet weak var optBtn: UIButton!
     
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var viewCrashBg: UIView!
     @IBOutlet weak var labelCurrentMoney: UILabel!
     
@@ -32,9 +34,9 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        viewCrashBg.setTranslatesAutoresizingMaskIntoConstraints(true) //清除 AutoLayout的影响
+        //viewCrashBg.translatesAutoresizingMaskIntoConstraints = true //清除 AutoLayout的影响
         
-        var tMoney = NSString(format: "%.02lf", Float(CCOMB_totalMoney))
+        let tMoney = NSString(format: "%.02lf", Float(CCOMB_totalMoney))
         utfTotalMoney.text = "\(tMoney)"
         switch CCOMB_lever {
         case 50:
@@ -45,6 +47,17 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
             segLevel.selectedSegmentIndex = 3
         default:
             segLevel.selectedSegmentIndex = 0
+        }
+        
+        if UIScreen.mainScreen().bounds.height < 500 {
+            let tempFrame = myTableView.frame
+            myTableView.frame = CGRectMake(tempFrame.origin.x, tempFrame.origin.y, tempFrame.size.width, tempFrame.size.height - 88)
+            
+            let ctf = bottomView.frame
+            bottomView.frame = CGRectMake(ctf.origin.x, ctf.origin.y - 88, ctf.size.width, ctf.size.height)
+            
+            let otf = optBtn.frame
+            optBtn.frame = CGRectMake(otf.origin.x, otf.origin.y - 88, otf.size.width, otf.size.height)
         }
         
         getPrices()
@@ -59,15 +72,15 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     }
     
     func getPrices() {
-        var priceUrl = "http://112.74.195.144:8080/price/all"
+        let priceUrl = "http://112.74.195.144:8080/price/all"
         
         HttpUtil.get(priceUrl, success: {(response:AnyObject!) in
             //println(response)
             
-            var dict = response["prices"] as NSDictionary
-            var cacheDict = NSMutableDictionary()
+            let dict = response["prices"] as! NSDictionary
+            let cacheDict = NSMutableDictionary()
             for cType in CURRENCT_ARRAY {
-                cType.price = (dict[cType.key] as NSDictionary!)["ask"] as CGFloat
+                cType.price = (dict[cType.key] as! NSDictionary!)["ask"] as! CGFloat
                 cacheDict[cType.key] = cType
             }
             if self.isCreate {
@@ -94,23 +107,23 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CurrencyTypeCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CurrencyTypeCell", forIndexPath: indexPath) as UITableViewCell
         
-        var ct = cyTypes[indexPath.row]
+        let ct = cyTypes[indexPath.row]
         
-        var keyLabel = cell.viewWithTag(20) as UILabel
-        var priceLabel = cell.viewWithTag(21) as UILabel
-        var positionLabel = cell.viewWithTag(22) as UILabel
-        var numUtf = cell.viewWithTag(23) as CurrencyTextField
-        var oBtn = cell.viewWithTag(24) as CurrencyButton
+        let keyLabel = cell.viewWithTag(20) as! UILabel
+        let priceLabel = cell.viewWithTag(21) as! UILabel
+        let positionLabel = cell.viewWithTag(22) as! UILabel
+        let numUtf = cell.viewWithTag(23) as! CurrencyTextField
+        let oBtn = cell.viewWithTag(24) as! CurrencyButton
         oBtn.indexPath = indexPath
         numUtf.indexPath = indexPath
-        var rateStr = NSString(format: "%.02lf", Float(ct.rate) * 100.0)
+        let rateStr = NSString(format: "%.02lf", Float(ct.rate) * 100.0)
         positionLabel.text = "\(rateStr) %"
         if !(ct.tradeNum < 0.001) {
             numUtf.text = "\(ct.tradeNum)"
         }
-        var priceStr = NSString(format: "%.05lf", Float(ct.price))
+        let priceStr = NSString(format: "%.05lf", Float(ct.price))
         priceLabel.text = "\(priceStr)"
         keyLabel.text = ct.value
         
@@ -136,7 +149,7 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     }
     
     func sellOrBuy(obtn:CurrencyButton) {
-        var cType = cyTypes[obtn.indexPath.row]
+        let cType = cyTypes[obtn.indexPath.row]
         if cType.operation == "SELL" {
             cType.operation = "BUY"
             obtn.backgroundColor = Colors.WordMainBlueColor
@@ -149,20 +162,20 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     }
 
     func textFieldDidEndEditing(textField: UITextField) {
-        var num = NSString(string: textField.text).floatValue
+        let num = NSString(string: textField.text!).floatValue
         
-        textField.text = NSString(format: "%.02lf", num)
+        textField.text = String(format: "%.02lf", num)
         
         if textField is CurrencyTextField {
             //修改的是手数
-            var indexPath =  (textField as CurrencyTextField).indexPath
+            let indexPath =  (textField as! CurrencyTextField).indexPath
             if indexPath.row < cyTypes.count { //在调仓时，删除了某个品种，但是textFieldDidEndEditing还没调用，这时调用会出现数组越界错误，模拟机上会出现，手机上不知道会不会出现，统一判断下，防止这个错误
-                var cType = cyTypes[indexPath.row]
+                let cType = cyTypes[indexPath.row]
                 cType.setCurrentRate(CGFloat(num), totalMoney: CCOMB_totalMoney, lever: CCOMB_lever)
                 
-                var priceStr = NSString(format: "%.02lf", Float(cType.rate) * 100.0) //保留两位小数
+                let priceStr = NSString(format: "%.02lf", Float(cType.rate) * 100.0) //保留两位小数
                 //(myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(cType.rate * 100) %"
-                (myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22) as UILabel).text = "\(priceStr) %"
+                (myTableView.cellForRowAtIndexPath(indexPath)!.viewWithTag(22)! as! UILabel).text = "\(priceStr) %"
                 notifyRowChanged()
             }
         } else {
@@ -201,8 +214,8 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         if CCOMB_remaining < 0.0001 {
             UIAlertView(title: "您的现金不够，请重新设置!", message: "", delegate: self, cancelButtonTitle: "确定").show()
         }
-        self.viewCrashBg.frame = CGRectMake(0, 528, 320.0 * CCOMB_remaining, 40)
-        var restRate = NSString(format: "%.02lf", Float(CCOMB_remaining) * Float(100))
+        self.viewCrashBg.frame = CGRectMake(0, 0, 320.0 * CCOMB_remaining, 40)
+        let restRate = NSString(format: "%.02lf", Float(CCOMB_remaining) * Float(100))
         //self.labelCurrentMoney.text = "\(CCOMB_remaining * 100)"
         self.labelCurrentMoney.text = "\(restRate)"
         self.utfRestMoney.text = "$\(CCOMB_remaining * CGFloat(CCOMB_lever) * CCOMB_totalMoney)"
@@ -214,20 +227,20 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
             //println(cType.toJsonString())
             array.append(cType.toJsonString())
         }
-        println("\(array)", "")
+        print("\(array)", "")
         if isCreate { //新建组合
-            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "combination_description":ccomb.des, "combination_types":ccomb.aType]
+            let params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_name":ccomb.name, "combination_description":ccomb.des, "combination_types":ccomb.aType]
             
             HttpUtil.post(URLConstants.addCombinationUrl(), params: params, success: {(response:AnyObject!) in
-                println(response)
+                print(response)
                 ViewUtil.showToast(self.view, text: "创建组合成功!", afterDelay: 2)
                 NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "closeCreate", userInfo: nil, repeats: false)
             })
         } else { //调仓
-            var params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_id":combId]
+            let params = ["token":app.user.id, "username": app.user.getUsername(), "combination_currency_types":"\(array)", "combination_lever":CCOMB_lever, "combination_cash_remaining":CCOMB_remaining, "amount":CCOMB_totalMoney, "combination_id":combId]
             
             HttpUtil.post(URLConstants.adjustCombinationUrl(), params: params, success: {(response:AnyObject!) in
-                println(response)
+                print(response)
                 ViewUtil.showToast(self.view, text: "调仓成功!", afterDelay: 2)
                 
                 //TODO 创建组合成功
@@ -248,8 +261,8 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
         //self.navigationController?.popViewControllerAnimated(true)
         //adjust = true
         sender.becomeFirstResponder()
-        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-        var stepTwoVc = usb.instantiateViewControllerWithIdentifier("AddCombStepSecordUI") as CCombStepTwoViewController
+        let usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
+        let stepTwoVc = usb.instantiateViewControllerWithIdentifier("AddCombStepSecordUI") as! CCombStepTwoViewController
         stepTwoVc.ccomb = ccomb
         stepTwoVc.cyTypes = CURRENCT_ARRAY
         stepTwoVc.adjust = true

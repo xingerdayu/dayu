@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bh3-CT-UNX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bh3-CT-UNX">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Group List View Controller-->
@@ -18,7 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Afh-U0-Jk0">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afh-U0-Jk0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_default_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="1kH-pF-NKv">
                                         <rect key="frame" x="10" y="7" width="30" height="30"/>
@@ -42,9 +44,10 @@
                                 <color key="sectionIndexBackgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="LYF-oE-yB9">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LYF-oE-yB9" id="0Me-Kp-CEH">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTq-dI-rPZ">
@@ -135,6 +138,7 @@
                             <constraint firstItem="icN-d8-jQ0" firstAttribute="top" secondItem="P0P-wK-ei3" secondAttribute="topMargin" constant="63" id="Ase-St-wUt"/>
                             <constraint firstItem="icN-d8-jQ0" firstAttribute="bottom" secondItem="P0P-wK-ei3" secondAttribute="bottomMargin" id="E0O-ok-P2c"/>
                             <constraint firstItem="icN-d8-jQ0" firstAttribute="leading" secondItem="Afh-U0-Jk0" secondAttribute="leading" id="Krl-Ro-zWr"/>
+                            <constraint firstItem="Afh-U0-Jk0" firstAttribute="top" secondItem="P0P-wK-ei3" secondAttribute="top" id="Tnj-Nn-WQS"/>
                             <constraint firstItem="icN-d8-jQ0" firstAttribute="leading" secondItem="g2h-TR-LsP" secondAttribute="leading" id="ZWr-fo-cfc"/>
                             <constraint firstItem="g2h-TR-LsP" firstAttribute="top" secondItem="P0P-wK-ei3" secondAttribute="top" constant="62" id="dDT-tR-cWS"/>
                             <constraint firstItem="icN-d8-jQ0" firstAttribute="trailing" secondItem="Afh-U0-Jk0" secondAttribute="trailing" id="eUP-dm-WBP"/>
@@ -170,9 +174,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="TopicCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopicCell" id="WrO-fl-TYX">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WrO-fl-TYX" id="2ak-FA-Nn1">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
@@ -244,9 +249,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReplyCell" id="pbT-Yl-5Bu">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pbT-Yl-5Bu" id="d4B-b4-78o">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="31" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-35-cd8">
@@ -391,7 +397,8 @@
                                     <constraint firstAttribute="height" constant="40" id="J7c-pi-UTT"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSv-Rl-VmS">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSv-Rl-VmS">
+                                <rect key="frame" x="0.0" y="63" width="320" height="0.0"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrA-b4-Qoe">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -470,13 +477,5 @@
         <image name="cse_take_photo.png" width="30" height="31"/>
         <image name="user_default_photo.png" width="63" height="63"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
-    </simulatedMetricsContainer>
     <color key="tintColor" red="0.25098039220000001" green="0.36470588240000001" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

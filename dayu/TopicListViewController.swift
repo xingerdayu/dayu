@@ -29,7 +29,7 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
         //self.navigationController?.navigationBarHidden = true
-        self.navigationController?.interactivePopGestureRecognizer.enabled = true
+        self.navigationController?.interactivePopGestureRecognizer!.enabled = true
 
         //myTableView.registerNib(UINib(nibName: "", bundle: nil), forCellReuseIdentifier: identifier)
         //添加长按手势识别
@@ -48,7 +48,7 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         super.viewDidAppear(animated)
         
         if chooseIndexPath != nil {
-            println(topicList[chooseIndexPath!.row] as Topic)
+            print(topicList[chooseIndexPath!.row] as! Topic)
             myTableView.reloadRowsAtIndexPaths([chooseIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
@@ -71,16 +71,16 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
     }
     
     func getTopicList(stat:Int) {
-        var params = ["token":app.getToken(), "groupId":group.id] as NSMutableDictionary
+        let params = ["token":app.getToken(), "groupId":group.id] as NSMutableDictionary
         
         if stat == 1 && topicList.count > 0{
-            params["minTopicId"] = (topicList.lastObject as Topic).id
+            params["minTopicId"] = (topicList.lastObject as! Topic).id
         }
         HttpUtil.post(URLConstants.getGroupOrUserTopicsUrl, params: params, success: {(response:AnyObject!) in
             self.refreshControl.endRefreshing()
             //println(response)
-            if response["stat"] as String == "OK" {
-                var array = response["topics"] as NSArray
+            //if response["stat"] as String == "OK" {
+                let array = response["topics"] as! NSArray
                 if array.count > 0 && stat == 0 {
                     self.moreData = true
                     self.topicList.removeAllObjects()
@@ -90,32 +90,32 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
                     self.moreData = false
                 }
                 for item in array{
-                    self.topicList.addObject(Topic.parseTopic(item as NSDictionary))
+                    self.topicList.addObject(Topic.parseTopic(item as! NSDictionary))
                 }
                 self.myTableView.reloadData()
-            }
+            //}
             }, failure:{(error:NSError!) in
                 self.refreshControl.endRefreshing()
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var topic = topicList[indexPath.row] as Topic
+        let topic = topicList[indexPath.row] as! Topic
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("TopicCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TopicCell", forIndexPath: indexPath) as UITableViewCell
         
         cell.viewWithTag(5)?.removeFromSuperview() //TODO 这里不使用IOS自带的缓存，可能性能有影响，但是注意不要重复添加view，不然会有重叠
         cell.viewWithTag(6)?.removeFromSuperview()
         
-        var topicView = NSBundle.mainBundle().loadNibNamed("TopicView", owner: self, options: nil)[0] as TopicView
+        let topicView = NSBundle.mainBundle().loadNibNamed("TopicView", owner: self, options: nil)[0] as! TopicView
         topicView.tag = 5
         topicView.setTopic(topic)
         cell.addSubview(topicView)
         
-        var itemsView = NSBundle.mainBundle().loadNibNamed("ItemsView", owner: self, options: nil)[0] as ItemsView
+        let itemsView = NSBundle.mainBundle().loadNibNamed("ItemsView", owner: self, options: nil)[0] as! ItemsView
         itemsView.frame = CGRectMake(10, topicView.frame.height - 35 , 300, 30)
-        itemsView.setTopic(topic)
+        itemsView.setTopicValue(topic)
         itemsView.tag = 6
         cell.addSubview(itemsView)
         
@@ -123,7 +123,7 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var topic = topicList[indexPath.row] as Topic
+        let topic = topicList[indexPath.row] as! Topic
         return topic.getContentHeight()
     }
     
@@ -131,9 +131,9 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.chooseIndexPath = indexPath
-        var topic = topicList[indexPath.row] as Topic
-        var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
-        var replyVc = usb.instantiateViewControllerWithIdentifier("ReplyListControllerUI") as ReplyListViewController
+        let topic = topicList[indexPath.row] as! Topic
+        let usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+        let replyVc = usb.instantiateViewControllerWithIdentifier("ReplyListControllerUI") as! ReplyListViewController
         replyVc.topic = topic
         self.navigationController?.pushViewController(replyVc, animated: true)
 
@@ -144,8 +144,8 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
     }
     
     @IBAction func post(sender: AnyObject) {
-        var usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
-        var writeVc = usb.instantiateViewControllerWithIdentifier("WriteViewUI") as WriteViewController
+        let usb = UIStoryboard(name: "Group", bundle: NSBundle.mainBundle())
+        let writeVc = usb.instantiateViewControllerWithIdentifier("WriteViewUI") as! WriteViewController
         writeVc.group = group
         writeVc.delegate = self
         self.navigationController?.pushViewController(writeVc, animated: true)

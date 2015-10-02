@@ -9,12 +9,12 @@
 import UIKit
 
 protocol ReplyDelegate {
-    func onReplyFinished(Reply)
+    func onReplyFinished(_: Reply)
 }
 
 class ItemsView: UIView, UIAlertViewDelegate {
 
-    var app = UIApplication.sharedApplication().delegate as AppDelegate
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var ivSupport: UIImageView!
     @IBOutlet weak var ivShit: UIImageView!
@@ -28,10 +28,10 @@ class ItemsView: UIView, UIAlertViewDelegate {
     
     func agreeOrDisagree(isSupport:Bool, success:(AnyObject!)->Void) {
         if app.isLogin() {
-            var params = ["token":app.getToken(), "topicId": topic.id, "isSupport": "\(isSupport)"]
+            let params = ["token":app.getToken(), "topicId": topic.id, "isSupport": "\(isSupport)"]
             
             HttpUtil.post(URLConstants.supportTopicUrl, params: params, success: success, failure: {(error:NSError!) in
-                    println(error.localizedDescription)
+                    print(error.localizedDescription)
                 }, resultError: {(errorCode:String, errorText:String) in
                     ViewUtil.showToast(self, text: "您已经点过赞了", afterDelay: 1)
             })
@@ -42,7 +42,7 @@ class ItemsView: UIView, UIAlertViewDelegate {
     
     @IBAction func support(sender: AnyObject) {
         agreeOrDisagree(true, success: {(response:AnyObject!) in
-            println(response)
+            print(response)
             self.ivSupport.highlighted = true
             self.topic.agreeCount += 1
             self.tvSupportNum.text = "\(self.topic.agreeCount)"
@@ -67,14 +67,14 @@ class ItemsView: UIView, UIAlertViewDelegate {
     }
     
     func reply() {
-        var username = reply_reply == nil ? topic.username : reply_reply!.username
-        var alertView = UIAlertView(title: "回复\(username):", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+        let username = reply_reply == nil ? topic.username : reply_reply!.username
+        let alertView = UIAlertView(title: "回复\(username):", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
         alertView.alertViewStyle = UIAlertViewStyle.PlainTextInput
         alertView.delegate = self
         alertView.show()
     }
     
-    func setTopic(topic:Topic) {
+    func setTopicValue(topic:Topic) {
         self.topic = topic
         
         tvSupportNum.text = "\(topic.agreeCount)"
@@ -92,31 +92,31 @@ class ItemsView: UIView, UIAlertViewDelegate {
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1 {
-            var contentText = alertView.textFieldAtIndex(0)!.text
-            println(contentText)
+            let contentText = alertView.textFieldAtIndex(0)!.text
+            print(contentText)
             if contentText != nil {
                 var params:NSDictionary!
                 
                 if reply_reply == nil {
-                    params = ["token":app.getToken(), "username": app.user.getUsername(), "topicId":"\(topic.id)", "content":contentText]
+                    params = ["token":app.getToken(), "username": app.user.getUsername(), "topicId":"\(topic.id)", "content":contentText!]
                 } else {
-                    params = ["token":app.getToken(), "username": app.user.getUsername(), "topicId":"\(topic.id)", "content":contentText, "replyId":reply_reply!.id, "receiver":reply_reply!.username]
+                    params = ["token":app.getToken(), "username": app.user.getUsername(), "topicId":"\(topic.id)", "content":contentText!, "replyId":reply_reply!.id, "receiver":reply_reply!.username]
                 }
                 
                 HttpUtil.post(URLConstants.addReplyUrl, params: params, success: {(response:AnyObject!) in
-                    println(response)
+                    print(response)
                     
-                    if response["stat"] as String == "OK" {
+                    if response["stat"] as! String == "OK" {
                         ViewUtil.showToast(self, text: "回复发表成功", afterDelay: 1)
                         
                         self.topic.replyCount += 1
                         self.tvCommetNum.text = "\(self.topic.replyCount)"
                         
-                        self.replyDelegate?.onReplyFinished(Reply.parseReply(response["reply"] as NSDictionary))
+                        self.replyDelegate?.onReplyFinished(Reply.parseReply(response["reply"] as! NSDictionary))
                     }
                     
                     }, failure: {(error:NSError!) in
-                        println(error.localizedDescription)
+                        print(error.localizedDescription)
                 })
 
             }

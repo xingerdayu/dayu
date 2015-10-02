@@ -37,17 +37,17 @@ class Message: NSObject {
     var isHandle = false
     
     class func parseMessage(dict:NSDictionary) -> Message {
-        var msg = Message()
-        msg.id = dict["id"] as Int
-        msg.sendId = dict["send_id"] as Int
-        msg.receiverId = dict["receiver_id"] as Int
-        msg.msgType = dict["msg_type"] as Int
-        msg.attachId = dict["attach_id"] as Int
-        msg.title = dict["title"] as String
-        msg.content = dict["content"] as String
-        msg.createTime = (dict["create_time"] as NSString).longLongValue
-        msg.status = dict["status"] as Int
-        msg.username = dict["username"] as String
+        let msg = Message()
+        msg.id = dict["id"] as! Int
+        msg.sendId = dict["send_id"] as! Int
+        msg.receiverId = dict["receiver_id"] as! Int
+        msg.msgType = dict["msg_type"] as! Int
+        msg.attachId = dict["attach_id"] as! Int
+        msg.title = dict["title"] as! String
+        msg.content = dict["content"] as! String
+        msg.createTime = (dict["create_time"] as! NSString).longLongValue
+        msg.status = dict["status"] as! Int
+        msg.username = dict["username"] as! String
         return msg
     }
    

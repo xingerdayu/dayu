@@ -18,7 +18,7 @@ class PieView: UIView , UITableViewDataSource, UITabBarDelegate {
     func createMagicPie(comb:Comb) {
         self.comb = comb
         currencys = comb.currencys
-        var cell = UINib(nibName: "UnderPieItem", bundle: nil)
+        let cell = UINib(nibName: "UnderPieItem", bundle: nil)
         self.utvUnderPie.registerNib(cell, forCellReuseIdentifier: "Cell")
         self.utvUnderPie.reloadData()
         itemNum = currencys.count % 2 == 0 ? (currencys.count/2) : (currencys.count/2 + 1)
@@ -30,8 +30,8 @@ class PieView: UIView , UITableViewDataSource, UITabBarDelegate {
             var i = 0
 //            var startOffset = 160 + (4 - dic.count) * 20
             for c in currencys {
-                var str = Colors.currencyColor[c.key]!
-                var color = StringUtil.colorWithHexString(str)
+                let str = Colors.currencyColor[c.key]!
+                let color = StringUtil.colorWithHexString(str)
                 pieLayer.addValues([PieElement(value: (c.buyRate), color: color)], animated: true)
 //                var offset = startOffset + (i * 40)
 //                var view = UIView(frame: CGRectMake(CGFloat(offset), 250, 5, 5))
@@ -53,36 +53,36 @@ class PieView: UIView , UITableViewDataSource, UITabBarDelegate {
 //        }
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(currencys.count % 2 == 0 ? (currencys.count/2) : (currencys.count/2 + 1))
+        print(currencys.count % 2 == 0 ? (currencys.count/2) : (currencys.count/2 + 1))
         return itemNum
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("cellForRowAtIndexPath")
+        print("cellForRowAtIndexPath")
         var cs = Array<Comb.Currency>()
-        var c1 = currencys[indexPath.row * 2] as Comb.Currency
+        let c1 = currencys[indexPath.row * 2] as Comb.Currency
         cs.append(c1)
         var c2 : Comb.Currency!
         if (currencys.count > indexPath.row * 2 + 1) {
             c2 = currencys[indexPath.row * 2 + 1] as Comb.Currency
             cs.append(c2)
         }
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         var i = 0;
         for c in cs {
-            var color = StringUtil.colorWithHexString(Colors.currencyColor[c.key]!)
-            var dot = cell.viewWithTag(10 + i) as UILabel
+            let color = StringUtil.colorWithHexString(Colors.currencyColor[c.key]!)
+            let dot = cell.viewWithTag(10 + i) as! UILabel
             dot.backgroundColor = color
             dot.layer.cornerRadius = 5
             dot.clipsToBounds = true
             if c.value != "可用保证金" {
                 dot.text = c.operation == "SELL" ? "空" : "多"
-                var pro = cell.viewWithTag(13 + i) as UILabel
+                let pro = cell.viewWithTag(13 + i) as! UILabel
                 pro.text = "当前盈亏$\(StringUtil.formatFloat(c.earning))"
             }
-            var name = cell.viewWithTag(11 + i) as UILabel
+            let name = cell.viewWithTag(11 + i) as! UILabel
             name.text = c.value
-            var percent = cell.viewWithTag(12 + i) as UILabel
+            let percent = cell.viewWithTag(12 + i) as! UILabel
             percent.text = StringUtil.formatFloat(c.buyRate * 100) + "%"
             percent.textColor = color
             i = 10

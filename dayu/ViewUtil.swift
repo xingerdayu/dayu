@@ -19,7 +19,7 @@ class ViewUtil {
     }
     
     class func showToast(view:UIView, text:String, afterDelay:NSTimeInterval) {
-        var toast = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        let toast = MBProgressHUD.showHUDAddedTo(view, animated: true)
         toast.mode = MBProgressHUDModeText
         toast.labelText = text
         toast.margin = 10.0
@@ -28,9 +28,9 @@ class ViewUtil {
     }
     
     class func createLabel(content:NSString, x:CGFloat, y:CGFloat, width:CGFloat) -> UILabel {
-        var contentLabel = UILabel()
+        let contentLabel = UILabel()
         contentLabel.tag = 33
-        var size = content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(width, 20000));
+        let size = content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(width, 20000));
         contentLabel.font = UIFont.systemFontOfSize(FONT_SIZE)
         contentLabel.sizeToFit()
         contentLabel.frame = CGRectMake(x, y, size.width, CGFloat(Int(size.height + 1)))
@@ -40,13 +40,13 @@ class ViewUtil {
     
     /**根据字符串长度生适合String高度的UILabel**/
     class func createLabelByString(content:NSString, x:CGFloat, y:CGFloat, width:CGFloat) -> UILabel {
-        var contentLabel = createLabel(content, x: x, y: y, width: width)
-        contentLabel.text = content
+        let contentLabel = createLabel(content, x: x, y: y, width: width)
+        contentLabel.text = content as String
         return contentLabel
     }
     
     class func createLabelByString(content:NSString, x:CGFloat, y:CGFloat, width:CGFloat, attrContent:NSAttributedString) -> UILabel {
-        var contentLabel = createLabel(content, x: x, y: y, width: width)
+        let contentLabel = createLabel(content, x: x, y: y, width: width)
         contentLabel.attributedText = attrContent
         return contentLabel
     }

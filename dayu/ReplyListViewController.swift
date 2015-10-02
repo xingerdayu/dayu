@@ -25,11 +25,11 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
         
         getReplyList()
         
-        itemsView = NSBundle.mainBundle().loadNibNamed("ItemsView2", owner: self, options: nil)[0] as ItemsView2
+        itemsView = NSBundle.mainBundle().loadNibNamed("ItemsView2", owner: self, options: nil)[0] as! ItemsView2
         itemsView.frame = CGRectMake(0, 528, 320, 40)
         itemsView.backDelegete = self
         itemsView.replyDelegate = self
-        itemsView.setTopic(topic)
+        itemsView.setTopicValue(topic)
         self.view.addSubview(itemsView)
     }
     
@@ -55,13 +55,13 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var reply = replyList[indexPath.row] as Reply
+        let reply = replyList[indexPath.row] as! Reply
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("ReplyCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ReplyCell", forIndexPath: indexPath) as UITableViewCell
         
-        var ivPhoto = cell.viewWithTag(31) as UIImageView
-        var lbTime = cell.viewWithTag(32) as UILabel
-        var lbName = cell.viewWithTag(33) as UILabel
+        let ivPhoto = cell.viewWithTag(31) as! UIImageView
+        let lbTime = cell.viewWithTag(32) as! UILabel
+        let lbName = cell.viewWithTag(33) as! UILabel
         cell.viewWithTag(34)?.removeFromSuperview()
         
         lbTime.text = reply.timeString
@@ -73,11 +73,11 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
         
         var contentLable:UILabel!
         if reply.receiver != nil {
-            var str = NSString(string:"回复\(reply.receiver!)：")
-            var range = NSMakeRange(0, str.length)
-            var attrContent = NSMutableAttributedString(string: reply.content)
+            let str = NSString(string:"回复\(reply.receiver!)：")
+            let range = NSMakeRange(0, str.length)
+            let attrContent = NSMutableAttributedString(string: reply.content as String)
             attrContent.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: range)
-            attrContent.addAttribute(NSFontAttributeName, value: UIFont(name: "Arial", size: 14.0), range: range)
+            attrContent.addAttribute(NSFontAttributeName, value: UIFont(name: "Arial", size: 14.0)!, range: range)
             contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280, attrContent:attrContent)
         } else {
             contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280)
@@ -90,8 +90,8 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var reply = replyList[indexPath.row] as Reply
-        var size = reply.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(300, 20000));
+        let reply = replyList[indexPath.row] as! Reply
+        let size = reply.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(300, 20000));
         return (65 + size.height)
     }
     
@@ -104,7 +104,7 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
     }
     
     func createHeaderView() -> UIView {
-        var topicView = NSBundle.mainBundle().loadNibNamed("TopicView", owner: self, options: nil)[0] as TopicView
+        let topicView = NSBundle.mainBundle().loadNibNamed("TopicView", owner: self, options: nil)[0] as! TopicView
         topicView.shouldShowItems = false
         topicView.shouldShowCommentLabel = true
         topicView.setTopic(topic)
@@ -113,24 +113,24 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
 
 
     func getReplyList() {
-        var params = ["token":app.getToken(), "topicId":topic.id]
+        let params = ["token":app.getToken(), "topicId":topic.id]
         
         self.replyList.removeAllObjects()
         
         HttpUtil.post(URLConstants.getReplysUrl, params: params, success: {(response:AnyObject!) in
-            println(response)
-            if response["stat"] as String == "OK" {
+            print(response)
+            //if response["stat"] as String == "OK" {
                 self.parseReply(response)
-            }
+            //}
             }, failure: {(error:NSError!) in
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
     
     func parseReply(response:AnyObject!) {
-        var array = response["replys"] as NSArray
+        let array = response["replys"] as! NSArray
         for item in array {
-            var reply = Reply.parseReply(item as NSDictionary)
+            let reply = Reply.parseReply(item as! NSDictionary)
             self.replyList.addObject(reply)
         }
         self.myTableView.reloadData()

@@ -31,7 +31,7 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        var urlStr = URLConstants.getUserPhotoUrl(app.user.id)
+        let urlStr = URLConstants.getUserPhotoUrl(app.user.id)
         
         photoImageView.sd_setImageWithURL(NSURL(string: urlStr), forState:UIControlState.Normal)
         
@@ -52,8 +52,8 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
 
     @IBAction func login(sender: UIButton) {
         if app.isLogin() {
-            var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var vc = usb.instantiateViewControllerWithIdentifier("ModifyInfoViewUI") as UIViewController
+            let usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            let vc = usb.instantiateViewControllerWithIdentifier("ModifyInfoViewUI") as UIViewController
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
             toLogin()
@@ -61,11 +61,11 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("UserCenterCell", forIndexPath: indexPath) as UITableViewCell
-        var item = items[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserCenterCell", forIndexPath: indexPath) as UITableViewCell
+        let item = items[indexPath.row]
         
-        var iconIv = cell.viewWithTag(31) as UIImageView
-        var nameLabel = cell.viewWithTag(32) as UILabel
+        let iconIv = cell.viewWithTag(31) as! UIImageView
+        let nameLabel = cell.viewWithTag(32) as! UILabel
         
         iconIv.image = UIImage(named: item.itemIcon)
         nameLabel.text = item.itemName
@@ -80,7 +80,7 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var identifier:String!
         switch indexPath.row {
         case 0:
@@ -90,7 +90,7 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
         default:
             identifier = "SettingControllerUI"
         }
-        var vc = usb.instantiateViewControllerWithIdentifier(identifier) as UIViewController
+        let vc = usb.instantiateViewControllerWithIdentifier(identifier) as UIViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -99,8 +99,8 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
     }
     
     func toLogin() {
-        var usb = UIStoryboard(name: "User", bundle: NSBundle.mainBundle())
-        var vc = usb.instantiateViewControllerWithIdentifier("LoginController") as UIViewController
+        let usb = UIStoryboard(name: "User", bundle: NSBundle.mainBundle())
+        let vc = usb.instantiateViewControllerWithIdentifier("LoginController") as UIViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

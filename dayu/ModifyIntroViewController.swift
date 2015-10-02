@@ -22,11 +22,11 @@ class ModifyIntroViewController: BaseUIViewController, UITextViewDelegate {
     }
 
     @IBAction func saveIntro(sender: UIButton) {
-        var intro = utfIntro.text
-        var params = ["token":app.getToken(), "intro":intro]
+        let intro = utfIntro.text
+        let params = ["token":app.getToken(), "intro":intro]
         
         HttpUtil.post(URLConstants.updateUserUrl, params: params, success: {(response:AnyObject!) in
-            if response["stat"] as String == "OK" {
+            if response["stat"] as! String == "OK" {
                 self.app.user.intro = intro
                 UserDao.modifyIntro(intro, id: self.app.user.id)
                 ViewUtil.showToast(self.view, text: "修改成功", afterDelay: 1)
@@ -36,7 +36,10 @@ class ModifyIntroViewController: BaseUIViewController, UITextViewDelegate {
         )
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//        utfIntro.resignFirstResponder()
+//    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         utfIntro.resignFirstResponder()
     }
     
@@ -49,7 +52,7 @@ class ModifyIntroViewController: BaseUIViewController, UITextViewDelegate {
     }
     
     func changeLength() {
-        var length = (utfIntro.text as NSString).length
+        let length = (utfIntro.text as NSString).length
         wordLabel.text = "\(length)/100"
     }
 }

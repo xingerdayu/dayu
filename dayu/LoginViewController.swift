@@ -14,10 +14,14 @@ class LoginViewController: BaseUIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.interactivePopGestureRecognizer.enabled = true
+        self.navigationController?.interactivePopGestureRecognizer!.enabled = true
     }
 
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+//        utfUsername.resignFirstResponder()
+//        utfPwd.resignFirstResponder()
+//    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         utfUsername.resignFirstResponder()
         utfPwd.resignFirstResponder()
     }
@@ -27,25 +31,25 @@ class LoginViewController: BaseUIViewController {
     @IBOutlet weak var utfPwd: UITextField!
 
     @IBAction func login(sender: AnyObject) {
-        println(utfPwd.text.md5)
-        var params = ["tel": utfUsername.text, "password": utfPwd.text.md5]
+        print(utfPwd.text!.md5)
+        let params = ["tel": utfUsername.text!, "password": utfPwd.text!.md5]
         
         HttpUtil.post(URLConstants.loginUrl, params: params, success: {(response:AnyObject!) in
-            println(response)
-            var stat = response["stat"] as String;
+            print(response)
+            let stat = response["stat"] as! String;
             
             if stat == "ERR_TEL_OR_PWD" {
                 ViewUtil.showAlertView("登录失败", message:"用户名或密码错误!", view: self)
             } else if stat == "OK" {
                 self.app.saveUser(response)
                 
-                var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-                var mainVc = usb.instantiateViewControllerWithIdentifier("ucMainView") as UIViewController
+                let usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                let mainVc = usb.instantiateViewControllerWithIdentifier("ucMainView") as UIViewController
                 //self.navigationController?.pushViewController(mainVc, animated: true)
                 self.presentViewController(mainVc, animated: true, completion: {})
             }
             }, failure:{(error:NSError!) in
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
 
     }

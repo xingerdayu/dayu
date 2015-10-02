@@ -32,11 +32,11 @@ class StringUtil {
     }
     
     //格式化时间
-    class func formatTime(time:Int64) -> NSString {
-        var date = NSDate(timeIntervalSince1970: Double(time))
-        var format = NSDateFormatter()
+    class func formatTime(time:Int64) -> String {
+        let date = NSDate(timeIntervalSince1970: Double(time))
+        let format = NSDateFormatter()
         format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        var stringDate = format.stringFromDate(date)
+        let stringDate = format.stringFromDate(date)
         return stringDate
     }
     
@@ -45,13 +45,13 @@ class StringUtil {
         if str.length > 5 {
             str = str.substringToIndex(5)
         }
-        return str
+        return str as String
     }
     
     //格式化时间
-    class func fitFormatTime(time:Int64) -> NSString {
-        var current = Int64(NSDate().timeIntervalSince1970)
-        var pTime = (current - time) / 60
+    class func fitFormatTime(time:Int64) -> String {
+        let current = Int64(NSDate().timeIntervalSince1970)
+        let pTime = (current - time) / 60
         if pTime < 0 {
             return "刚刚"
         } else if pTime < 60 {
@@ -67,21 +67,24 @@ class StringUtil {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
         if (cString.hasPrefix("#")) {
-            cString = cString.substringFromIndex(advance(cString.startIndex, 1))
+            cString = cString.substringFromIndex(cString.startIndex.advancedBy(1))
         }
         
-        if (countElements(cString) != 6) {
+        if (cString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 6) {
             return UIColor.grayColor()
         }
         
-        var rString = cString.substringToIndex(advance(cString.startIndex, 2))
-        var gString = cString.substringFromIndex(advance(cString.startIndex, 2)).substringToIndex(advance(cString.startIndex, 2))
-        var bString = cString.substringFromIndex(advance(cString.startIndex, 4)).substringToIndex(advance(cString.startIndex, 2))
+        let rString = cString.substringToIndex(cString.startIndex.advancedBy(2))
+        let gString = cString.substringFromIndex(cString.startIndex.advancedBy(2)).substringToIndex(cString.startIndex.advancedBy(2))
+        let bString = cString.substringFromIndex(cString.startIndex.advancedBy(4)).substringToIndex(cString.startIndex.advancedBy(2))
         
         var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
-        NSScanner.scannerWithString(rString).scanHexInt(&r)
-        NSScanner.scannerWithString(gString).scanHexInt(&g)
-        NSScanner.scannerWithString(bString).scanHexInt(&b)
+        NSScanner(string: rString).scanHexInt(&r)
+        NSScanner(string: gString).scanHexInt(&g)
+        NSScanner(string: bString).scanHexInt(&b)
+        //NSScanner.scannerWithString(rString).scanHexInt(&r)
+        //NSScanner.scannerWithString(gString).scanHexInt(&g)
+        //NSScanner.scannerWithString(bString).scanHexInt(&b)
         return UIColor(red: CGFloat(r) / 255.0, green:CGFloat(g) / 255.0, blue:CGFloat(b) / 255.0, alpha:CGFloat(1))
     }
 

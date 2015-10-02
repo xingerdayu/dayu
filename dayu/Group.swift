@@ -24,14 +24,14 @@ class Group: NSObject {
     var on = false /**用户是否在该群组中**/
     
     func parse(dict:NSDictionary) {
-        id = dict["id"] as Int
-        createTime = (dict["create_time"] as NSString).longLongValue
-        grade = dict["grade"] as Int
-        creater = dict["creater"] as String
-        name = dict["name"] as String
-        userLimit = dict["user_limit"] as Int
-        num = dict["num"] as Int
-        timeString = StringUtil.formatTime(createTime)
+        id = dict["id"] as! Int
+        createTime = (dict["create_time"] as! NSString).longLongValue
+        grade = dict["grade"] as! Int
+        creater = dict["creater"] as! String
+        name = dict["name"] as! String
+        userLimit = dict["user_limit"] as! Int
+        num = dict["num"] as! Int
+        timeString = StringUtil.formatTime(createTime) as String
         intro = dict["intro"] as? String
         inviteCode = dict["invite_code"] as? String
         place = dict["place"] as? Int
@@ -54,15 +54,15 @@ class GroupInfo: Group {
     override func parse(dict:NSDictionary) {
         super.parse(dict)
         
-        winNum = dict["winNum"] as Int
-        avgProfit = dict["avgProfit"] as Float
-        avgWinPercent = dict["avgWinPercent"] as Float
-        rank = dict["rank"] as Float
+        winNum = dict["winNum"] as! Int
+        avgProfit = dict["avgProfit"] as! Float
+        avgWinPercent = dict["avgWinPercent"] as! Float
+        rank = dict["rank"] as! Float
         
-        var array = dict["users"] as NSArray
+        let array = dict["users"] as! NSArray
         for item in array {
-            var user = User()
-            user.parse(item as NSDictionary)
+            let user = User()
+            user.parse(item as! NSDictionary)
             userList.append(user)
         }
 

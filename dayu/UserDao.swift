@@ -16,8 +16,8 @@ class UserDao {
         delete()
         let sql = "INSERT INTO USERINFO (TEL, USER_ID, USERNAME, TOKEN, AUTHORITY, INTRO, REG_TIME) VALUES (?,?,?,?,?,?,?)"
         
-        var un = username == nil ? "" : username!
-        var ito = intro == nil ? "" : intro!
+        let un = username == nil ? "" : username!
+        let ito = intro == nil ? "" : intro!
         
         Db.executeSql(sql, arguments: [tel, id, un, token, 1, ito, "\(regTime)"])
     }

@@ -19,7 +19,7 @@ class TopicView: UIView {
     var shouldShowCommentLabel = false
     
     func setTopic(topic:Topic) {
-        lbTime.text = topic.timeString
+        lbTime.text = topic.timeString as String
         lbName.text = topic.username
         
         ivPhoto.sd_setImageWithURL(NSURL(string: URLConstants.getUserPhotoUrl(topic.userId)), placeholderImage:UIImage(named: "user_default_photo.png"))
@@ -27,8 +27,8 @@ class TopicView: UIView {
         ivPhoto.layer.cornerRadius = 20
         ivPhoto.clipsToBounds = true //照片切圆角
         
-        var clWidth = self.getContentLabelWidth(topic)
-        var contentLabel = ViewUtil.createLabelByString(topic.content, x: topic.contentLabelOffsetX, y: topic.contentLabelOffsetY, width: clWidth)
+        let clWidth = self.getContentLabelWidth(topic)
+        let contentLabel = ViewUtil.createLabelByString(topic.content, x: topic.contentLabelOffsetX, y: topic.contentLabelOffsetY, width: clWidth)
         contentLabel.textColor = Colors.LargeBlackColor
         topic.contentLabelHeight = contentLabel.frame.size.height  //根据文字的长度与Label的宽度计算Label的高度
         
@@ -36,7 +36,7 @@ class TopicView: UIView {
         
         if topic.imageNum > 0 { //生成帖子的图片
             topic.imageGroupHeight = topic.defaultImageGroupHeight
-            var imageGroupView = createGroupImageView(topic, offsetY: topic.contentLabelHeight)
+            let imageGroupView = createGroupImageView(topic, offsetY: topic.contentLabelHeight)
             self.addSubview(imageGroupView)
         }
         
@@ -45,7 +45,7 @@ class TopicView: UIView {
             topic.contentHeight = topic.contentHeight + 30
         }
         if shouldShowCommentLabel { //是否显示评论按钮
-            var commentLabel = UILabel(frame: CGRectMake(10, topic.contentHeight - 20, clWidth, 20))
+            let commentLabel = UILabel(frame: CGRectMake(10, topic.contentHeight - 20, clWidth, 20))
             commentLabel.font = UIFont(name: "Arial", size: 12.0)
             commentLabel.text = "评论(\(topic.replyCount))"
             commentLabel.textColor = Colors.ReplyContentColor
@@ -57,10 +57,10 @@ class TopicView: UIView {
     }
     
     func createGroupImageView(topic:Topic, offsetY:CGFloat) -> UIView {
-        var imageGroupView = UIView(frame: CGRectMake(0, topic.contentLabelOffsetY + offsetY + topic.marginTop, 320, 80))
+        let imageGroupView = UIView(frame: CGRectMake(0, topic.contentLabelOffsetY + offsetY + topic.marginTop, 320, 80))
         imageGroupView.tag = 11
         for var i = 0; i < topic.imageNum; i++ {
-            var imageView = UIImageView(frame: getImageGroupFrame(i))
+            let imageView = UIImageView(frame: getImageGroupFrame(i))
             imageView.sd_setImageWithURL(NSURL(string: URLConstants.getTopicImageUrl(topic, i: i)))
             imageGroupView.addSubview(imageView)
         }

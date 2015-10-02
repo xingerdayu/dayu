@@ -17,17 +17,17 @@ class FsLineView: UIView {
     var pointsY = Array<Float>()
     func createLineChart() {
 //        var array = ["January", "February", "March", "April", "May", "June", "July"]
-        var lineChart = FSLineChart(frame: CGRectMake(10, 35, 310, 160))
+        let lineChart = FSLineChart(frame: CGRectMake(10, 35, 310, 160))
         
         lineChart.labelForIndex = {(item:UInt) in
-            return StringUtil.formatTime(self.pointsX[Int(item)]).substringToIndex(10) //array[Int(item)]
+            return (StringUtil.formatTime(self.pointsX[Int(item)]) as NSString).substringToIndex(10) //array[Int(item)]
         }
         
         lineChart.labelForValue = {(value:CGFloat) in
             //return "\(floor(value * 100) / 100)"
             return String(format: "%.2f", Float(value))
         }
-        println("pointsY.count == \(pointsY.count)")
+        print("pointsY.count == \(pointsY.count)")
         if pointsY.count > 1 {
 //            var point = pointsY[0]
 //            pointsY.append(point)
@@ -44,25 +44,25 @@ class FsLineView: UIView {
     }
     
     func getLineData() {
-        var params = ["id":comb.id, "TIME" : waveStyle]
+        let params = ["id":comb.id, "TIME" : waveStyle]
         HttpUtil.post(URLConstants.getCombinationWaveUrl, params: params, success: {(data:AnyObject!) in
             //println("combs data = \(data)")
-            if data["stat"] as String == "OK" {
-                var item = data["combinations"] as NSDictionary
-                var x = item["x"] as NSArray
-                var y = item["y"] as NSArray
-                self.pos = item["pos"] as Int
-                self.crash = item["baocang"] as Float
+            if data["stat"] as! String == "OK" {
+                let item = data["combinations"] as! NSDictionary
+                let x = item["x"] as! NSArray
+                let y = item["y"] as! NSArray
+                self.pos = item["pos"] as! Int
+                self.crash = item["baocang"] as! Float
                 for i in 0..<self.pos {
-                    self.pointsY.append(y[i] as Float)
-                    var f = x[i] as Float
+                    self.pointsY.append(y[i] as! Float)
+                    let f = x[i] as! Float
                     self.pointsX.append(Int64(f))
                 }
                 self.createLineChart()
             }
             }, failure:{(error:NSError!) in
                 //TODO 处理异常
-                println(error.localizedDescription)
+                print(error.localizedDescription)
         })
     }
 }

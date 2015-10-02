@@ -17,16 +17,16 @@ class News: NSObject {
     var timeString = ""
     
     class func parseNews(dict:NSDictionary) -> News {
-        var news = News()
+        let news = News()
         
-        news.id = dict["id"] as Int
-        news.title = dict["title"] as String
-        news.content = dict["content"] as String
-        news.tag = dict["tag"] as String
-        var time = (dict["create_time"] as NSString).longLongValue
+        news.id = dict["id"] as! Int
+        news.title = dict["title"] as! String
+        news.content = dict["content"] as! String
+        news.tag = dict["tag"] as! String
+        let time = (dict["create_time"] as! NSString).longLongValue
         
-        var date = NSDate(timeIntervalSince1970: Double(time))
-        var format = NSDateFormatter()
+        let date = NSDate(timeIntervalSince1970: Double(time))
+        let format = NSDateFormatter()
         format.dateFormat = "HH:mm"
         news.timeString = format.stringFromDate(date)
         

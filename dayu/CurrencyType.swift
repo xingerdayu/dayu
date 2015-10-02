@@ -39,7 +39,7 @@ class CurrencyType : NSObject {
         //if (CURRENCT_ARRAY.count == 0) { //不缓存，每次都重新生成
         CURRENCT_ARRAY.removeAll()
             for var i = 0; i < CURRENCY_TYPE_COUNT; i++ {
-                var currencyType = CurrencyType()
+                let currencyType = CurrencyType()
                 currencyType.key = CurrencyKeys[i]
                 currencyType.value = CurrencyValues[i]
                 CURRENCT_ARRAY.append(currencyType)
@@ -64,7 +64,7 @@ class CurrencyType : NSObject {
                 rate = price * CGFloat(100000) * num / (totalMoney * CGFloat(lever))
             }
         } else {
-            var otherKey = "\(NSString(string:key).substringToIndex(3))/USD"
+            let otherKey = "\(NSString(string:key).substringToIndex(3))/USD"
             for cType in CURRENCT_ARRAY {
                 if cType.key == otherKey {
                     rate = cType.price * CGFloat(100000) * num / (totalMoney * CGFloat(lever))
@@ -74,9 +74,9 @@ class CurrencyType : NSObject {
     }
     
     func toJsonString() -> String {
-        var dict = ["key":key, "value":value, "buyRate":rate, "lots": tradeNum, "operation": operation]
-        var data = NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
-        var strJson=NSString(data: data!, encoding: NSUTF8StringEncoding)
+        let dict = ["key":key, "value":value, "buyRate":rate, "lots": tradeNum, "operation": operation]
+        let data = try? NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.PrettyPrinted)
+        let strJson = String(data: data!, encoding: NSUTF8StringEncoding)!
         return strJson
     }
 }

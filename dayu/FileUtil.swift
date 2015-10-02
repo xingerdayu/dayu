@@ -16,20 +16,22 @@ class FileUtil {
     }
 
     class func save(data:NSData, fileName:String) {
-        var path = getDefaultPath()
-        var savePath = path.stringByAppendingPathComponent(fileName)
-        println("savePath = \(savePath)")
+        let path = getDefaultPath()
+        let savePath = NSURL(string: path)?.URLByAppendingPathComponent(fileName)//.stringByAppendingPathComponent(fileName)
+        print("savePath = \(savePath)")
         
-        data.writeToFile(savePath, atomically: true)
+        data.writeToURL(savePath!, atomically: true)
+        //data.writeToFile(savePath, atomically: true)
     }
     
     class func getUserImageFromLocal(user:User) -> UIImage? {
-        var path = getDefaultPath().stringByAppendingPathComponent(user.getLocalImageName())
-        var fileManager = NSFileManager.defaultManager()
+        //let path = getDefaultPath().stringByAppendingPathComponent(user.getLocalImageName())
+        let path = NSURL(string: getDefaultPath())?.URLByAppendingPathComponent(user.getLocalImageName()).absoluteString
+        let fileManager = NSFileManager.defaultManager()
         
-        if !fileManager.fileExistsAtPath(path) {
+        if !fileManager.fileExistsAtPath(path!) {
             return nil
         }
-        return UIImage(contentsOfFile: path)
+        return UIImage(contentsOfFile: path!)
     }
 }

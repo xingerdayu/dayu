@@ -10,7 +10,7 @@ import UIKit
 
 class Reply: NSObject {
    
-    var content:NSString = "";
+    var content = "";
     var id = 0;
     var sendtime:Int64 = 0;
     var topicId = 0;
@@ -22,19 +22,19 @@ class Reply: NSObject {
     var receiver:String?
     
     class func parseReply(dict:NSDictionary) -> Reply {
-        var reply = Reply()
-        reply.content = dict["content"] as NSString
-        reply.id = dict["id"] as Int
+        let reply = Reply()
+        reply.content = dict["content"] as! String
+        reply.id = dict["id"] as! Int
         
         let tmp = (dict["sendtime"] as? NSString)?.longLongValue
         if tmp != nil { //一直想不明白，在列表中循环解析就要转化为NSString,而单个直接解析时需要用NSNumber
             reply.sendtime = tmp!
         } else {
-            reply.sendtime = (dict["sendtime"] as NSNumber).longLongValue
+            reply.sendtime = (dict["sendtime"] as! NSNumber).longLongValue
         }
-        reply.topicId = dict["attach_id"] as Int
-        reply.userId = dict["user_id"] as Int
-        reply.username = dict["username"] as String
+        reply.topicId = dict["attach_id"] as! Int
+        reply.userId = dict["user_id"] as! Int
+        reply.username = dict["username"] as! String
         
         reply.replyId = dict["reply_id"] as? Int
         reply.receiver = dict["receiver"] as? String
@@ -43,7 +43,7 @@ class Reply: NSObject {
             reply.content = "回复\(reply.receiver!):\(reply.content)"
         }
         
-        reply.timeString = StringUtil.formatTime(reply.sendtime)
+        reply.timeString = StringUtil.formatTime(reply.sendtime) as String
         return reply
     }
 }

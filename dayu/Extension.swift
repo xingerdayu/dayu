@@ -10,11 +10,11 @@ extension NSString {
         var textSize:CGSize!
         if CGSizeEqualToSize(size, CGSizeZero) {
             let attributes = NSDictionary(object: font, forKey: NSFontAttributeName)
-            textSize = self.sizeWithAttributes(attributes)
+            textSize = self.sizeWithAttributes(attributes as? [String : AnyObject])
         } else {
             let option = NSStringDrawingOptions.UsesLineFragmentOrigin
             let attributes = NSDictionary(object: font, forKey: NSFontAttributeName)
-            let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil)
+            let stringRect = self.boundingRectWithSize(size, options: option, attributes: (attributes as! [String : AnyObject]), context: nil)
             textSize = stringRect.size
         }
         return textSize
@@ -30,13 +30,13 @@ extension String {
             
             CC_MD5(str!, strLen, result);
             
-            var hash = NSMutableString();
+            let hash = NSMutableString();
             for i in 0 ..< digestLen {
                 hash.appendFormat("%02x", result[i]);
             }
             result.destroy();
             
-            return String(format: hash).lowercaseString
+            return String(format: hash as String).lowercaseString
     }}
 
 extension UIImage {
@@ -49,7 +49,7 @@ extension UIImage {
         self.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
         
         // Get the new image from the context
-        var newImage = UIGraphicsGetImageFromCurrentImageContext();
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
         
         // End the context
         UIGraphicsEndImageContext();

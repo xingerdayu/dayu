@@ -15,13 +15,14 @@ class ViewController: BaseUIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationController?.navigationBarHidden = true
         
-        var au = UserDao.get()
-        println(au)
+        let au = UserDao.get()
+        print("XXXXXXXX\(au)")
         if au == nil {
-            var params = ["device_id": UIDevice.currentDevice().identifierForVendor.UUIDString.md5]
+            print("XXXXXXXXhhhh\(UIDevice.currentDevice().identifierForVendor!.UUIDString.md5)")
+            let params = ["device_id": UIDevice.currentDevice().identifierForVendor!.UUIDString.md5]
             
             HttpUtil.post(URLConstants.guestUrl, params: params, success: {(response:AnyObject!) in
-                println(response)
+                print(response)
                 self.app.saveUser(response)
                 
                 self.toMain()
@@ -34,8 +35,8 @@ class ViewController: BaseUIViewController {
     }
 
     func toMain() {
-        var usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var mainVc = usb.instantiateViewControllerWithIdentifier("ucMainView") as UIViewController
+        let usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let mainVc = usb.instantiateViewControllerWithIdentifier("ucMainView") as UIViewController
         self.presentViewController(mainVc, animated: true, completion: {})
     }
     
