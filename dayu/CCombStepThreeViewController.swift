@@ -222,7 +222,7 @@ class CCombStepThreeViewController: BaseUIViewController, UITableViewDataSource,
     }
     
     @IBAction func finishCreate(sender: UIBarButtonItem) {
-        var array = Array<String>()
+        var array = Array<NSString>()
         for cType in cyTypes {
             //println(cType.toJsonString())
             array.append(cType.toJsonString())

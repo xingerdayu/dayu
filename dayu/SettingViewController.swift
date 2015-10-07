@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
     
     @IBOutlet weak var logoutBtn: UIButton!
     var settingItems = Array<UserCenterItem>()
@@ -27,6 +27,17 @@ class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableV
             logoutBtn.hidden = true
         }
     }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if alertView.tag == 10000{
+            if buttonIndex == 1 {
+                let url = NSURL(string: String(format: "http://itunes.apple.com/us/app/id/%s?ls=1&mt=8", kStoreAppId))
+                UIApplication.sharedApplication().openURL(url!)
+            }
+            
+        }
+    }
+
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -40,7 +51,10 @@ class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableV
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
             //TODO 版本检测
-            ViewUtil.showToast(self.view, text: "当前已是最新版本!", afterDelay: 1)
+            //ViewUtil.showToast(self.view, text: "当前已是最新版本!", afterDelay: 1)
+            UpdateUtils.checkUpdate(self, isNew: {
+                ViewUtil.showToast(self.view, text: "当前已是最新版本!", afterDelay: 1)
+            })
         }
     }
     

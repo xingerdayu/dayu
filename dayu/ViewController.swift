@@ -7,18 +7,19 @@
 //
 
 import UIKit
+let kStoreAppId = 1041647380
 
-class ViewController: BaseUIViewController {
+class ViewController: BaseUIViewController, UIAlertViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationController?.navigationBarHidden = true
         
+        UpdateUtils.checkUpdate(self, isNew: {})
+        
         let au = UserDao.get()
-        print("XXXXXXXX\(au)")
         if au == nil {
-            print("XXXXXXXXhhhh\(UIDevice.currentDevice().identifierForVendor!.UUIDString.md5)")
             let params = ["device_id": UIDevice.currentDevice().identifierForVendor!.UUIDString.md5]
             
             HttpUtil.post(URLConstants.guestUrl, params: params, success: {(response:AnyObject!) in
@@ -40,24 +41,16 @@ class ViewController: BaseUIViewController {
         self.presentViewController(mainVc, animated: true, completion: {})
     }
     
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if alertView.tag == 10000{
+            if buttonIndex == 1 {
+                let url = NSURL(string: String(format: "http://itunes.apple.com/us/app/id/%d?ls=1&mt=8", kStoreAppId))
+                
+                UIApplication.sharedApplication().openURL(url!)
+            }
+            
+        }
+    }
     
-//    @IBAction func jump1(sender: AnyObject) {
-//        var usb = UIStoryboard(name: "User", bundle: NSBundle.mainBundle())
-//        var vc = usb.instantiateViewControllerWithIdentifier("LoginController") as UIViewController
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-//
-//    @IBAction func jump2(sender: AnyObject) {
-//        var usb = UIStoryboard(name: "CombList", bundle: NSBundle.mainBundle())
-//        var vc = usb.instantiateViewControllerWithIdentifier("CombListController") as UIViewController
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-//
-//    @IBAction func jump3(sender: AnyObject) {
-//        var usb = UIStoryboard(name: "CComb", bundle: NSBundle.mainBundle())
-//        var vc = usb.instantiateViewControllerWithIdentifier("CreateCombStepOneUI") as UIViewController
-//        self.navigationController?.pushViewController(vc, animated: true)
-//
-//    }
 }
 

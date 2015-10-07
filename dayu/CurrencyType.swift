@@ -73,10 +73,10 @@ class CurrencyType : NSObject {
         }
     }
     
-    func toJsonString() -> String {
+    func toJsonString() -> NSString {
         let dict = ["key":key, "value":value, "buyRate":rate, "lots": tradeNum, "operation": operation]
         let data = try? NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.PrettyPrinted)
-        let strJson = String(data: data!, encoding: NSUTF8StringEncoding)!
+        let strJson = NSString(data: data!, encoding: NSUTF8StringEncoding)!
         return strJson
     }
 }
