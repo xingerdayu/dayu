@@ -15,13 +15,13 @@ class BaseUIViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        MobClick.beginLogPageView(self.title)
+        //MobClick.beginLogPageView(self.title)
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
-        MobClick.endLogPageView(self.title)
+        //MobClick.endLogPageView(self.title)
     }
 
 }

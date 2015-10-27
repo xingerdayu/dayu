@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434CACC21BC513F800A81793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434CACC11BC513F800A81793 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		434CACC51BC5148C00A81793 /* 640x960.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 434CACC31BC5148C00A81793 /* 640x960.jpg */; settings = {ASSET_TAGS = (); }; };
+		434CACC61BC5148C00A81793 /* 640x1136.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 434CACC41BC5148C00A81793 /* 640x1136.jpg */; settings = {ASSET_TAGS = (); }; };
 		435E626B1B91597D006CA7C6 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 435E626A1B91597D006CA7C6 /* Group.storyboard */; };
 		435E626D1B916079006CA7C6 /* arrow_nav_small_indicate.png in Resources */ = {isa = PBXBuildFile; fileRef = 435E626C1B916079006CA7C6 /* arrow_nav_small_indicate.png */; };
 		435E62701B9161F4006CA7C6 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */; };
@@ -43,6 +46,7 @@
 		4386C2C11B9EFA050080A175 /* LOGO58.png in Resources */ = {isa = PBXBuildFile; fileRef = 4386C2BE1B9EFA050080A175 /* LOGO58.png */; };
 		4386C2C31B9F019E0080A175 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4386C2C21B9F019E0080A175 /* background.png */; };
 		4386C2C51B9F07AA0080A175 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386C2C41B9F07AA0080A175 /* MainViewController.swift */; };
+		4394D3581BC375B600D16B07 /* UpdateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394D3571BC375B600D16B07 /* UpdateUtils.swift */; settings = {ASSET_TAGS = (); }; };
 		43AA87751BAAE1E9008592A9 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43AA87741BAAE1E9008592A9 /* background.jpg */; };
 		43C75AD11B9F14B800775F15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C75AD01B9F14B800775F15 /* QuartzCore.framework */; };
 		43D9393B1B8F62C30090F47D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9393A1B8F62C30090F47D /* AppDelegate.swift */; };
@@ -221,6 +225,9 @@
 /* Begin PBXFileReference section */
 		335AD170ACB9D2466303995A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3976EC4564FEA6A306018327 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		434CACC11BC513F800A81793 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		434CACC31BC5148C00A81793 /* 640x960.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 640x960.jpg; sourceTree = "<group>"; };
+		434CACC41BC5148C00A81793 /* 640x1136.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 640x1136.jpg; sourceTree = "<group>"; };
 		435E626A1B91597D006CA7C6 /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		435E626C1B916079006CA7C6 /* arrow_nav_small_indicate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_nav_small_indicate.png; sourceTree = "<group>"; };
 		435E626F1B9161F4006CA7C6 /* GroupListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +264,7 @@
 		4386C2BE1B9EFA050080A175 /* LOGO58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO58.png; sourceTree = "<group>"; };
 		4386C2C21B9F019E0080A175 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		4386C2C41B9F07AA0080A175 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4394D3571BC375B600D16B07 /* UpdateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUtils.swift; sourceTree = "<group>"; };
 		43AA87741BAAE1E9008592A9 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		43C75AD01B9F14B800775F15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		43D939351B8F62C30090F47D /* dayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -521,6 +529,7 @@
 		43D939371B8F62C30090F47D /* dayu */ = {
 			isa = PBXGroup;
 			children = (
+				434CACC11BC513F800A81793 /* LaunchScreen.storyboard */,
 				A1DD92FA1B9D88D5008404F6 /* Comb */,
 				435E627A1B91F1A8006CA7C6 /* Ext */,
 				435E62711B916219006CA7C6 /* User */,
@@ -592,6 +601,7 @@
 				43D939741B90531C0090F47D /* FileUtil.swift */,
 				43D939751B90531C0090F47D /* ImageLoader.swift */,
 				43D939761B90531C0090F47D /* StringUtil.swift */,
+				4394D3571BC375B600D16B07 /* UpdateUtils.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -624,6 +634,8 @@
 		43D9397C1B9058310090F47D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				434CACC31BC5148C00A81793 /* 640x960.jpg */,
+				434CACC41BC5148C00A81793 /* 640x1136.jpg */,
 				43AA87741BAAE1E9008592A9 /* background.jpg */,
 				4386C2C21B9F019E0080A175 /* background.png */,
 				4386C2A81B99C3620080A175 /* cse_from_system.png */,
@@ -853,7 +865,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Xinger;
 				TargetAttributes = {
 					43D939341B8F62C30090F47D = {
@@ -921,6 +933,7 @@
 				43D93B011B9058C90090F47D /* ic_showbaocang.png in Resources */,
 				43D93B2B1B908B9F0090F47D /* User.storyboard in Resources */,
 				A13CC7E81BA2B83500199D6D /* UnderPieItem.xib in Resources */,
+				434CACC21BC513F800A81793 /* LaunchScreen.storyboard in Resources */,
 				43D93ADF1B9058C90090F47D /* comb_circle_3.png in Resources */,
 				43D93A691B9058BD0090F47D /* my_setting.png in Resources */,
 				43D93A661B9058BD0090F47D /* my_about.png in Resources */,
@@ -944,6 +957,7 @@
 				43D93AFD1B9058C90090F47D /* ic_love_blue.png in Resources */,
 				43D93B0C1B9058C90090F47D /* note_good_normal.png in Resources */,
 				A13CC7EC1BA4037700199D6D /* FsLineView.xib in Resources */,
+				434CACC61BC5148C00A81793 /* 640x1136.jpg in Resources */,
 				43D93A7A1B9058BD0090F47D /* star_0.png in Resources */,
 				43D93AEF1B9058C90090F47D /* comb_up_5.png in Resources */,
 				435E62771B91EC5E006CA7C6 /* TopicView.xib in Resources */,
@@ -961,6 +975,7 @@
 				43D93A651B9058BD0090F47D /* item_user_photo.png in Resources */,
 				43D93AE81B9058C90090F47D /* comb_edit.png in Resources */,
 				43D93ADE1B9058C90090F47D /* comb_circle_2.png in Resources */,
+				434CACC51BC5148C00A81793 /* 640x960.jpg in Resources */,
 				43D93B151B9058C90090F47D /* star_blue.png in Resources */,
 				43D93A521B9058BD0090F47D /* country_canada.png in Resources */,
 				43D93A4F1B9058BD0090F47D /* arrow_back_nav.png in Resources */,
@@ -1121,6 +1136,7 @@
 				A15C39101B918CB800FBD5F9 /* CombListViewController.swift in Sources */,
 				43D939401B8F62C30090F47D /* ViewController.swift in Sources */,
 				43D939631B9052FD0090F47D /* URLConstants.swift in Sources */,
+				4394D3581BC375B600D16B07 /* UpdateUtils.swift in Sources */,
 				43D9396D1B9053090090F47D /* News.swift in Sources */,
 				43D9393E1B8F62C30090F47D /* dayu.xcdatamodeld in Sources */,
 				4386C2A01B9897C80080A175 /* ReplyListViewController.swift in Sources */,
@@ -1189,6 +1205,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1203,11 +1220,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -1239,10 +1257,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Release;
 		};
@@ -1251,13 +1270,13 @@
 			baseConfigurationReference = 335AD170ACB9D2466303995A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = dayu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fxdayu.dayu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dayu/dayu-Bridging-Header.h";
@@ -1271,13 +1290,13 @@
 			baseConfigurationReference = E6CD2BD01D02E81BE5C0365E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = dayu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fxdayu.dayu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "dayu/dayu-Bridging-Header.h";
@@ -1299,6 +1318,7 @@
 				);
 				INFOPLIST_FILE = dayuTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fxdayu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dayu.app/dayu";
 			};
@@ -1314,6 +1334,7 @@
 				);
 				INFOPLIST_FILE = dayuTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fxdayu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dayu.app/dayu";
 			};
