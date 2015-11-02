@@ -97,7 +97,13 @@ class Comb: NSObject {
             c.buyRate = json3["buyRate"] as! Float
             c.operation = json3["operation"] as! String
             c.key = json3["key"] as! String
-            c.lots = json3["lots"] as! Float
+            //c.lots = json3["lots"] as! Float
+            var lots = json3["lots"] as? Float
+            if lots == nil {
+                lots = (json3["lots"] as? NSString)?.floatValue
+            } else {
+                c.lots = lots!
+            }
             c.earning = json3["earning"] as! Float
             c.selected = true
             self.currencys.append(c)
