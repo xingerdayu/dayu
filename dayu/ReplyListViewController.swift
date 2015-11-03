@@ -26,7 +26,7 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
         getReplyList()
         
         itemsView = NSBundle.mainBundle().loadNibNamed("ItemsView2", owner: self, options: nil)[0] as! ItemsView2
-        itemsView.frame = CGRectMake(0, 528, 320, 40)
+        itemsView.frame = CGRectMake(0, 528 * app.autoSizeScaleY, 320 * app.autoSizeScaleX, 40 * app.autoSizeScaleY)
         itemsView.backDelegete = self
         itemsView.replyDelegate = self
         itemsView.setTopicValue(topic)
@@ -78,9 +78,9 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
             let attrContent = NSMutableAttributedString(string: reply.content as String)
             attrContent.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: range)
             attrContent.addAttribute(NSFontAttributeName, value: UIFont(name: "Arial", size: 14.0)!, range: range)
-            contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280, attrContent:attrContent)
+            contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280 * app.autoSizeScaleX, attrContent:attrContent)
         } else {
-            contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280)
+            contentLable = ViewUtil.createLabelByString(reply.content, x: 20, y: 55, width: 280 * app.autoSizeScaleX)
         }
         contentLable.textColor = Colors.ReplyContentColor
         contentLable.tag = 34
@@ -91,7 +91,7 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let reply = replyList[indexPath.row] as! Reply
-        let size = reply.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(300, 20000));
+        let size = reply.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(app.ScreenWidth - 40, 20000));
         return (65 + size.height)
     }
     

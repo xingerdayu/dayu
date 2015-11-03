@@ -10,6 +10,8 @@ import UIKit
 
 class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
     
+    //var app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     @IBOutlet weak var myTableView: UITableView!
     var messageList = NSMutableArray()
     var groupMessage:Message!
@@ -41,11 +43,10 @@ class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableV
                 alertView.show()
             }
         case MessageType.ADJUST:
-            //调仓消息，等待东哥那边处理
             print("Adjust \(m_message.attachId)")
             let params = ["cid": m_message.attachId]
             HttpUtil.post(URLConstants.getCombinationInfoUrl, params: params, success: {(response:AnyObject!) in
-                print(response)
+                //print(response)
                 let comb = Comb()
                 comb.parse(response["combinations"] as! NSDictionary)
                 let usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
@@ -109,20 +110,21 @@ class MessageViewController: BaseUIViewController, UITableViewDelegate, UITableV
         titleLabel.text = m_message.title
         contentLabel.text = m_message.content
         
-        contentLabel.translatesAutoresizingMaskIntoConstraints = true //清除 AutoLayout的影响
-        bgView.translatesAutoresizingMaskIntoConstraints = true //清除 AutoLayout的影响
+        //contentLabel.translatesAutoresizingMaskIntoConstraints = true //清除 AutoLayout的影响
+        //bgView.translatesAutoresizingMaskIntoConstraints = true //清除 AutoLayout的影响
         
-        let size = m_message.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(280, 20000));
+        let clWidth = 280 * app.autoSizeScaleX
+        let size = m_message.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(clWidth, 20000));
         let frame = contentLabel.frame
-        contentLabel.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.width, size.height)
-        bgView.frame = CGRectMake(bgView.frame.origin.x, bgView.frame.origin.y, bgView.frame.width, 95 + size.height)
+        contentLabel.frame = CGRectMake(10 * app.autoSizeScaleX, frame.origin.y, clWidth, size.height)
+        bgView.frame = CGRectMake(10 * app.autoSizeScaleX, bgView.frame.origin.y, 300 * app.autoSizeScaleX, 95 + size.height)
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let m_message = messageList[indexPath.row] as! Message
-        let size = m_message.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(280, 20000));
+        let size = m_message.content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(280 * app.autoSizeScaleX, 20000));
         
         return 105 + size.height
     }

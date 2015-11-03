@@ -397,7 +397,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="50" contentMode="scaleToFill" id="Qsq-Bi-jy3">
-                                                    <rect key="frame" x="10" y="5" width="580" height="115"/>
+                                                    <rect key="frame" x="10" y="5" width="300" height="115"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" tag="51" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_photo.png" id="fjH-vn-iTk">

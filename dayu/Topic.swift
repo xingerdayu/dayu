@@ -80,7 +80,7 @@ class Topic: NSObject {
             imageGroupHeight = defaultImageGroupHeight
         }
         
-        return contentLabelOffsetY + size.height + imageGroupHeight + marginTop * 3 + 30
+        return contentLabelOffsetY + size.height + imageGroupHeight + marginTop * 4
     }
 
 

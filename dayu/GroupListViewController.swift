@@ -53,6 +53,7 @@ class GroupListViewController: BaseUIViewController, UITableViewDataSource, UITa
         let group = groupList[indexPath.row] as! Group
         
         let cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath) as UITableViewCell
+        myAutoLayout(cell)
         
         let bgView = cell.viewWithTag(10) as UIView?
         
