@@ -11,11 +11,17 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-                            
+    
+    var ScreenHeight = UIScreen.mainScreen().bounds.size.height//获取屏幕高度，兼容性测试
+    var ScreenWidth = UIScreen.mainScreen().bounds.size.width//获取屏幕宽度，兼容性测试
+    
     var window: UIWindow?
     
     //var token:NSDictionary!
     var user:User!
+    
+    var autoSizeScaleX: CGFloat = 1.0
+    var autoSizeScaleY: CGFloat = 1.0
     
     func getToken() -> String {
         return user.token
@@ -42,6 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        if ScreenHeight > 480 {
+            autoSizeScaleX = (ScreenWidth * 1.0) / 320
+            autoSizeScaleY = (ScreenHeight * 1.0) / 568
+            print("autoSizeScaleX = \(autoSizeScaleX), autoSizeScaleY=\(autoSizeScaleY)")
+        }
         //MobClick.startWithAppkey("55fa848be0f55ae62500109e")
         //MobClick.checkUpdate()
         return true

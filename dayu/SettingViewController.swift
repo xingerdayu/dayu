@@ -43,10 +43,10 @@ class SettingViewController: BaseUIViewController, UITableViewDelegate, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let usb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        if indexPath.row == 1 {
+        if indexPath.row == 0 {
             let vc = usb.instantiateViewControllerWithIdentifier("FeedBackViewUI") as UIViewController
             self.navigationController?.pushViewController(vc, animated: true)
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 1 {
             let vc = usb.instantiateViewControllerWithIdentifier("AboutDayuUI") as UIViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }
