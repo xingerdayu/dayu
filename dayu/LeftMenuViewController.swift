@@ -66,6 +66,8 @@ class LeftMenuViewController: BaseChooseImageViewController, UITableViewDataSour
         
         let iconIv = cell.viewWithTag(31) as! UIImageView
         let nameLabel = cell.viewWithTag(32) as! UILabel
+        //let sepView = cell.viewWithTag(12)!
+        //myAutoLayout(sepView)
         
         iconIv.image = UIImage(named: item.itemIcon)
         nameLabel.text = item.itemName

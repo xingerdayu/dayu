@@ -27,24 +27,7 @@ class Topic: NSObject {
     var timeString:NSString = ""
     var isSupport:Int?
     
-    var imageGroupHeight:CGFloat = 0
-    
-    var contentLabelOffsetX:CGFloat = 20
-    
-    var contentLabelOffsetY:CGFloat = 60
-    
-    var contentLabelWidth:CGFloat = 280
-    
-    var defaultImageGroupHeight:CGFloat = 80
-    
-    var subViewOffsetY:CGFloat = 60
-    
-    var contentLabelHeight:CGFloat = 0
-    
-    var marginTop:CGFloat = 5
-    
-    var contentHeight:CGFloat = 0
-
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     class func parseTopic(dict:NSDictionary) -> Topic {
         let topic = Topic()
@@ -70,18 +53,46 @@ class Topic: NSObject {
         return topic
     }
     
+    func getContentOffsetX() -> CGFloat {
+        return 20;
+    }
+    
+    func getContentOffsetY() -> CGFloat {
+        return 55; //头像高度 50 + 上下间距 5
+    }
+    
+    func getContentWidth() -> CGFloat {
+        return app.ScreenWidth - getContentOffsetX() - getContentOffsetX() //减去左右边距
+    }
+    
+    func getContentHeight() -> CGFloat {
+        let size = content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(getContentWidth(), 20000));
+        return size.height
+    }
+    
+    func getImageGroupHeight() -> CGFloat {
+        if imageNum > 0 {
+            return 80 //默认高80个像素
+        }
+        return 0
+    }
+    
+    func getImageOffsetY() -> CGFloat {
+        return getContentOffsetY() + getContentHeight() + 5 //上下间距5个像素
+    }
+    
     /**
     计算TopicView的高度
     **/
-    func getContentHeight() -> CGFloat {
-        let size = content.textSizeWithFont(UIFont.systemFontOfSize(FONT_SIZE), constrainedToSize: CGSizeMake(contentLabelWidth, 20000));
-        
-        if imageNum > 0 {
-            imageGroupHeight = defaultImageGroupHeight
-        }
-        
-        return contentLabelOffsetY + size.height + imageGroupHeight + marginTop * 4
+    func getTopicHeight() -> CGFloat {
+        return getImageOffsetY() + getImageGroupHeight()
     }
 
-
+    func getAllHeight(shouldShowItems:Bool) -> CGFloat {
+        if shouldShowItems {
+            return getTopicHeight() + 30 * app.autoSizeScaleY //选项高度30
+        } else {
+            return getTopicHeight()
+        }
+    }
 }

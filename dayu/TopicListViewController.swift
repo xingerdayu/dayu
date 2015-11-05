@@ -104,7 +104,6 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         let topic = topicList[indexPath.row] as! Topic
         
         let cell = tableView.dequeueReusableCellWithIdentifier("TopicCell", forIndexPath: indexPath) as UITableViewCell
-        myAutoLayout(cell)
         
         cell.viewWithTag(5)?.removeFromSuperview() //TODO 这里不使用IOS自带的缓存，可能性能有影响，但是注意不要重复添加view，不然会有重叠
         cell.viewWithTag(6)?.removeFromSuperview()
@@ -120,13 +119,12 @@ class TopicListViewController: BaseUIViewController, UITableViewDataSource, UITa
         itemsView.tag = 6
         myAutoLayout(itemsView)
         cell.addSubview(itemsView)
-        //myAutoLayout(cell)
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let topic = topicList[indexPath.row] as! Topic
-        return topic.getContentHeight() + 30 * app.autoSizeScaleY
+        return topic.getAllHeight(true) + 10
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

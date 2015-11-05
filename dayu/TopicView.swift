@@ -29,36 +29,29 @@ class TopicView: UIView {
         ivPhoto.layer.cornerRadius = 20
         ivPhoto.clipsToBounds = true //照片切圆角
         
-        let clWidth = self.getContentLabelWidth(topic)
-        let contentLabel = ViewUtil.createLabelByString(topic.content, x: topic.contentLabelOffsetX * app.autoSizeScaleX, y: topic.contentLabelOffsetY, width: clWidth)
+        let contentLabel = ViewUtil.createLabelByString(topic.content, x: topic.getContentOffsetX(), y: topic.getContentOffsetY(), width: topic.getContentWidth())
         contentLabel.textColor = Colors.LargeBlackColor
-        topic.contentLabelHeight = contentLabel.frame.size.height  //根据文字的长度与Label的宽度计算Label的高度
         
         self.addSubview(contentLabel)
         
         if topic.imageNum > 0 { //生成帖子的图片
-            topic.imageGroupHeight = topic.defaultImageGroupHeight
-            let imageGroupView = createGroupImageView(topic, offsetY: topic.contentLabelHeight)
+            let imageGroupView = createGroupImageView(topic)
             self.addSubview(imageGroupView)
         }
         
-        topic.contentHeight = topic.contentLabelOffsetY + topic.contentLabelHeight + topic.imageGroupHeight + topic.marginTop * 3 /**这里有3个组的高度想家，所以加入3个向上的间距 **/
-        if shouldShowItems { //是否显示点赞，评论等按钮
-            topic.contentHeight = topic.contentHeight + 30 * app.autoSizeScaleY
-        }
-        if shouldShowCommentLabel { //是否显示评论按钮
-            let commentLabel = UILabel(frame: CGRectMake(10 * app.autoSizeScaleX, topic.contentHeight - 20, clWidth, 20))
-            commentLabel.font = UIFont(name: "Arial", size: 12.0)
-            commentLabel.text = "评论(\(topic.replyCount))"
-            commentLabel.textColor = Colors.ReplyContentColor
-            bgView.addSubview(commentLabel)
-        }
+//        if shouldShowCommentLabel { //是否显示评论按钮
+//            let commentLabel = UILabel(frame: CGRectMake(10, topic.getImageOffsetY() - 20, topic.getContentWidth(), 20))
+//            commentLabel.font = UIFont(name: "Arial", size: 12.0)
+//            commentLabel.text = "评论(\(topic.replyCount))"
+//            commentLabel.textColor = Colors.ReplyContentColor
+//            bgView.addSubview(commentLabel)
+//        }
         modifyBgViewSize(topic)
-        self.frame = CGRectMake(0, 0, 320 * app.autoSizeScaleX, topic.contentHeight + 10)
+        self.frame = CGRectMake(0, 0, 320 * app.autoSizeScaleX, topic.getAllHeight(shouldShowItems) + 10)
     }
     
-    func createGroupImageView(topic:Topic, offsetY:CGFloat) -> UIView {
-        let imageGroupView = UIView(frame: CGRectMake(0, topic.contentLabelOffsetY + offsetY + topic.marginTop, 320 * app.autoSizeScaleX, 80))
+    func createGroupImageView(topic:Topic) -> UIView {
+        let imageGroupView = UIView(frame: CGRectMake(0, topic.getImageOffsetY(), 320 * app.autoSizeScaleX, 80))
         imageGroupView.tag = 11
         for var i = 0; i < topic.imageNum; i++ {
             let imageView = UIImageView(frame: getImageGroupFrame(i))
@@ -72,15 +65,11 @@ class TopicView: UIView {
         return CGRectMake(CGFloat(20 + i * 65), 5, 60, 60)
     }
     
-    func getContentLabelWidth(topic:Topic) -> CGFloat {
-        return topic.contentLabelWidth * app.autoSizeScaleX
-    }
-    
     func modifyBgViewSize(topic:Topic) {
         if shouldShowCommentLabel {
             bgView.backgroundColor = UIColor.clearColor()
         } else {
-            bgView.frame = CGRectMake(10, 5, 300 * app.autoSizeScaleX, topic.contentHeight)
+            bgView.frame = CGRectMake(10, 5, 300 * app.autoSizeScaleX, topic.getAllHeight(shouldShowItems))
         }
     }
 

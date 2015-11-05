@@ -30,6 +30,7 @@ class ReplyListViewController: BaseUIViewController, UITableViewDelegate, UITabl
         itemsView.backDelegete = self
         itemsView.replyDelegate = self
         itemsView.setTopicValue(topic)
+        myAutoLayout(itemsView)
         self.view.addSubview(itemsView)
     }
     
