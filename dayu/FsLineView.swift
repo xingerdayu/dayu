@@ -15,9 +15,10 @@ class FsLineView: UIView {
     var crash : Float = 0
     var pointsX = Array<Int64>()
     var pointsY = Array<Float>()
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
     func createLineChart() {
 //        var array = ["January", "February", "March", "April", "May", "June", "July"]
-        let lineChart = FSLineChart(frame: CGRectMake(10, 35, 310, 160))
+        let lineChart = FSLineChart(frame: CGRectMake(10*app.autoSizeScaleX, 35*app.autoSizeScaleY, 300*app.autoSizeScaleX, 160*app.autoSizeScaleY))
         
         lineChart.labelForIndex = {(item:UInt) in
             return (StringUtil.formatTime(self.pointsX[Int(item)]) as NSString).substringToIndex(10) //array[Int(item)]

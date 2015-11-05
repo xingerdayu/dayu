@@ -15,6 +15,7 @@ class PieView: UIView , UITableViewDataSource, UITabBarDelegate {
     @IBOutlet weak var utvUnderPie: UITableView!
     @IBOutlet weak var pieView: PieView!
     var itemNum = 0
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
     func createMagicPie(comb:Comb) {
         self.comb = comb
         currencys = comb.currencys
@@ -22,11 +23,11 @@ class PieView: UIView , UITableViewDataSource, UITabBarDelegate {
         self.utvUnderPie.registerNib(cell, forCellReuseIdentifier: "Cell")
         self.utvUnderPie.reloadData()
         itemNum = currencys.count % 2 == 0 ? (currencys.count/2) : (currencys.count/2 + 1)
-        self.utvUnderPie.frame = CGRectMake(10, 230, 340, CGFloat(45 * itemNum))
+        self.utvUnderPie.frame = CGRectMake(10+(app.ScreenWidth-320)/2, 230*app.autoSizeScaleY, 320, CGFloat(45 * itemNum)*app.autoSizeScaleY)
         if currencys.count > 0 {
             let pieLayer = PieLayer()
             pieLayer.frame = CGRectMake(0, 0, 180, 180)
-            
+            pieView.frame = CGRectMake(80+(app.ScreenWidth-320)/2, 42*app.autoSizeScaleY, 180, 180)
             var i = 0
 //            var startOffset = 160 + (4 - dic.count) * 20
             for c in currencys {

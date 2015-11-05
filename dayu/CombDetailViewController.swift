@@ -52,7 +52,7 @@ class CombDetailViewController: BaseUIViewController {
             }
         }
         self.title = comb.name
-        
+
         // Do any additional setup after loading the view.
     }
     
@@ -127,11 +127,11 @@ class CombDetailViewController: BaseUIViewController {
         
         let pie = NSBundle.mainBundle().loadNibNamed("PieView", owner: self, options: nil)[0] as! PieView
         pie.createMagicPie(comb)
-        pie.frame = CGRectMake(0, 261 , 340, pie.utvUnderPie.frame.height + 275 )
+        pie.frame = CGRectMake(0, 261*app.autoSizeScaleY, 340*app.autoSizeScaleX, (pie.utvUnderPie.frame.height + 275)*app.autoSizeScaleY)
         self.usvMain.addSubview(pie)
         
         fsLineView = NSBundle.mainBundle().loadNibNamed("FsLineView", owner: self, options: nil)[0] as! FsLineView
-        fsLineView.frame = CGRectMake(0, 210 + pie.frame.height, 340, 300)
+        fsLineView.frame = CGRectMake(0, 210 + pie.frame.height, 340*app.autoSizeScaleX, 300*app.autoSizeScaleY)
         usvMain.addSubview(fsLineView)
         fsLineView.getWave(comb, waveStyle: "S")
         
@@ -140,7 +140,7 @@ class CombDetailViewController: BaseUIViewController {
         let amount2 = amount.viewWithTag(2) as! UILabel
         amount1.text = "$\(StringUtil.formatFloat(comb.amount))"
         amount2.text = "$\(StringUtil.formatFloat(comb.now_amount))"
-        amount.frame = CGRectMake(0, 120 + pie.frame.height + fsLineView.frame.height, 340, 100)
+        amount.frame = CGRectMake(0, 120 + pie.frame.height + fsLineView.frame.height, 340*app.autoSizeScaleX, 100*app.autoSizeScaleY)
         self.usvMain.addSubview(amount)
         changeTime()
         
